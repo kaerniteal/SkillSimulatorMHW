@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using SkillSimulatorMHW.Defines;
+using SkillSimulatorMHW.Executors;
 using SkillSimulatorMHW.Extensions;
 
 namespace SkillSimulatorMHW
@@ -35,9 +36,10 @@ namespace SkillSimulatorMHW
             this.SerchLimitCount = 0;
             this.UseArmorAbstract = true;
             this.EnableAsyncExec = true;
-            this.AnalyzeType = AnalyzeType.NotExist;
+            this.AnalyzeType = AnalyzeType.Always;
 
             this.ShowDebugLog = false;
+            this.SearchEngineId = SearchEngineStable.Id;
 
             this.EnableDuplicateCheck = false;
             this.EnableResultOutput = false;
@@ -73,6 +75,11 @@ namespace SkillSimulatorMHW
         /// デバッグログの表示ON/OFF.
         /// </summary>
         public bool ShowDebugLog { get; set; }
+
+        /// <summary>
+        /// 検索エンジンIndex
+        /// </summary>
+        public string SearchEngineId { get; set; }
 
         /// <summary>
         /// 重複チェックの有効/無効.

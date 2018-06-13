@@ -64,6 +64,7 @@
     <Compile Include="Controls\AnalyzeFactorControl.Designer.cs">
       <DependentUpon>AnalyzeFactorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Executors\SearchEngineLatest.cs" />
     <Compile Include="Forms\DlgAnalyzeResult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +83,7 @@
     <Compile Include="Forms\DlgResultList.Designer.cs">
       <DependentUpon>DlgResultList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Executors\SearchEngine.cs" />
     <Compile Include="Result\ResultFilter.cs" />
     <Compile Include="Data\SearchReport.cs" />
     <Compile Include="Data\SkillBase.cs" />
@@ -150,7 +152,7 @@
       <DependentUpon>DlgProgress.cs</DependentUpon>
     </Compile>
     <Compile Include="Executors\ProgressExecutorBase.cs" />
-    <Compile Include="Executors\SearchExecutor.cs" />
+    <Compile Include="Executors\SearchEngineStable.cs" />
     <Compile Include="Extensions\CsvExtensions.cs" />
     <Compile Include="Controls\RequirementControl.cs">
       <SubType>UserControl</SubType>

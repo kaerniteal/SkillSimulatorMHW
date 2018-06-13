@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
+using SkillSimulatorMHW.Executors;
 using SkillSimulatorMHW.Extensions;
 
 namespace SkillSimulatorMHW.Forms
@@ -26,6 +28,10 @@ namespace SkillSimulatorMHW.Forms
                 new CmbItem<AnalyzeType>("条件を満たすセットが存在しない場合解析する", AnalyzeType.NotExist),
                 new CmbItem<AnalyzeType>("常に解析する", AnalyzeType.Always),
             });
+
+            this.cmbSearchEngine.Init(SearchEngine.SearchEngines
+                .Select(engine => new CmbItem<string>(engine.GetId(), engine.GetId()))
+                .ToList());
         }
 
         /// <summary>
@@ -42,6 +48,7 @@ namespace SkillSimulatorMHW.Forms
             this.cmbAnalyzeType.SelectCmbItem(config.AnalyzeType);
 
             this.chkShowDebugLog.Checked = config.ShowDebugLog;
+            this.cmbSearchEngine.SelectCmbItem(config.SearchEngineId);
         }
 
         /// <summary>
@@ -63,6 +70,7 @@ namespace SkillSimulatorMHW.Forms
             config.AnalyzeType = this.cmbAnalyzeType.SelectedCmbItem<AnalyzeType>();
 
             config.ShowDebugLog = this.chkShowDebugLog.Checked;
+            config.SearchEngineId = this.cmbSearchEngine.SelectedCmbItem<string>();
 
             return config;
         }

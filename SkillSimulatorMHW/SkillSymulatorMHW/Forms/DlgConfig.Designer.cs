@@ -35,15 +35,17 @@
             this.spinShowResultLimitCount = new System.Windows.Forms.NumericUpDown();
             this.lblShowResultLimitCount = new System.Windows.Forms.Label();
             this.tabPageConfigSearch = new System.Windows.Forms.TabPage();
+            this.cmbAnalyzeType = new System.Windows.Forms.ComboBox();
             this.chkEnableAsyncExec = new System.Windows.Forms.CheckBox();
             this.chkUseArmorAbstract = new System.Windows.Forms.CheckBox();
             this.spinSerchLimitCount = new System.Windows.Forms.NumericUpDown();
+            this.lblAnalyzeType = new System.Windows.Forms.Label();
             this.lblSerchLimitCount = new System.Windows.Forms.Label();
             this.tabPageConfigDebug = new System.Windows.Forms.TabPage();
+            this.cmbSearchEngine = new System.Windows.Forms.ComboBox();
+            this.lblSearchEngine = new System.Windows.Forms.Label();
             this.chkShowDebugLog = new System.Windows.Forms.CheckBox();
             this.btnDefault = new System.Windows.Forms.Button();
-            this.cmbAnalyzeType = new System.Windows.Forms.ComboBox();
-            this.lblAnalyzeType = new System.Windows.Forms.Label();
             this.tabCtrlConfigView.SuspendLayout();
             this.tabPageConfig1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinShowResultLimitCount)).BeginInit();
@@ -134,6 +136,14 @@
             this.tabPageConfigSearch.Text = "検索設定";
             this.tabPageConfigSearch.UseVisualStyleBackColor = true;
             // 
+            // cmbAnalyzeType
+            // 
+            this.cmbAnalyzeType.FormattingEnabled = true;
+            this.cmbAnalyzeType.Location = new System.Drawing.Point(89, 86);
+            this.cmbAnalyzeType.Name = "cmbAnalyzeType";
+            this.cmbAnalyzeType.Size = new System.Drawing.Size(261, 20);
+            this.cmbAnalyzeType.TabIndex = 4;
+            // 
             // chkEnableAsyncExec
             // 
             this.chkEnableAsyncExec.AutoSize = true;
@@ -166,6 +176,15 @@
             this.spinSerchLimitCount.Size = new System.Drawing.Size(80, 19);
             this.spinSerchLimitCount.TabIndex = 2;
             // 
+            // lblAnalyzeType
+            // 
+            this.lblAnalyzeType.AutoSize = true;
+            this.lblAnalyzeType.Location = new System.Drawing.Point(6, 89);
+            this.lblAnalyzeType.Name = "lblAnalyzeType";
+            this.lblAnalyzeType.Size = new System.Drawing.Size(77, 12);
+            this.lblAnalyzeType.TabIndex = 1;
+            this.lblAnalyzeType.Text = "条件未達解析";
+            // 
             // lblSerchLimitCount
             // 
             this.lblSerchLimitCount.AutoSize = true;
@@ -177,6 +196,8 @@
             // 
             // tabPageConfigDebug
             // 
+            this.tabPageConfigDebug.Controls.Add(this.cmbSearchEngine);
+            this.tabPageConfigDebug.Controls.Add(this.lblSearchEngine);
             this.tabPageConfigDebug.Controls.Add(this.chkShowDebugLog);
             this.tabPageConfigDebug.Location = new System.Drawing.Point(4, 22);
             this.tabPageConfigDebug.Name = "tabPageConfigDebug";
@@ -185,6 +206,23 @@
             this.tabPageConfigDebug.TabIndex = 2;
             this.tabPageConfigDebug.Text = "Debug";
             this.tabPageConfigDebug.UseVisualStyleBackColor = true;
+            // 
+            // cmbSearchEngine
+            // 
+            this.cmbSearchEngine.FormattingEnabled = true;
+            this.cmbSearchEngine.Location = new System.Drawing.Point(89, 42);
+            this.cmbSearchEngine.Name = "cmbSearchEngine";
+            this.cmbSearchEngine.Size = new System.Drawing.Size(261, 20);
+            this.cmbSearchEngine.TabIndex = 6;
+            // 
+            // lblSearchEngine
+            // 
+            this.lblSearchEngine.AutoSize = true;
+            this.lblSearchEngine.Location = new System.Drawing.Point(6, 45);
+            this.lblSearchEngine.Name = "lblSearchEngine";
+            this.lblSearchEngine.Size = new System.Drawing.Size(66, 12);
+            this.lblSearchEngine.TabIndex = 5;
+            this.lblSearchEngine.Text = "検索エンジン";
             // 
             // chkShowDebugLog
             // 
@@ -206,23 +244,6 @@
             this.btnDefault.Text = "デフォルトに戻す";
             this.btnDefault.UseVisualStyleBackColor = true;
             this.btnDefault.Click += new System.EventHandler(this.CallBackBtnDefaultClick);
-            // 
-            // cmbAnalyzeType
-            // 
-            this.cmbAnalyzeType.FormattingEnabled = true;
-            this.cmbAnalyzeType.Location = new System.Drawing.Point(89, 86);
-            this.cmbAnalyzeType.Name = "cmbAnalyzeType";
-            this.cmbAnalyzeType.Size = new System.Drawing.Size(261, 20);
-            this.cmbAnalyzeType.TabIndex = 4;
-            // 
-            // lblAnalyzeType
-            // 
-            this.lblAnalyzeType.AutoSize = true;
-            this.lblAnalyzeType.Location = new System.Drawing.Point(6, 89);
-            this.lblAnalyzeType.Name = "lblAnalyzeType";
-            this.lblAnalyzeType.Size = new System.Drawing.Size(77, 12);
-            this.lblAnalyzeType.TabIndex = 1;
-            this.lblAnalyzeType.Text = "条件未達解析";
             // 
             // DlgConfig
             // 
@@ -271,5 +292,7 @@
         private System.Windows.Forms.CheckBox chkShowDebugLog;
         private System.Windows.Forms.ComboBox cmbAnalyzeType;
         private System.Windows.Forms.Label lblAnalyzeType;
+        private System.Windows.Forms.ComboBox cmbSearchEngine;
+        private System.Windows.Forms.Label lblSearchEngine;
     }
 }

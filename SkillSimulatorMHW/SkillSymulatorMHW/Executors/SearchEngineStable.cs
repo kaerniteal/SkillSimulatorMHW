@@ -14,20 +14,22 @@ namespace SkillSimulatorMHW.Executors
     /// <summary>
     /// 検索実行クラス.
     /// </summary>
-    public class SearchExecutor : ProgressExecutorBase
+    public class SearchEngineStable : SearchEngine
     {
+        /// <summary>
+        /// ID
+        /// </summary>
+        public const string Id = "stable";
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="requirements"></param>
-        /// <param name="mainForm"></param>
-        /// <param name="analyzeFactors"></param>
-        public SearchExecutor(Requirement requirements, IMainForm mainForm, bool analyzeFactors)
+        public SearchEngineStable()
         {
-            this.Requirements = requirements;
-            this.MainForm = mainForm;
-            this.AnalyzeFactors = analyzeFactors;
-            this.CandidateSet = new CandidateSet(requirements);
+            this.Requirements = null;
+            this.MainForm = null;
+            this.AnalyzeFactors = false;
+            this.CandidateSet = null;
             this.DicDoneKey = new Dictionary<string, SearchSet>();
             this.OverlapCount = 0;
             this.TotalCalled = 0;
@@ -79,7 +81,7 @@ namespace SkillSimulatorMHW.Executors
         /// </summary>
         protected override void Execute()
         {
-            this.ResultData = this.SerchMain();
+            this.ResultData = this.Search();
         }
 
         /// <summary>
@@ -92,9 +94,36 @@ namespace SkillSimulatorMHW.Executors
         }
 
         /// <summary>
+        /// 検索処理IDを返す.
+        /// </summary>
+        /// <returns>ID</returns>
+        public override string GetId()
+        {
+            return Id;
+        }
+
+        /// <summary>
+        /// パラメータセット.
+        /// </summary>
+        /// <param name="requirements">検索条件</param>
+        /// <param name="mainForm">結果反映先</param>
+        /// <param name="analyzeFactors">解析実施要否</param>
+        public override void SetParam(Requirement requirements, IMainForm mainForm, bool analyzeFactors)
+        {
+            this.Requirements = requirements;
+            this.MainForm = mainForm;
+            this.AnalyzeFactors = analyzeFactors;
+            this.CandidateSet = new CandidateSet(requirements);
+            this.DicDoneKey = new Dictionary<string, SearchSet>();
+            this.OverlapCount = 0;
+            this.TotalCalled = 0;
+            this.ResultData = new ResultData();
+        }
+
+        /// <summary>
         /// 検索処理.
         /// </summary>
-        public ResultData SerchMain()
+        public override ResultData Search()
         {
             var resultData = new ResultData
             {
@@ -117,7 +146,7 @@ namespace SkillSimulatorMHW.Executors
                 try
                 {
                     // 検索を開始.
-                    this.Search(resultData);
+                    this.SearchMain(resultData);
                 }
                 catch (Exception e)
                 {
@@ -141,7 +170,7 @@ namespace SkillSimulatorMHW.Executors
                 if (0 == resultCount)
                 {
 
-                    Log.Write("【検索完了】条件を満たす組み合わせが見つかりませんでした。処理時間({1}\'{2}\"{3:000})".Fmt(resultCount, sw.Elapsed.Minutes, sw.Elapsed.Seconds, sw.Elapsed.Milliseconds));
+                    Log.Write("【検索完了】条件を満たす組み合わせなし。処理時間({1}\'{2}\"{3:000})".Fmt(resultCount, sw.Elapsed.Minutes, sw.Elapsed.Seconds, sw.Elapsed.Milliseconds));
                 }
                 else
                 {
@@ -162,7 +191,7 @@ namespace SkillSimulatorMHW.Executors
         /// <remarks>装飾品の検索条件を設定して再起処理に渡す</remarks>
         /// <param name="resultData"></param>
         /// <returns></returns>
-        private void Search(ResultData resultData)
+        private void SearchMain(ResultData resultData)
         {
             this.SetProgress(0);
 
@@ -303,29 +332,16 @@ namespace SkillSimulatorMHW.Executors
                     return 1;
                 }
 
-                // スロットが不足している場合.
-
-                // 未確定防具が残っているかどうかチェック.
+                // スロットが不足している場合、下記条件のいずれかにヒットしたら検索終了
+                // ・未確定防具が残っていない場合.
+                // ・抽象化防具を使用しない場合.
                 unsettledPartList = searchSet.GetUnsettledArmorList();
-                if (!unsettledPartList.Any())
+                if (!unsettledPartList.Any() || !Ssm.Config.UseArmorAbstract)
                 {
-                    // 未確定防具が残っていない場合は.
-                    // スロット不足で不十分な組み合わせ.
+                    // 解析を実施する場合.
                     if (this.AnalyzeFactors)
                     {
-                        resultData.AddShortageSlot(searchReport.GetLackSlotKey(), new ResultSet(searchSet));
-                    }
-
-                    // これ以上の検索は不要.
-                    return 0;
-                }
-
-                // 抽象化防具を使用しない場合.
-                if (!Ssm.Config.UseArmorAbstract)
-                {
-                    // この時点で検索打ち切り.
-                    if (this.AnalyzeFactors)
-                    {
+                        // スロット不足で不十分な組み合わせ.
                         resultData.AddShortageSlot(searchReport.GetLackSlotKey(), new ResultSet(searchSet));
                     }
 
@@ -345,9 +361,15 @@ namespace SkillSimulatorMHW.Executors
                 // 未確定防具が残っていない場合はスキル不足で不十分な組み合わせ.
                 if (!unsettledPartList.Any())
                 {
-                    // 不足しているスキルが一つで、かつ解析を実施する場合.
-                    if (this.AnalyzeFactors && 1 == searchReport.UnsatisfyList.Count)
+                    // 下記の条件を全て満たしている場合.
+                    // ・不足しているスキルが一つ
+                    // ・スロットは満たしている
+                    // ・解析を実施する場合.
+                    if (this.AnalyzeFactors && 
+                        !searchReport.LackSlotList.Any() &&
+                        1 == searchReport.UnsatisfyList.Count)
                     {
+                        // スキル不足で不十分な組み合わせ.
                         resultData.AddShortageSkill(searchReport.GetUnsatisfyKey(), new ResultSet(searchSet));
                     }
 

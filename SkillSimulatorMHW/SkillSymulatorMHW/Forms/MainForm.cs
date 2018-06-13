@@ -378,19 +378,23 @@ namespace SkillSimulatorMHW.Forms
             {
                 this.Requirements.Save();
 
-                // 検索実行オブジェクトを生成.
-                var exec = new SearchExecutor(this.Requirements, this, analyze);
+                // 検索処理オブジェクトを格納.
+                SearchEngine exec = null;
+
+                // 検索処理を取得.
+                exec = SearchEngine.GetSearchEngine();
+                exec.SetParam(this.Requirements, this, analyze);
 
                 if (Ssm.Config.EnableAsyncExec)
                 {
                     // 進捗表示機能付き非同期処理.
-                    // 非同期なので結果は検索処理内からSetResultが呼び出される.
+                    // 非同期なのでIMainFormのSetResultで結果を格納する.
                     DlgProgress.ProgressProcess(@"検索.", exec);
                 }
                 else
                 {
                     // 同期実行.
-                    var result = exec.SerchMain();
+                    var result = exec.Search();
 
                     // 結果を格納.
                     this.SetResult(result);
