@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{03A47D42-6101-4FF6-A704-6F64E2B237FF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SkillSimulatorMHW</RootNamespace>
+    <AssemblyName>SkillSimulatorMHW</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Candidates\CandidateArmorAbstract.cs" />
+    <Compile Include="Candidates\CandidateData.cs" />
+    <Compile Include="Candidates\CandidateWepon.cs" />
+    <Compile Include="Candidates\CandidateArmor.cs" />
+    <Compile Include="Candidates\CandidateAmulet.cs" />
+    <Compile Include="Candidates\CandidateAccessory.cs" />
+    <Compile Include="Candidates\CandidateSet.cs" />
+    <Compile Include="Data\AnalyzeResultShortageSlot.cs" />
+    <Compile Include="Data\AnalyzeResultShortageSkill.cs" />
+    <Compile Include="Data\AnalyzeResultBase.cs" />
+    <Compile Include="Data\PartSet.cs" />
+    <Compile Include="Data\CmbItem.cs" />
+    <Compile Include="Controls\AnalyzeFactorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AnalyzeFactorControl.Designer.cs">
+      <DependentUpon>AnalyzeFactorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DlgAnalyzeResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DlgAnalyzeResult.Designer.cs">
+      <DependentUpon>DlgAnalyzeResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ResultListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ResultListControl.Designer.cs">
+      <DependentUpon>ResultListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DlgResultList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DlgResultList.Designer.cs">
+      <DependentUpon>DlgResultList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Result\ResultFilter.cs" />
+    <Compile Include="Data\SearchReport.cs" />
+    <Compile Include="Data\SkillBase.cs" />
+    <Compile Include="Data\SlotData.cs" />
+    <Compile Include="Data\PartDataAccessory.cs" />
+    <Compile Include="Data\PartDataAmulet.cs" />
+    <Compile Include="Candidates\CandidatePartBase.cs" />
+    <Compile Include="Data\PartDataWepon.cs" />
+    <Compile Include="Data\PartDataArmor.cs" />
+    <Compile Include="Data\PartDataBase.cs" />
+    <Compile Include="Data\SearchSet.cs" />
+    <Compile Include="Result\ResultData.cs" />
+    <Compile Include="Result\ResultSet.cs" />
+    <Compile Include="Data\AccessoryData.cs" />
+    <Compile Include="Extensions\MasterExtensions.cs" />
+    <Compile Include="Controls\AccessoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AccessoryControl.Designer.cs">
+      <DependentUpon>AccessoryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ArmorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ArmorControl.Designer.cs">
+      <DependentUpon>ArmorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DlgAccessoryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DlgAccessoryList.Designer.cs">
+      <DependentUpon>DlgAccessoryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DlgArmorList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DlgArmorList.Designer.cs">
+      <DependentUpon>DlgArmorList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DlgConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DlgConfig.Designer.cs">
+      <DependentUpon>DlgConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DlgResultFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DlgResultFilter.Designer.cs">
+      <DependentUpon>DlgResultFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IHaveSlot.cs" />
+    <Compile Include="Masters\MasterWepon.cs" />
+    <Compile Include="Masters\MasterWeponData.cs" />
+    <Compile Include="Masters\MasterWeponAbstract.cs" />
+    <Compile Include="Masters\MasterArmorAbstract.cs" />
+    <Compile Include="Requirements\RequirementData.cs" />
+    <Compile Include="Data\TermsTypeData.cs" />
+    <Compile Include="Data\SkillData.cs" />
+    <Compile Include="Defines\Defines.cs" />
+    <Compile Include="Defines\Enums.cs" />
+    <Compile Include="Forms\DlgProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DlgProgress.Designer.cs">
+      <DependentUpon>DlgProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Executors\ProgressExecutorBase.cs" />
+    <Compile Include="Executors\SearchExecutor.cs" />
+    <Compile Include="Extensions\CsvExtensions.cs" />
+    <Compile Include="Controls\RequirementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RequirementControl.Designer.cs">
+      <DependentUpon>RequirementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ResultControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ResultControl.Designer.cs">
+      <DependentUpon>ResultControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SkillControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SkillControl.Designer.cs">
+      <DependentUpon>SkillControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IMainForm.cs" />
+    <Compile Include="MasterManager.cs" />
+    <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Extensions\UtilExtensions.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs" />
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config.cs" />
+    <Compile Include="Masters\CsvIo.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Masters\MasterDataBase.cs" />
+    <Compile Include="Masters\MasterAmulet.cs" />
+    <Compile Include="Masters\MasterAccessory.cs" />
+    <Compile Include="Masters\MasterAmuletData.cs" />
+    <Compile Include="Masters\MasterAccessoryData.cs" />
+    <Compile Include="Masters\MasterSkillData.cs" />
+    <Compile Include="Masters\MasterSkill.cs" />
+    <Compile Include="Masters\MasterBase.cs" />
+    <Compile Include="Masters\MasterArmor.cs" />
+    <Compile Include="Masters\MasterArmorData.cs" />
+    <Compile Include="Masters\MasterSeriesData.cs" />
+    <Compile Include="Masters\MasterSeries.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requirements\RequirementDataList.cs" />
+    <Compile Include="Requirements\Requirement.cs" />
+    <Compile Include="Requirements\RequirementRareData.cs" />
+    <Compile Include="Requirements\RequirementSkillList.cs" />
+    <Compile Include="Ssm.cs" />
+    <Compile Include="SkillSimulatorMhw.cs" />
+    <EmbeddedResource Include="Controls\AccessoryControl.resx">
+      <DependentUpon>AccessoryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AnalyzeFactorControl.resx">
+      <DependentUpon>AnalyzeFactorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ArmorControl.resx">
+      <DependentUpon>ArmorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ResultListControl.resx">
+      <DependentUpon>ResultListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DlgAccessoryList.resx">
+      <DependentUpon>DlgAccessoryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DlgAnalyzeResult.resx">
+      <DependentUpon>DlgAnalyzeResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DlgArmorList.resx">
+      <DependentUpon>DlgArmorList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DlgConfig.resx">
+      <DependentUpon>DlgConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DlgProgress.resx">
+      <DependentUpon>DlgProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DlgResultFilter.resx">
+      <DependentUpon>DlgResultFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DlgResultList.resx">
+      <DependentUpon>DlgResultList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RequirementControl.resx">
+      <DependentUpon>RequirementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ResultControl.resx">
+      <DependentUpon>ResultControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SkillControl.resx">
+      <DependentUpon>SkillControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Csv\Accessory.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Csv\Amulet.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Csv\Armor.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Csv\Series.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Csv\Skill.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
