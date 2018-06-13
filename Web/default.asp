@@ -7,7 +7,7 @@
 <hd>ÅySkillSimulatorMHWÅz</hd>
 <br />
 <br />
-<a href="./img/SkillSimulatorMHW.png" target="_blank"><img src="./img/SkillSimulatorMHW.png" width="20%" /></a>
+<a href="./Img/SkillSimulatorMHW.png" target="_blank"><img src="./Img/SkillSimulatorMHW.png" width="20%" /></a>
 
 <hr />
 
