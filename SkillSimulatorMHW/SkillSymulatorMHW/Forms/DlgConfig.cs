@@ -40,9 +40,9 @@ namespace SkillSimulatorMHW.Forms
         /// <param name="config"></param>
         public void SetConfig(Config config)
         {
-            this.spinShowResultLimitCount.Text = config.ShowResultLimitCount.ToString();
+            this.spinShowResultLimitCount.Value = config.ShowResultLimitCount;
 
-            this.spinSerchLimitCount.Text    = config.SerchLimitCount.ToString();
+            this.spinSerchLimitCount.Value    = config.SerchLimitCount;
             this.chkUseArmorAbstract.Checked = config.UseArmorAbstract;
             this.chkEnableAsyncExec.Checked  = config.EnableAsyncExec;
             this.cmbAnalyzeType.SelectCmbItem(config.AnalyzeType);
@@ -61,9 +61,9 @@ namespace SkillSimulatorMHW.Forms
             var config = Config.Load();
 
             // 画面の内容を反映.
-            config.ShowResultLimitCount = Int32.Parse(this.spinShowResultLimitCount.Text);
+            config.ShowResultLimitCount = decimal.ToInt32(this.spinShowResultLimitCount.Value);
 
-            config.SerchLimitCount = Int32.Parse(this.spinSerchLimitCount.Text);
+            config.SerchLimitCount = decimal.ToInt32(this.spinSerchLimitCount.Value);
             config.UseArmorAbstract = this.chkUseArmorAbstract.Checked;
             config.EnableAsyncExec = this.chkEnableAsyncExec.Checked;
 

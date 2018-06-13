@@ -10,7 +10,7 @@ namespace SkillSimulatorMHW
         /// <summary>
         /// アプリケーションバージョン.
         /// </summary>
-        public const string Version = "0.4.1";
+        public const string Version = "0.5.0";
 
         /// <summary>
         /// アプリケーションタイトル.

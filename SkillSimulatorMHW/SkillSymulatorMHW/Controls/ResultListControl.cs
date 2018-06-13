@@ -68,8 +68,7 @@ namespace SkillSimulatorMHW.Controls
         /// <param name="e"></param>
         private void CallBackBtnResultFilterClick(object sender, System.EventArgs e)
         {
-            var dlg = new DlgResultFilter();
-            dlg.SetResultFilter(this.ResultFilter);
+            var dlg = new DlgResultFilter(this.ResultFilter, this.ResultList);
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 this.ResultFilter = dlg.GetResultFilter();
@@ -130,13 +129,11 @@ namespace SkillSimulatorMHW.Controls
                 this.pnlResultList.Controls.Clear();
 
                 // 結果のフィルタ.
-                var filteredList = this.ResultList;
-                if (this.chkResultFilter.Checked)
-                {
-                    filteredList = this.ResultList
+                var filteredList = !this.chkResultFilter.Checked
+                    ? this.ResultList
+                    : this.ResultList
                         .Where(this.ResultFilter.Filter)
                         .ToList();
-                }
 
                 // 表示最大件数を求める.
                 var limit = Ssm.Config.ShowResultLimitCount;

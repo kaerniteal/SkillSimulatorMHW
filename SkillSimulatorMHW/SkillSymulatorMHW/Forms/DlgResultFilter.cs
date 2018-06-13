@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
-using SkillSimulatorMHW.Data;
+using SkillSimulatorMHW.Extensions;
 using SkillSimulatorMHW.Result;
 
 namespace SkillSimulatorMHW.Forms
@@ -13,22 +15,21 @@ namespace SkillSimulatorMHW.Forms
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public DlgResultFilter()
+        /// <param name="defaultFilter"></param>
+        /// <param name="resultList"></param>
+        public DlgResultFilter(ResultFilter defaultFilter, List<ResultSet> resultList)
         {
+            this.ResultList = resultList;
+
             InitializeComponent();
+
+            this.SetResultFilter(defaultFilter);
         }
 
         /// <summary>
-        /// コンフィグを反映.
+        /// 検索結果リスト.
         /// </summary>
-        /// <param name="filter"></param>
-        public void SetResultFilter(ResultFilter filter)
-        {
-            this.spinNeedBlankSlotLv1.Text = filter.NeedBlankSlotLv1.ToString();
-            this.spinNeedBlankSlotLv2.Text = filter.NeedBlankSlotLv2.ToString();
-            this.spinNeedBlankSlotLv3.Text = filter.NeedBlankSlotLv3.ToString();
-
-        }
+        private List<ResultSet> ResultList { get; set; }
 
         /// <summary>
         /// フィルタを取得.
@@ -39,10 +40,20 @@ namespace SkillSimulatorMHW.Forms
             // 画面の内容を反映.
             return new ResultFilter
             {
-                NeedBlankSlotLv1 = Int32.Parse(this.spinNeedBlankSlotLv1.Text),
-                NeedBlankSlotLv2 = Int32.Parse(this.spinNeedBlankSlotLv2.Text),
-                NeedBlankSlotLv3 = Int32.Parse(this.spinNeedBlankSlotLv3.Text),
+                NeedBlankSlotLv1 = decimal.ToInt32(this.spinNeedBlankSlotLv1.Value),
+                NeedBlankSlotLv2 = decimal.ToInt32(this.spinNeedBlankSlotLv2.Value),
+                NeedBlankSlotLv3 = decimal.ToInt32(this.spinNeedBlankSlotLv3.Value),
             };
+        }
+
+        /// <summary>
+        /// フィルタ条件を変更する.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CallBackResultFilterValueChanged(object sender, EventArgs e)
+        {
+            this.UpdateFilterdCount();
         }
 
         /// <summary>
@@ -54,6 +65,34 @@ namespace SkillSimulatorMHW.Forms
         {
             // デフォルトの設定を画面に反映.
             this.SetResultFilter(new ResultFilter());
+        }
+
+        /// <summary>
+        /// フィルタを反映.
+        /// </summary>
+        /// <param name="defaultFilter"></param>
+        private void SetResultFilter(ResultFilter defaultFilter)
+        {
+            this.spinNeedBlankSlotLv1.Value = defaultFilter.NeedBlankSlotLv1;
+            this.spinNeedBlankSlotLv2.Value = defaultFilter.NeedBlankSlotLv2;
+            this.spinNeedBlankSlotLv3.Value = defaultFilter.NeedBlankSlotLv3;
+
+            this.UpdateFilterdCount();
+        }
+
+        /// <summary>
+        /// フィルタ後のカウントを更新する.
+        /// </summary>
+        private void UpdateFilterdCount()
+        {
+            var resultFilter = this.GetResultFilter();
+
+            var filterdCount = this.ResultList
+                .Where(resultFilter.Filter)
+                .Count();
+
+            this.txtbFilterdCount.Text = "{0}件".Fmt(filterdCount);
+            this.txtbAllCount.Text = "{0}件".Fmt(this.ResultList.Count);
         }
     }
 }

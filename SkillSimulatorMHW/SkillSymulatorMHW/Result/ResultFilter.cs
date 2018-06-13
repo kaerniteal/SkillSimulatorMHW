@@ -111,7 +111,6 @@ namespace SkillSimulatorMHW.Result
         /// <summary>
         /// スロットLv毎の必要数を取得.
         /// </summary>
-        /// <param name="lv"></param>
         /// <returns></returns>
         private List<Tuple<int, int>> NeedBlankSlot()
         {
