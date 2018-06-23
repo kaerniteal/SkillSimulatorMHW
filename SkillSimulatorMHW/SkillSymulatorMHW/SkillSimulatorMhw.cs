@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using SkillSimulatorMHW.Extensions;
 
 namespace SkillSimulatorMHW
 {
@@ -10,12 +11,16 @@ namespace SkillSimulatorMHW
         /// <summary>
         /// アプリケーションバージョン.
         /// </summary>
-        public const string Version = "0.6.0";
+        public const int VerMajor = 0;
+        public const int VerMinor = 6;
+        public const int VerBuild = 0;
+
+        public string Version = "{0}.{1}.{2}".Fmt(VerMajor, VerMinor, VerBuild);
 
         /// <summary>
         /// アプリケーションタイトル.
         /// </summary>
-        public const string Title = "Skill Simulator MHW β版 [" + Version + "]";
+        public string Title = "Skill Simulator MHW β版 [{0}.{1}.{2}]".Fmt(VerMajor, VerMinor, VerBuild);
 
         /// <summary>
         /// 実装者.
@@ -34,6 +39,7 @@ namespace SkillSimulatorMHW
         {
             this.Config = Config.Load();
             this.Master = new MasterManager();
+            this.WebInfo = new WebInfo();
         }
 
         /// <summary>
@@ -47,6 +53,11 @@ namespace SkillSimulatorMHW
         public MasterManager Master { get; private set; }
 
         /// <summary>
+        /// WebInfo
+        /// </summary>
+        public WebInfo WebInfo { get; set; }
+
+        /// <summary>
         /// 初期化処理.
         /// </summary>
         /// <returns>初期化成否</returns>
@@ -54,6 +65,7 @@ namespace SkillSimulatorMHW
         {
             Log.Write("初期化開始");
 
+            // マスタの初期化.
             var masterResult = this.Master.Init();
             if (0 != masterResult)
             {
@@ -61,6 +73,9 @@ namespace SkillSimulatorMHW
             }
 
             Log.Write("マスタの初期化完了");
+
+            // WebInfoの初期化.
+            this.WebInfo.Init();
 
             return 0;
         }

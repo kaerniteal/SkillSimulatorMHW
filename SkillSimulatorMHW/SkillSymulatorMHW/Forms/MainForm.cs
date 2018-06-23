@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using SkillSimulatorMHW.Controls;
 using SkillSimulatorMHW.Data;
@@ -59,7 +60,7 @@ namespace SkillSimulatorMHW.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CallBackMainFormLoad(object sender, EventArgs e)
+        private async void CallBackMainFormLoad(object sender, EventArgs e)
         {
             // タイトルをセット.
             this.Text = "{0}      {1}".Fmt(Ssm.Title, SkillSimulatorMhw.Implementator);
@@ -138,6 +139,21 @@ namespace SkillSimulatorMHW.Forms
             this.grpbSearchResult.Controls.Add(this.ResultListControl);
 
             Log.Write("メインフォームの初期化完了");
+
+            // 最新バージョンのチェック
+            var result = await Task.Run(() => Ssm.WebInfo.IsLatestVersion());
+            if (!result.Item1)
+            {
+                // 最新ではない場合メッセージを表示.
+                var dialogResult = MessageBox.Show(
+                    "新しいバージョン[{0}]がリリースされています。\nホームページを開きますか？".Fmt(result.Item2),
+                    Ssm.Title,
+                    MessageBoxButtons.YesNo);
+                if (DialogResult.Yes == dialogResult)
+                {
+                    WebInfo.OpenHomePage();
+                }
+            }
         }
 
         /// <summary>
@@ -387,7 +403,7 @@ namespace SkillSimulatorMHW.Forms
 
                 if (Ssm.Config.ShowDebugLog)
                 {
-                    Log.Write("【DEBUG】SearchEngine[{0}]".Fmt(engine.GetId()));
+                    Log.Write("【DEBUG】Search Engine >> [{0}]".Fmt(engine.GetId()));
                 }
 
                 if (Ssm.Config.EnableAsyncExec)

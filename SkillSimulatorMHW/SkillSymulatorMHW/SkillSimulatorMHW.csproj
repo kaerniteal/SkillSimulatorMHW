@@ -210,6 +210,7 @@
     <Compile Include="Requirements\Requirement.cs" />
     <Compile Include="Requirements\RequirementRareData.cs" />
     <Compile Include="Requirements\RequirementSkillList.cs" />
+    <Compile Include="WebInfo.cs" />
     <Compile Include="Ssm.cs" />
     <Compile Include="SkillSimulatorMhw.cs" />
     <EmbeddedResource Include="Controls\AccessoryControl.resx">
@@ -282,6 +283,7 @@
     <None Include="Csv\Skill.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

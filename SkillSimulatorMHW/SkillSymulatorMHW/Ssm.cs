@@ -30,7 +30,7 @@
         }
 
         /// <summary>
-        ///  マスタ管理.
+        ///  設定.
         /// </summary>
         public static Config Config
         {
@@ -48,6 +48,17 @@
             get
             {
                 return SkillSimulatorMhw.Master;
+            }
+        }
+
+        /// <summary>
+        /// WebInfo
+        /// </summary>
+        public static WebInfo WebInfo
+        {
+            get
+            {
+                return SkillSimulatorMhw.WebInfo;
             }
         }
     }

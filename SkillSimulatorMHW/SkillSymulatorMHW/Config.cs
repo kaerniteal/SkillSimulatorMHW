@@ -2,8 +2,6 @@
 using System.IO;
 using System.Windows.Forms;
 using SkillSimulatorMHW.Defines;
-using SkillSimulatorMHW.Engines;
-using SkillSimulatorMHW.Engines.v0_0_0;
 using SkillSimulatorMHW.Extensions;
 
 namespace SkillSimulatorMHW
@@ -37,12 +35,13 @@ namespace SkillSimulatorMHW
             this.SerchLimitCount = 0;
             this.UseArmorAbstract = true;
             this.EnableAsyncExec = true;
+            this.EnableWebInfo = false;
             this.AnalyzeType = AnalyzeType.Always;
 
             this.IsDebug = false;
 
             this.ShowDebugLog = false;
-            this.SearchEngineId = SearchEngine0_0_0.Id;
+            this.SearchEngineId = "stable";
 
             this.EnableDuplicateCheck = false;
             this.EnableResultOutput = false;
@@ -68,6 +67,11 @@ namespace SkillSimulatorMHW
         /// 非同期実行の有効/無効.
         /// </summary>
         public bool EnableAsyncExec { get; set; }
+
+        /// <summary>
+        /// WebInfoを利用する.
+        /// </summary>
+        public bool EnableWebInfo { get; set; }
 
         /// <summary>
         /// 解析実行タイプ.

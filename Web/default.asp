@@ -8,13 +8,14 @@
 <br />
 <br />
 <a href="./Img/SkillSimulatorMHW.png" target="_blank"><img src="./Img/SkillSimulatorMHW.png" width="20%" /></a>
+<a href="./Img/DlgAnalyzeResult.png" target="_blank"><img src="./Img/DlgAnalyzeResult.png" width="10%" /></a>
 
 <hr />
 
 PS4のゲーム<a href="http://www.capcom.co.jp/monsterhunter/world/" target="_blank">モンスターハンターワールド(@CAPCOM)</a>のスキルシミュレータです。<br />
 Windows専用アプリケーションです。<br />
 スキルシミュレータはWeb版、アプリ版と色々ありますが、<br />
-このシミュレータは条件を満たしていない組み合わせの解析機能がウリです(｀・ω・´)<br />
+このシミュレータは条件を満たさない組み合わせの解析機能がウリです(｀・ω・´)<br />
 <br />
 アプリケーションの詳細は<a href="./Readme.txt" target="_blank">Readme</a>もご覧ください。<br />
 
@@ -40,7 +41,7 @@ Windows専用アプリケーションです。<br />
 【Download】<br />
 まだβ版ですが一通りのことはできます。<br />
 <br />
-<a href="./Archive/SkillSimulatorMHW.0.5.0.zip">Ver 0.5.0</a> (2018/6/13 公開)<br />
+<a href="./Archive/SkillSimulatorMHW.0.6.0.zip">Ver 0.6.0</a> (2018/6/23 公開)<br />
 <br />
 注）Chromeでダウンロードしようとするとブロックの確認が出ることがありますが、<br />
 そのまま実行していただいて問題ありません。<br />
