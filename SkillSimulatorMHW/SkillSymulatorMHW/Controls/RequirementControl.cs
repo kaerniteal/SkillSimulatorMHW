@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using SkillSimulatorMHW.Candidates;
 using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
+using SkillSimulatorMHW.Engines.v0_0_0.Candidates;
 using SkillSimulatorMHW.Extensions;
 using SkillSimulatorMHW.Forms;
 using SkillSimulatorMHW.Masters;

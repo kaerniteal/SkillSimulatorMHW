@@ -17,6 +17,21 @@ namespace SkillSimulatorMHW.Data
         }
 
         /// <summary>
+        /// コンストラクタ(シャローコピー)
+        /// </summary>
+        public SearchSet(SearchSet searchSet)
+        {
+            this.Wepon = searchSet.Wepon;
+            this.Head = searchSet.Head;
+            this.Body = searchSet.Body;
+            this.Arm = searchSet.Arm;
+            this.Waist = searchSet.Waist;
+            this.Leg = searchSet.Leg;
+            this.Amulet = searchSet.Amulet;
+            this.Accessory = searchSet.Accessory;
+        }
+
+        /// <summary>
         /// 部位データを取得.
         /// </summary>
         /// <param name="part">部位</param>
@@ -251,52 +266,6 @@ namespace SkillSimulatorMHW.Data
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// 指定部位よりもPart順で後位の未確定部位リストを取得.
-        /// </summary>
-        /// <returns></returns>
-        public List<PartDataBase> GetUnsettledPartList(Part lastPart)
-        {
-            // 検索順序リスト.
-            // この順序で再帰処理がまわる為、順序は意識する必要がある
-            // ・装飾品は再帰処理に入る前のループで扱うため、処理不要
-            // ・武器は未使用か固定の２択なので処理不要
-            // ・護石は同じシリーズ護石で下位、上位がある為、再帰処理の中では最初に確定する.
-            var searchList = new List<PartDataBase>
-            {
-                this.Head,
-                this.Body,
-                this.Arm,
-                this.Waist,
-                this.Leg,
-                this.Amulet,
-            };
-
-            // 検索順序リストの順で、最終セットされた部位よりも後ろでかつ、未確定の部位のリストを生成する.
-            // 組み合わせは総当りで検索するが、
-            // 未確定部位リストの前方には戻らない(順序違いの同じ組み合わせが出てくるから)
-            // lastPartには一つ上位のレイヤで確定した部位が入っている為、
-            // 以降に検索すべきはlastPartより後方の未確定部位のみとなる。
-            var hitLast = Part.Non == lastPart;
-            var unsettledPartList = new List<PartDataBase>();
-            foreach (var part in searchList)
-            {
-                // フラグがONでかつ、未確定部位ならばリストに追加.
-                if (hitLast && PartState.Unsettled == part.State)
-                {
-                    unsettledPartList.Add(part);
-                }
-                // 最終格納部位を見つけたらフラグON
-                else if (part.Part == lastPart)
-                {
-                    hitLast = true;
-                }
-            }
-
-            // 全部位のリストを返す.
-            return unsettledPartList;
         }
     }
 }

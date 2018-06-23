@@ -31,6 +31,16 @@ namespace SkillSimulatorMHW.Data
         }
 
         /// <summary>
+        /// コンストラクタ(ステータス指定)
+        /// </summary>
+        public PartDataArmor(Part part, PartState state)
+            : base(part)
+        {
+            this.State = state;
+            this.Master = null;
+        }
+
+        /// <summary>
         /// マスタ.
         /// </summary>
         public MasterArmorData Master { get; set; }

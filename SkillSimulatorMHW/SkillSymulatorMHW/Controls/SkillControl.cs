@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using SkillSimulatorMHW.Data;
-using SkillSimulatorMHW.Extensions;
 using SkillSimulatorMHW.Interface;
 
 namespace SkillSimulatorMHW.Controls
@@ -27,23 +27,27 @@ namespace SkillSimulatorMHW.Controls
                 this.lblSkillName.Text = Skill.Skill.ToString();
                 this.lblSkillRemarks.Text = Skill.Skill.Remarks;
 
-                if (!this.Skill.IsSeries())
-                {
-                    // 通常スキルの場合.
-                    var skillLvList = new List<int>();
-                    for (var i = 1; i <= Skill.Skill.MaxLv; i++)
-                    {
-                        skillLvList.Add(i);
-                    }
-
-                    this.cmbSkillLv.Recreate(skillLvList);
-                    this.cmbSkillLv.SelectValue(Skill.Lv);
-                }
-                else
+                if (this.Skill.IsSeries())
                 {
                     // シリーズスキルの場合.
                     this.lblSkillLv.Text = @"シリーズ";
-                    this.cmbSkillLv.Visible = false;
+                    this.btnPlus.Visible = false;
+                    this.txtbLv.Visible = false;
+                    this.btnMinus.Visible = false;
+                }
+                else
+                {
+                    // 通常スキルの場合.
+                    this.txtbLv.Text = Skill.Lv.ToString();
+
+                    // Lv選択が不要な場合.
+                    if (1 == this.Skill.Skill.MaxLv)
+                    {
+                        this.lblSkillLv.Visible = false;
+                        this.btnPlus.Visible = false;
+                        this.txtbLv.Visible = false;
+                        this.btnMinus.Visible = false;
+                    }
                 }
             }
         }
@@ -59,13 +63,39 @@ namespace SkillSimulatorMHW.Controls
         private IMainForm MainForm { get; set; }
 
         /// <summary>
-        /// スキルLvコンボボックス変更.
+        /// スキルLvをインクリメントする.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CallBackCmbSkillLvSelectedIndexChanged(object sender, System.EventArgs e)
+        private void CallBackBtnPlusClick(object sender, EventArgs e)
         {
-            this.Skill.Lv = this.cmbSkillLv.SelectedVal<int>();
+            var val = Int32.Parse(this.txtbLv.Text) + 1;
+            if (this.Skill.Skill.MaxLv < val)
+            {
+                val = this.Skill.Skill.MaxLv;
+            }
+
+            this.txtbLv.Text = val.ToString();
+
+            this.Skill.Lv = Int32.Parse(this.txtbLv.Text);
+        }
+
+        /// <summary>
+        /// スキルLvをデクリメントする.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CallBackBtnMinusClick(object sender, EventArgs e)
+        {
+            var val = Int32.Parse(this.txtbLv.Text) - 1;
+            if (val < 1)
+            {
+                val = 1;
+            }
+
+            this.txtbLv.Text = val.ToString();
+
+            this.Skill.Lv = Int32.Parse(this.txtbLv.Text);
         }
 
         /// <summary>

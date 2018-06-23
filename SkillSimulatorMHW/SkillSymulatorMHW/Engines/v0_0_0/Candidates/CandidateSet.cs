@@ -5,7 +5,7 @@ using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
 using SkillSimulatorMHW.Requirements;
 
-namespace SkillSimulatorMHW.Candidates
+namespace SkillSimulatorMHW.Engines.v0_0_0.Candidates
 {
     /// <summary>
     /// 候補データセット.

@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SkillSimulatorMHW.Defines;
 using SkillSimulatorMHW.Extensions;
 using SkillSimulatorMHW.Forms;
 using SkillSimulatorMHW.Result;
@@ -24,6 +23,7 @@ namespace SkillSimulatorMHW.Controls
             this.ResultList = new List<ResultSet>();
             this.ResultCtrlList = new List<ResultControl>();
             this.ResultFilter = new ResultFilter();
+            this.DicSetKey = new Dictionary<string, ResultSet>();
 
             InitializeComponent();
 
@@ -48,6 +48,11 @@ namespace SkillSimulatorMHW.Controls
         /// 結果フィルタ.
         /// </summary>
         private ResultFilter ResultFilter { get; set; }
+
+        /// <summary>
+        /// Key辞書
+        /// </summary>
+        protected Dictionary<string, ResultSet> DicSetKey { get; set; }
 
         /// <summary>
         /// 結果フィルタチェックボックス.
@@ -92,7 +97,7 @@ namespace SkillSimulatorMHW.Controls
         public void SetResult(List<ResultSet> resultList)
         {
             // 結果を格納.
-            this.ResultList = resultList;
+            this.ResultList = this.SortList(resultList);
 
             // パネルに反映.
             // 現在のフィルタの状態によって更新の仕方が変わる.
@@ -105,6 +110,19 @@ namespace SkillSimulatorMHW.Controls
             {
                 // フィルタが無効な場合は直接更新処理をよぶ
                 this.UpdateResultList();
+            }
+
+            // 出力結果保存.
+            if (Ssm.Config.EnableResultOutput)
+            {
+                using (var sw = new StreamWriter(Ssm.Config.FileNameResultOutput, false, Encoding.UTF8))
+                {
+                    foreach (var result in this.ResultList)
+                    {
+                        sw.WriteLine(result.GetAllText());
+                    }
+                    sw.Close();
+                }
             }
         }
 
@@ -174,6 +192,38 @@ namespace SkillSimulatorMHW.Controls
                 // 描画更新の再開.
                 this.pnlResultList.EndControlUpdate();
             }
+        }
+
+        /// <summary>
+        /// 結果リストソート.
+        /// </summary>
+        /// <returns></returns>
+        private List<ResultSet> SortList(List<ResultSet> resultList)
+        {
+            // 辞書に登録.
+            this.DicSetKey.Clear();
+            foreach (var set in resultList)
+            {
+                // このセットをユニークに表すKEY文字列を取得.
+                var key = set.GetKey();
+                if (this.DicSetKey.ContainsKey(key))
+                {
+                    if (Ssm.Config.EnableDuplicateCheck && Ssm.Config.ShowDebugLog)
+                    {
+                        Log.Write("【DEBUG】重複したセット:{0})".Fmt(set.GetAllText()));
+                    }
+                }
+                else
+                {
+                    // まだ検索していないパターンは辞書登録.
+                    this.DicSetKey.Add(key, set);
+                }
+            }
+
+            return this.DicSetKey
+                .OrderBy(elm => elm.Key)
+                .Select(elm => elm.Value)
+                .ToList();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
-using SkillSimulatorMHW.Executors;
+using SkillSimulatorMHW.Engines;
 using SkillSimulatorMHW.Extensions;
 
 namespace SkillSimulatorMHW.Forms
@@ -32,6 +32,11 @@ namespace SkillSimulatorMHW.Forms
             this.cmbSearchEngine.Init(SearchEngine.SearchEngines
                 .Select(engine => new CmbItem<string>(engine.GetId(), engine.GetId()))
                 .ToList());
+
+            if (!Ssm.Config.IsDebug)
+            {
+                this.tabCtrlConfigView.TabPages.Remove(this.tabPageConfigDebug);
+            }
         }
 
         /// <summary>

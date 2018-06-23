@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
 using SkillSimulatorMHW.Requirements;
 
-namespace SkillSimulatorMHW.Candidates
+namespace SkillSimulatorMHW.Data
 {
     /// <summary>
     /// 検索候補データ基底

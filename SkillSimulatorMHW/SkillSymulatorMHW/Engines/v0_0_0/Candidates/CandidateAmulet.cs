@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
+using SkillSimulatorMHW.Extensions;
 using SkillSimulatorMHW.Masters;
 using SkillSimulatorMHW.Requirements;
-using SkillSimulatorMHW.Extensions;
 
-namespace SkillSimulatorMHW.Candidates
+namespace SkillSimulatorMHW.Engines.v0_0_0.Candidates
 {
     /// <summary>
     /// 検索候補データ護石

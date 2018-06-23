@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SkillSimulatorMHW.Engines.v0_0_0;
+using SkillSimulatorMHW.Engines.v0_6_0;
 using SkillSimulatorMHW.Interface;
 using SkillSimulatorMHW.Requirements;
 using SkillSimulatorMHW.Result;
 
-namespace SkillSimulatorMHW.Executors
+namespace SkillSimulatorMHW.Engines
 {
     /// <summary>
     /// 検索実行基底クラス.
@@ -16,8 +18,8 @@ namespace SkillSimulatorMHW.Executors
         /// </summary>
         public static readonly List<SearchEngine> SearchEngines = new List<SearchEngine>
         {
-            new SearchEngineLatest(),
-            new SearchEngineStable(),
+            new SearchEngine0_6_0(),
+            new SearchEngine0_0_0(),
         };
 
         /// <summary>
@@ -26,9 +28,14 @@ namespace SkillSimulatorMHW.Executors
         /// <returns></returns>
         public static SearchEngine GetSearchEngine()
         {
-            var confId = Ssm.Config.SearchEngineId;
-            return SearchEngines
-                .FirstOrDefault(engine => engine.GetId() == confId);
+            var engine = SearchEngines
+                .FirstOrDefault(eng => eng.GetId() == Ssm.Config.SearchEngineId);
+            if (null == engine)
+            {
+                engine = SearchEngines.First();
+            }
+
+            return engine;
         }
 
         /// <summary>

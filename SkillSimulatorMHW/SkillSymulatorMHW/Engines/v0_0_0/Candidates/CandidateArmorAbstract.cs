@@ -5,7 +5,7 @@ using SkillSimulatorMHW.Defines;
 using SkillSimulatorMHW.Masters;
 using SkillSimulatorMHW.Requirements;
 
-namespace SkillSimulatorMHW.Candidates
+namespace SkillSimulatorMHW.Engines.v0_0_0.Candidates
 {
     /// <summary>
     /// 検索候補データ抽象化防具

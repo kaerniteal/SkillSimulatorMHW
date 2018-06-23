@@ -30,12 +30,9 @@
         {
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.spinNeedBlankSlotLv1 = new System.Windows.Forms.NumericUpDown();
             this.lblNeedBlankSlotLv1 = new System.Windows.Forms.Label();
             this.btnFilterClear = new System.Windows.Forms.Button();
             this.lblNeedBlankSlotLv2 = new System.Windows.Forms.Label();
-            this.spinNeedBlankSlotLv2 = new System.Windows.Forms.NumericUpDown();
-            this.spinNeedBlankSlotLv3 = new System.Windows.Forms.NumericUpDown();
             this.lblNeedBlankSlotLv3 = new System.Windows.Forms.Label();
             this.lblFilterdCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,9 +40,15 @@
             this.lblAllCount = new System.Windows.Forms.Label();
             this.txtbFilterdCount = new System.Windows.Forms.TextBox();
             this.txtbAllCount = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.spinNeedBlankSlotLv1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinNeedBlankSlotLv2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinNeedBlankSlotLv3)).BeginInit();
+            this.txtbValBlankSlotLv1 = new System.Windows.Forms.TextBox();
+            this.btnPlusBlankSlotLv1 = new System.Windows.Forms.Button();
+            this.btnMinusBlankSlotLv1 = new System.Windows.Forms.Button();
+            this.btnMinusBlankSlotLv2 = new System.Windows.Forms.Button();
+            this.btnPlusBlankSlotLv2 = new System.Windows.Forms.Button();
+            this.txtbValBlankSlotLv2 = new System.Windows.Forms.TextBox();
+            this.btnMinusBlankSlotLv3 = new System.Windows.Forms.Button();
+            this.btnPlusBlankSlotLv3 = new System.Windows.Forms.Button();
+            this.txtbValBlankSlotLv3 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnOK
@@ -69,19 +72,6 @@
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "キャンセル";
             this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // spinNeedBlankSlotLv1
-            // 
-            this.spinNeedBlankSlotLv1.Location = new System.Drawing.Point(165, 40);
-            this.spinNeedBlankSlotLv1.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.spinNeedBlankSlotLv1.Name = "spinNeedBlankSlotLv1";
-            this.spinNeedBlankSlotLv1.Size = new System.Drawing.Size(80, 19);
-            this.spinNeedBlankSlotLv1.TabIndex = 8;
-            this.spinNeedBlankSlotLv1.ValueChanged += new System.EventHandler(this.CallBackResultFilterValueChanged);
             // 
             // lblNeedBlankSlotLv1
             // 
@@ -111,32 +101,6 @@
             this.lblNeedBlankSlotLv2.Size = new System.Drawing.Size(128, 12);
             this.lblNeedBlankSlotLv2.TabIndex = 7;
             this.lblNeedBlankSlotLv2.Text = "Lv2スロットの空いている数";
-            // 
-            // spinNeedBlankSlotLv2
-            // 
-            this.spinNeedBlankSlotLv2.Location = new System.Drawing.Point(165, 65);
-            this.spinNeedBlankSlotLv2.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.spinNeedBlankSlotLv2.Name = "spinNeedBlankSlotLv2";
-            this.spinNeedBlankSlotLv2.Size = new System.Drawing.Size(80, 19);
-            this.spinNeedBlankSlotLv2.TabIndex = 8;
-            this.spinNeedBlankSlotLv2.ValueChanged += new System.EventHandler(this.CallBackResultFilterValueChanged);
-            // 
-            // spinNeedBlankSlotLv3
-            // 
-            this.spinNeedBlankSlotLv3.Location = new System.Drawing.Point(165, 90);
-            this.spinNeedBlankSlotLv3.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.spinNeedBlankSlotLv3.Name = "spinNeedBlankSlotLv3";
-            this.spinNeedBlankSlotLv3.Size = new System.Drawing.Size(80, 19);
-            this.spinNeedBlankSlotLv3.TabIndex = 11;
-            this.spinNeedBlankSlotLv3.ValueChanged += new System.EventHandler(this.CallBackResultFilterValueChanged);
             // 
             // lblNeedBlankSlotLv3
             // 
@@ -206,6 +170,102 @@
             this.txtbAllCount.Text = "9999件";
             this.txtbAllCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // txtbValBlankSlotLv1
+            // 
+            this.txtbValBlankSlotLv1.BackColor = System.Drawing.Color.White;
+            this.txtbValBlankSlotLv1.Font = new System.Drawing.Font("MS UI Gothic", 10F);
+            this.txtbValBlankSlotLv1.Location = new System.Drawing.Point(196, 38);
+            this.txtbValBlankSlotLv1.Name = "txtbValBlankSlotLv1";
+            this.txtbValBlankSlotLv1.ReadOnly = true;
+            this.txtbValBlankSlotLv1.Size = new System.Drawing.Size(30, 21);
+            this.txtbValBlankSlotLv1.TabIndex = 17;
+            // 
+            // btnPlusBlankSlotLv1
+            // 
+            this.btnPlusBlankSlotLv1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnPlusBlankSlotLv1.Location = new System.Drawing.Point(166, 36);
+            this.btnPlusBlankSlotLv1.Name = "btnPlusBlankSlotLv1";
+            this.btnPlusBlankSlotLv1.Size = new System.Drawing.Size(25, 25);
+            this.btnPlusBlankSlotLv1.TabIndex = 15;
+            this.btnPlusBlankSlotLv1.Text = "＋";
+            this.btnPlusBlankSlotLv1.UseVisualStyleBackColor = true;
+            this.btnPlusBlankSlotLv1.Click += new System.EventHandler(this.CallBackBtnPlusBlankSlotClick);
+            // 
+            // btnMinusBlankSlotLv1
+            // 
+            this.btnMinusBlankSlotLv1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnMinusBlankSlotLv1.Location = new System.Drawing.Point(231, 36);
+            this.btnMinusBlankSlotLv1.Name = "btnMinusBlankSlotLv1";
+            this.btnMinusBlankSlotLv1.Size = new System.Drawing.Size(25, 25);
+            this.btnMinusBlankSlotLv1.TabIndex = 16;
+            this.btnMinusBlankSlotLv1.Text = "－";
+            this.btnMinusBlankSlotLv1.UseVisualStyleBackColor = true;
+            this.btnMinusBlankSlotLv1.Click += new System.EventHandler(this.CallBackBtnMinusBlankSlotClick);
+            // 
+            // btnMinusBlankSlotLv2
+            // 
+            this.btnMinusBlankSlotLv2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnMinusBlankSlotLv2.Location = new System.Drawing.Point(231, 61);
+            this.btnMinusBlankSlotLv2.Name = "btnMinusBlankSlotLv2";
+            this.btnMinusBlankSlotLv2.Size = new System.Drawing.Size(25, 25);
+            this.btnMinusBlankSlotLv2.TabIndex = 16;
+            this.btnMinusBlankSlotLv2.Text = "－";
+            this.btnMinusBlankSlotLv2.UseVisualStyleBackColor = true;
+            this.btnMinusBlankSlotLv2.Click += new System.EventHandler(this.CallBackBtnMinusBlankSlotClick);
+            // 
+            // btnPlusBlankSlotLv2
+            // 
+            this.btnPlusBlankSlotLv2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnPlusBlankSlotLv2.Location = new System.Drawing.Point(166, 61);
+            this.btnPlusBlankSlotLv2.Name = "btnPlusBlankSlotLv2";
+            this.btnPlusBlankSlotLv2.Size = new System.Drawing.Size(25, 25);
+            this.btnPlusBlankSlotLv2.TabIndex = 15;
+            this.btnPlusBlankSlotLv2.Text = "＋";
+            this.btnPlusBlankSlotLv2.UseVisualStyleBackColor = true;
+            this.btnPlusBlankSlotLv2.Click += new System.EventHandler(this.CallBackBtnPlusBlankSlotClick);
+            // 
+            // txtbValBlankSlotLv2
+            // 
+            this.txtbValBlankSlotLv2.BackColor = System.Drawing.Color.White;
+            this.txtbValBlankSlotLv2.Font = new System.Drawing.Font("MS UI Gothic", 10F);
+            this.txtbValBlankSlotLv2.Location = new System.Drawing.Point(196, 63);
+            this.txtbValBlankSlotLv2.Name = "txtbValBlankSlotLv2";
+            this.txtbValBlankSlotLv2.ReadOnly = true;
+            this.txtbValBlankSlotLv2.Size = new System.Drawing.Size(30, 21);
+            this.txtbValBlankSlotLv2.TabIndex = 17;
+            // 
+            // btnMinusBlankSlotLv3
+            // 
+            this.btnMinusBlankSlotLv3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnMinusBlankSlotLv3.Location = new System.Drawing.Point(231, 86);
+            this.btnMinusBlankSlotLv3.Name = "btnMinusBlankSlotLv3";
+            this.btnMinusBlankSlotLv3.Size = new System.Drawing.Size(25, 25);
+            this.btnMinusBlankSlotLv3.TabIndex = 16;
+            this.btnMinusBlankSlotLv3.Text = "－";
+            this.btnMinusBlankSlotLv3.UseVisualStyleBackColor = true;
+            this.btnMinusBlankSlotLv3.Click += new System.EventHandler(this.CallBackBtnMinusBlankSlotClick);
+            // 
+            // btnPlusBlankSlotLv3
+            // 
+            this.btnPlusBlankSlotLv3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnPlusBlankSlotLv3.Location = new System.Drawing.Point(166, 86);
+            this.btnPlusBlankSlotLv3.Name = "btnPlusBlankSlotLv3";
+            this.btnPlusBlankSlotLv3.Size = new System.Drawing.Size(25, 25);
+            this.btnPlusBlankSlotLv3.TabIndex = 15;
+            this.btnPlusBlankSlotLv3.Text = "＋";
+            this.btnPlusBlankSlotLv3.UseVisualStyleBackColor = true;
+            this.btnPlusBlankSlotLv3.Click += new System.EventHandler(this.CallBackBtnPlusBlankSlotClick);
+            // 
+            // txtbValBlankSlotLv3
+            // 
+            this.txtbValBlankSlotLv3.BackColor = System.Drawing.Color.White;
+            this.txtbValBlankSlotLv3.Font = new System.Drawing.Font("MS UI Gothic", 10F);
+            this.txtbValBlankSlotLv3.Location = new System.Drawing.Point(196, 88);
+            this.txtbValBlankSlotLv3.Name = "txtbValBlankSlotLv3";
+            this.txtbValBlankSlotLv3.ReadOnly = true;
+            this.txtbValBlankSlotLv3.Size = new System.Drawing.Size(30, 21);
+            this.txtbValBlankSlotLv3.TabIndex = 17;
+            // 
             // DlgResultFilter
             // 
             this.AcceptButton = this.btnOK;
@@ -213,14 +273,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(388, 404);
+            this.Controls.Add(this.txtbValBlankSlotLv3);
+            this.Controls.Add(this.txtbValBlankSlotLv2);
+            this.Controls.Add(this.txtbValBlankSlotLv1);
+            this.Controls.Add(this.btnPlusBlankSlotLv3);
+            this.Controls.Add(this.btnMinusBlankSlotLv3);
+            this.Controls.Add(this.btnPlusBlankSlotLv2);
+            this.Controls.Add(this.btnMinusBlankSlotLv2);
+            this.Controls.Add(this.btnPlusBlankSlotLv1);
+            this.Controls.Add(this.btnMinusBlankSlotLv1);
             this.Controls.Add(this.txtbAllCount);
             this.Controls.Add(this.txtbFilterdCount);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.spinNeedBlankSlotLv3);
             this.Controls.Add(this.lblNeedBlankSlotLv3);
             this.Controls.Add(this.btnFilterClear);
-            this.Controls.Add(this.spinNeedBlankSlotLv2);
-            this.Controls.Add(this.spinNeedBlankSlotLv1);
             this.Controls.Add(this.lblNeedBlankSlotLv2);
             this.Controls.Add(this.lblPer);
             this.Controls.Add(this.lblAllCount);
@@ -232,9 +298,6 @@
             this.Name = "DlgResultFilter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "結果の絞り込み条件";
-            ((System.ComponentModel.ISupportInitialize)(this.spinNeedBlankSlotLv1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinNeedBlankSlotLv2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinNeedBlankSlotLv3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,12 +307,9 @@
 
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.NumericUpDown spinNeedBlankSlotLv1;
         private System.Windows.Forms.Label lblNeedBlankSlotLv1;
         private System.Windows.Forms.Button btnFilterClear;
         private System.Windows.Forms.Label lblNeedBlankSlotLv2;
-        private System.Windows.Forms.NumericUpDown spinNeedBlankSlotLv2;
-        private System.Windows.Forms.NumericUpDown spinNeedBlankSlotLv3;
         private System.Windows.Forms.Label lblNeedBlankSlotLv3;
         private System.Windows.Forms.Label lblFilterdCount;
         private System.Windows.Forms.Label label2;
@@ -257,5 +317,14 @@
         private System.Windows.Forms.Label lblAllCount;
         private System.Windows.Forms.TextBox txtbFilterdCount;
         private System.Windows.Forms.TextBox txtbAllCount;
+        private System.Windows.Forms.TextBox txtbValBlankSlotLv1;
+        private System.Windows.Forms.Button btnPlusBlankSlotLv1;
+        private System.Windows.Forms.Button btnMinusBlankSlotLv1;
+        private System.Windows.Forms.Button btnMinusBlankSlotLv2;
+        private System.Windows.Forms.Button btnPlusBlankSlotLv2;
+        private System.Windows.Forms.TextBox txtbValBlankSlotLv2;
+        private System.Windows.Forms.Button btnMinusBlankSlotLv3;
+        private System.Windows.Forms.Button btnPlusBlankSlotLv3;
+        private System.Windows.Forms.TextBox txtbValBlankSlotLv3;
     }
 }

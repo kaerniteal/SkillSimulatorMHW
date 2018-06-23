@@ -1,6 +1,4 @@
-﻿using SkillSimulatorMHW.Data;
-
-namespace SkillSimulatorMHW.Candidates
+﻿namespace SkillSimulatorMHW.Data
 {
     /// <summary>
     /// 検索候補データ

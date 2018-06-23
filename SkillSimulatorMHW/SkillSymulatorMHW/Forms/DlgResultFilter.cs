@@ -23,6 +23,13 @@ namespace SkillSimulatorMHW.Forms
 
             InitializeComponent();
 
+            this.btnPlusBlankSlotLv1.Tag = this.txtbValBlankSlotLv1;
+            this.btnPlusBlankSlotLv2.Tag = this.txtbValBlankSlotLv2;
+            this.btnPlusBlankSlotLv3.Tag = this.txtbValBlankSlotLv3;
+            this.btnMinusBlankSlotLv1.Tag = this.txtbValBlankSlotLv1;
+            this.btnMinusBlankSlotLv2.Tag = this.txtbValBlankSlotLv2;
+            this.btnMinusBlankSlotLv3.Tag = this.txtbValBlankSlotLv3;
+
             this.SetResultFilter(defaultFilter);
         }
 
@@ -40,19 +47,64 @@ namespace SkillSimulatorMHW.Forms
             // 画面の内容を反映.
             return new ResultFilter
             {
-                NeedBlankSlotLv1 = decimal.ToInt32(this.spinNeedBlankSlotLv1.Value),
-                NeedBlankSlotLv2 = decimal.ToInt32(this.spinNeedBlankSlotLv2.Value),
-                NeedBlankSlotLv3 = decimal.ToInt32(this.spinNeedBlankSlotLv3.Value),
+                NeedBlankSlotLv1 = Int32.Parse(this.txtbValBlankSlotLv1.Text),
+                NeedBlankSlotLv2 = Int32.Parse(this.txtbValBlankSlotLv2.Text),
+                NeedBlankSlotLv3 = Int32.Parse(this.txtbValBlankSlotLv3.Text),
             };
         }
 
         /// <summary>
-        /// フィルタ条件を変更する.
+        /// 空きスロット条件をインクリメントする.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CallBackResultFilterValueChanged(object sender, EventArgs e)
+        private void CallBackBtnPlusBlankSlotClick(object sender, EventArgs e)
         {
+            var btn = sender as Button;
+            if (null == btn)
+            {
+                return;
+            }
+
+            var txtb = btn.Tag as TextBox;
+            if (null == txtb)
+            {
+                return;
+            }
+
+            var val = Int32.Parse(txtb.Text) + 1;
+            txtb.Text = val.ToString();
+
+            this.UpdateFilterdCount();
+        }
+
+        /// <summary>
+        /// 空きスロット条件をデクリメントする.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CallBackBtnMinusBlankSlotClick(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            if (null == btn)
+            {
+                return;
+            }
+
+            var txtb = btn.Tag as TextBox;
+            if (null == txtb)
+            {
+                return;
+            }
+
+            var val = Int32.Parse(txtb.Text) - 1;
+            if (val < 0)
+            {
+                val = 0;
+            }
+
+            txtb.Text = val.ToString();
+
             this.UpdateFilterdCount();
         }
 
@@ -73,9 +125,9 @@ namespace SkillSimulatorMHW.Forms
         /// <param name="defaultFilter"></param>
         private void SetResultFilter(ResultFilter defaultFilter)
         {
-            this.spinNeedBlankSlotLv1.Value = defaultFilter.NeedBlankSlotLv1;
-            this.spinNeedBlankSlotLv2.Value = defaultFilter.NeedBlankSlotLv2;
-            this.spinNeedBlankSlotLv3.Value = defaultFilter.NeedBlankSlotLv3;
+            this.txtbValBlankSlotLv1.Text = defaultFilter.NeedBlankSlotLv1.ToString();
+            this.txtbValBlankSlotLv2.Text = defaultFilter.NeedBlankSlotLv2.ToString();
+            this.txtbValBlankSlotLv3.Text = defaultFilter.NeedBlankSlotLv3.ToString();
 
             this.UpdateFilterdCount();
         }

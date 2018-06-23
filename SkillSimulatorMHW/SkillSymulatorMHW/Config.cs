@@ -2,7 +2,8 @@
 using System.IO;
 using System.Windows.Forms;
 using SkillSimulatorMHW.Defines;
-using SkillSimulatorMHW.Executors;
+using SkillSimulatorMHW.Engines;
+using SkillSimulatorMHW.Engines.v0_0_0;
 using SkillSimulatorMHW.Extensions;
 
 namespace SkillSimulatorMHW
@@ -38,8 +39,10 @@ namespace SkillSimulatorMHW
             this.EnableAsyncExec = true;
             this.AnalyzeType = AnalyzeType.Always;
 
+            this.IsDebug = false;
+
             this.ShowDebugLog = false;
-            this.SearchEngineId = SearchEngineStable.Id;
+            this.SearchEngineId = SearchEngine0_0_0.Id;
 
             this.EnableDuplicateCheck = false;
             this.EnableResultOutput = false;
@@ -70,6 +73,11 @@ namespace SkillSimulatorMHW
         /// 解析実行タイプ.
         /// </summary>
         public AnalyzeType AnalyzeType { get; set; }
+
+        /// <summary>
+        /// デバッグモードかどうか.
+        /// </summary>
+        public bool IsDebug { get; set; }
 
         /// <summary>
         /// デバッグログの表示ON/OFF.

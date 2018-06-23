@@ -46,13 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Candidates\CandidateArmorAbstract.cs" />
-    <Compile Include="Candidates\CandidateData.cs" />
-    <Compile Include="Candidates\CandidateWepon.cs" />
-    <Compile Include="Candidates\CandidateArmor.cs" />
-    <Compile Include="Candidates\CandidateAmulet.cs" />
-    <Compile Include="Candidates\CandidateAccessory.cs" />
-    <Compile Include="Candidates\CandidateSet.cs" />
+    <Compile Include="Engines\v0_0_0\Candidates\CandidateArmorAbstract.cs" />
+    <Compile Include="Data\CandidateData.cs" />
+    <Compile Include="Engines\v0_0_0\Candidates\CandidateWepon.cs" />
+    <Compile Include="Engines\v0_0_0\Candidates\CandidateArmor.cs" />
+    <Compile Include="Engines\v0_0_0\Candidates\CandidateAmulet.cs" />
+    <Compile Include="Engines\v0_0_0\Candidates\CandidateAccessory.cs" />
+    <Compile Include="Engines\v0_0_0\Candidates\CandidateSet.cs" />
     <Compile Include="Data\AnalyzeResultShortageSlot.cs" />
     <Compile Include="Data\AnalyzeResultShortageSkill.cs" />
     <Compile Include="Data\AnalyzeResultBase.cs" />
@@ -64,7 +64,13 @@
     <Compile Include="Controls\AnalyzeFactorControl.Designer.cs">
       <DependentUpon>AnalyzeFactorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Executors\SearchEngineLatest.cs" />
+    <Compile Include="Engines\v0_6_0\Candidates\CandidateAccessory.cs" />
+    <Compile Include="Engines\v0_6_0\Candidates\CandidateAmulet.cs" />
+    <Compile Include="Engines\v0_6_0\Candidates\CandidateArmor.cs" />
+    <Compile Include="Engines\v0_6_0\Candidates\CandidateArmorAbstract.cs" />
+    <Compile Include="Engines\v0_6_0\Candidates\CandidateSet.cs" />
+    <Compile Include="Engines\v0_6_0\Candidates\CandidateWepon.cs" />
+    <Compile Include="Engines\v0_6_0\SearchEngine0_6_0.cs" />
     <Compile Include="Forms\DlgAnalyzeResult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,14 +89,14 @@
     <Compile Include="Forms\DlgResultList.Designer.cs">
       <DependentUpon>DlgResultList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Executors\SearchEngine.cs" />
+    <Compile Include="Engines\SearchEngine.cs" />
     <Compile Include="Result\ResultFilter.cs" />
     <Compile Include="Data\SearchReport.cs" />
     <Compile Include="Data\SkillBase.cs" />
     <Compile Include="Data\SlotData.cs" />
     <Compile Include="Data\PartDataAccessory.cs" />
     <Compile Include="Data\PartDataAmulet.cs" />
-    <Compile Include="Candidates\CandidatePartBase.cs" />
+    <Compile Include="Data\CandidatePartBase.cs" />
     <Compile Include="Data\PartDataWepon.cs" />
     <Compile Include="Data\PartDataArmor.cs" />
     <Compile Include="Data\PartDataBase.cs" />
@@ -151,8 +157,8 @@
     <Compile Include="Forms\DlgProgress.Designer.cs">
       <DependentUpon>DlgProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="Executors\ProgressExecutorBase.cs" />
-    <Compile Include="Executors\SearchEngineStable.cs" />
+    <Compile Include="Engines\ProgressExecutorBase.cs" />
+    <Compile Include="Engines\v0_0_0\SearchEngine0_0_0.cs" />
     <Compile Include="Extensions\CsvExtensions.cs" />
     <Compile Include="Controls\RequirementControl.cs">
       <SubType>UserControl</SubType>

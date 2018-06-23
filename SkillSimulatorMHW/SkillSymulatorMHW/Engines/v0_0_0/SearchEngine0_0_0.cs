@@ -1,30 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SkillSimulatorMHW.Candidates;
+using System.Windows.Forms;
 using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
+using SkillSimulatorMHW.Engines.v0_0_0.Candidates;
+using SkillSimulatorMHW.Extensions;
 using SkillSimulatorMHW.Interface;
 using SkillSimulatorMHW.Requirements;
-using SkillSimulatorMHW.Extensions;
 using SkillSimulatorMHW.Result;
 
-namespace SkillSimulatorMHW.Executors
+namespace SkillSimulatorMHW.Engines.v0_0_0
 {
     /// <summary>
     /// 検索実行クラス.
     /// </summary>
-    public class SearchEngineStable : SearchEngine
+    public class SearchEngine0_0_0 : SearchEngine
     {
         /// <summary>
         /// ID
         /// </summary>
-        public const string Id = "stable";
+        public const string Id = "0.0.0";
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public SearchEngineStable()
+        public SearchEngine0_0_0()
         {
             this.Requirements = null;
             this.MainForm = null;
@@ -150,7 +151,9 @@ namespace SkillSimulatorMHW.Executors
                 }
                 catch (Exception e)
                 {
-                    Log.Write("【ERROR】検索処理で例外発生[{0}]".Fmt(e.Message));
+                    var message = "【ERROR】検索処理で例外発生\n[{0}]".Fmt(e.Message);
+                    MessageBox.Show(message, @"Error");
+                    Log.Write(message);
                 }
 
                 // 処理時間計測.
@@ -356,7 +359,7 @@ namespace SkillSimulatorMHW.Executors
             else
             {
                 // スキルが不足している場合は未確定部位リストを取得.
-                unsettledPartList = searchSet.GetUnsettledPartList(lastFixedPart);
+                unsettledPartList = this.GetUnsettledPartList(searchSet, lastFixedPart);
 
                 // 未確定防具が残っていない場合はスキル不足で不十分な組み合わせ.
                 if (!unsettledPartList.Any())
@@ -584,6 +587,52 @@ namespace SkillSimulatorMHW.Executors
 
             // 生成したリポートを返す.
             return searchReport;
+        }
+
+        /// <summary>
+        /// 指定部位よりもPart順で後位の未確定部位リストを取得.
+        /// </summary>
+        /// <returns></returns>
+        private List<PartDataBase> GetUnsettledPartList(SearchSet searchSet, Part lastPart)
+        {
+            // 検索順序リスト.
+            // この順序で再帰処理がまわる為、順序は意識する必要がある
+            // ・装飾品は再帰処理に入る前のループで扱うため、処理不要
+            // ・武器は未使用か固定の２択なので処理不要
+            // ・護石は同じシリーズ護石で下位、上位がある為、再帰処理の中では最初に確定する.
+            var searchList = new List<PartDataBase>
+            {
+                searchSet.Head,
+                searchSet.Body,
+                searchSet.Arm,
+                searchSet.Waist,
+                searchSet.Leg,
+                searchSet.Amulet,
+            };
+
+            // 検索順序リストの順で、最終セットされた部位よりも後ろでかつ、未確定の部位のリストを生成する.
+            // 組み合わせは総当りで検索するが、
+            // 未確定部位リストの前方には戻らない(順序違いの同じ組み合わせが出てくるから)
+            // lastPartには一つ上位のレイヤで確定した部位が入っている為、
+            // 以降に検索すべきはlastPartより後方の未確定部位のみとなる。
+            var hitLast = Part.Non == lastPart;
+            var unsettledPartList = new List<PartDataBase>();
+            foreach (var part in searchList)
+            {
+                // フラグがONでかつ、未確定部位ならばリストに追加.
+                if (hitLast && PartState.Unsettled == part.State)
+                {
+                    unsettledPartList.Add(part);
+                }
+                // 最終格納部位を見つけたらフラグON
+                else if (part.Part == lastPart)
+                {
+                    hitLast = true;
+                }
+            }
+
+            // 全部位のリストを返す.
+            return unsettledPartList;
         }
     }
 }

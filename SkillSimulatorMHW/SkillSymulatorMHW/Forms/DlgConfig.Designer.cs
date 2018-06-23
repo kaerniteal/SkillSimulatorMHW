@@ -31,7 +31,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.tabCtrlConfigView = new System.Windows.Forms.TabControl();
-            this.tabPageConfig1 = new System.Windows.Forms.TabPage();
+            this.tabPageConfigViewer = new System.Windows.Forms.TabPage();
             this.spinShowResultLimitCount = new System.Windows.Forms.NumericUpDown();
             this.lblShowResultLimitCount = new System.Windows.Forms.Label();
             this.tabPageConfigSearch = new System.Windows.Forms.TabPage();
@@ -47,7 +47,7 @@
             this.chkShowDebugLog = new System.Windows.Forms.CheckBox();
             this.btnDefault = new System.Windows.Forms.Button();
             this.tabCtrlConfigView.SuspendLayout();
-            this.tabPageConfig1.SuspendLayout();
+            this.tabPageConfigViewer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinShowResultLimitCount)).BeginInit();
             this.tabPageConfigSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinSerchLimitCount)).BeginInit();
@@ -78,7 +78,7 @@
             // 
             // tabCtrlConfigView
             // 
-            this.tabCtrlConfigView.Controls.Add(this.tabPageConfig1);
+            this.tabCtrlConfigView.Controls.Add(this.tabPageConfigViewer);
             this.tabCtrlConfigView.Controls.Add(this.tabPageConfigSearch);
             this.tabCtrlConfigView.Controls.Add(this.tabPageConfigDebug);
             this.tabCtrlConfigView.Location = new System.Drawing.Point(12, 12);
@@ -87,17 +87,17 @@
             this.tabCtrlConfigView.Size = new System.Drawing.Size(364, 349);
             this.tabCtrlConfigView.TabIndex = 5;
             // 
-            // tabPageConfig1
+            // tabPageConfigViewer
             // 
-            this.tabPageConfig1.Controls.Add(this.spinShowResultLimitCount);
-            this.tabPageConfig1.Controls.Add(this.lblShowResultLimitCount);
-            this.tabPageConfig1.Location = new System.Drawing.Point(4, 22);
-            this.tabPageConfig1.Name = "tabPageConfig1";
-            this.tabPageConfig1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConfig1.Size = new System.Drawing.Size(356, 323);
-            this.tabPageConfig1.TabIndex = 0;
-            this.tabPageConfig1.Text = "表示設定";
-            this.tabPageConfig1.UseVisualStyleBackColor = true;
+            this.tabPageConfigViewer.Controls.Add(this.spinShowResultLimitCount);
+            this.tabPageConfigViewer.Controls.Add(this.lblShowResultLimitCount);
+            this.tabPageConfigViewer.Location = new System.Drawing.Point(4, 22);
+            this.tabPageConfigViewer.Name = "tabPageConfigViewer";
+            this.tabPageConfigViewer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageConfigViewer.Size = new System.Drawing.Size(356, 323);
+            this.tabPageConfigViewer.TabIndex = 0;
+            this.tabPageConfigViewer.Text = "表示設定";
+            this.tabPageConfigViewer.UseVisualStyleBackColor = true;
             // 
             // spinShowResultLimitCount
             // 
@@ -262,8 +262,8 @@
             this.Text = "動作設定";
             this.Load += new System.EventHandler(this.CallBackDlgConfigLoad);
             this.tabCtrlConfigView.ResumeLayout(false);
-            this.tabPageConfig1.ResumeLayout(false);
-            this.tabPageConfig1.PerformLayout();
+            this.tabPageConfigViewer.ResumeLayout(false);
+            this.tabPageConfigViewer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinShowResultLimitCount)).EndInit();
             this.tabPageConfigSearch.ResumeLayout(false);
             this.tabPageConfigSearch.PerformLayout();
@@ -279,7 +279,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TabControl tabCtrlConfigView;
-        private System.Windows.Forms.TabPage tabPageConfig1;
+        private System.Windows.Forms.TabPage tabPageConfigViewer;
         private System.Windows.Forms.TabPage tabPageConfigSearch;
         private System.Windows.Forms.NumericUpDown spinShowResultLimitCount;
         private System.Windows.Forms.Label lblShowResultLimitCount;

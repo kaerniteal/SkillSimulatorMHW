@@ -4,7 +4,7 @@ using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
 using SkillSimulatorMHW.Requirements;
 
-namespace SkillSimulatorMHW.Candidates
+namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
 {
     /// <summary>
     /// 検索候補データ武器

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using SkillSimulatorMHW.Controls;
 using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
-using SkillSimulatorMHW.Executors;
+using SkillSimulatorMHW.Engines;
 using SkillSimulatorMHW.Interface;
 using SkillSimulatorMHW.Masters;
 using SkillSimulatorMHW.Requirements;
@@ -379,22 +379,27 @@ namespace SkillSimulatorMHW.Forms
                 this.Requirements.Save();
 
                 // 検索処理オブジェクトを格納.
-                SearchEngine exec = null;
+                SearchEngine engine = null;
 
                 // 検索処理を取得.
-                exec = SearchEngine.GetSearchEngine();
-                exec.SetParam(this.Requirements, this, analyze);
+                engine = SearchEngine.GetSearchEngine();
+                engine.SetParam(this.Requirements, this, analyze);
+
+                if (Ssm.Config.ShowDebugLog)
+                {
+                    Log.Write("【DEBUG】SearchEngine[{0}]".Fmt(engine.GetId()));
+                }
 
                 if (Ssm.Config.EnableAsyncExec)
                 {
                     // 進捗表示機能付き非同期処理.
                     // 非同期なのでIMainFormのSetResultで結果を格納する.
-                    DlgProgress.ProgressProcess(@"検索.", exec);
+                    DlgProgress.ProgressProcess(@"検索.", engine);
                 }
                 else
                 {
                     // 同期実行.
-                    var result = exec.Search();
+                    var result = engine.Search();
 
                     // 結果を格納.
                     this.SetResult(result);
@@ -428,19 +433,6 @@ namespace SkillSimulatorMHW.Forms
             
             // 条件を満たしたリスト.
             var satisfiedList = resultData.GetSatisfiedList();
-
-            // 出力結果保存.
-            if (Ssm.Config.EnableResultOutput)
-            {
-                using (var sw = new StreamWriter(Ssm.Config.FileNameResultOutput, false, Encoding.UTF8))
-                {
-                    foreach (var result in satisfiedList)
-                    {
-                        sw.WriteLine(result.GetAllText());
-                    }
-                    sw.Close();
-                }
-            }
 
             // 結果コントロールに反映.
             this.ResultListControl.SetResult(satisfiedList);

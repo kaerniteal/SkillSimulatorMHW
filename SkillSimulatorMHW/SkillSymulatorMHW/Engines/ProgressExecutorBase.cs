@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using SkillSimulatorMHW.Extensions;
 
-namespace SkillSimulatorMHW.Executors
+namespace SkillSimulatorMHW.Engines
 {
     /// <summary>
     /// 進捗管理実行クラス基底.
