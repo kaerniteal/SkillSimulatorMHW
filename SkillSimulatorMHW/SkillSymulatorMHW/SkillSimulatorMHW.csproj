@@ -34,8 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\NumericControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NumericControl.Designer.cs">
+      <DependentUpon>NumericControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Engines\v0_0_0\Candidates\CandidateArmorAbstract.cs" />
     <Compile Include="Data\CandidateData.cs" />
     <Compile Include="Engines\v0_0_0\Candidates\CandidateWepon.cs" />
@@ -90,6 +98,12 @@
       <DependentUpon>DlgResultList.cs</DependentUpon>
     </Compile>
     <Compile Include="Engines\SearchEngine.cs" />
+    <Compile Include="Forms\DlgSelectCharacter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DlgSelectCharacter.Designer.cs">
+      <DependentUpon>DlgSelectCharacter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Result\ResultFilter.cs" />
     <Compile Include="Data\SearchReport.cs" />
     <Compile Include="Data\SkillBase.cs" />
@@ -210,7 +224,8 @@
     <Compile Include="Requirements\Requirement.cs" />
     <Compile Include="Requirements\RequirementRareData.cs" />
     <Compile Include="Requirements\RequirementSkillList.cs" />
-    <Compile Include="WebInfo.cs" />
+    <Compile Include="Web\VersionInfo.cs" />
+    <Compile Include="Web\WebInfo.cs" />
     <Compile Include="Ssm.cs" />
     <Compile Include="SkillSimulatorMhw.cs" />
     <EmbeddedResource Include="Controls\AccessoryControl.resx">
@@ -221,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ArmorControl.resx">
       <DependentUpon>ArmorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NumericControl.resx">
+      <DependentUpon>NumericControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ResultListControl.resx">
       <DependentUpon>ResultListControl.cs</DependentUpon>
@@ -245,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DlgResultList.resx">
       <DependentUpon>DlgResultList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DlgSelectCharacter.resx">
+      <DependentUpon>DlgSelectCharacter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

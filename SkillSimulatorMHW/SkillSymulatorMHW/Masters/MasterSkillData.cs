@@ -14,6 +14,13 @@ namespace SkillSimulatorMHW.Masters
         /// </summary>
         public MasterSkillData()
         {
+            this.Index = 0;
+            this.Name = "なし";
+            this.Kana = string.Empty;
+            this.SeriesId = 0;
+            this.Need = 0;
+            this.MaxLv = 0;
+            this.Remarks = string.Empty;
             this.CacheMasterSeriesData = null;
         }
 
@@ -62,7 +69,7 @@ namespace SkillSimulatorMHW.Masters
         /// </summary>
         public MasterSeriesData GetSeries()
         {
-            if (null == this.CacheMasterSeriesData)
+            if (null == this.CacheMasterSeriesData && this.IsSeries())
             {
                 this.CacheMasterSeriesData = Ssm.Master.MasterSeries.GetRecord(this.SeriesId);
             }

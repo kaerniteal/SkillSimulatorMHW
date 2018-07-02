@@ -30,12 +30,14 @@ namespace SkillSimulatorMHW
         private void SetDefault()
         {
             // デフォルトはここで与える.
+            this.DefaultCharactor = string.Empty;
+
+            this.EnableWeb = true;
             this.ShowResultLimitCount = 100;
 
             this.SerchLimitCount = 0;
             this.UseArmorAbstract = true;
             this.EnableAsyncExec = true;
-            this.EnableWebInfo = false;
             this.AnalyzeType = AnalyzeType.Always;
 
             this.IsDebug = false;
@@ -47,6 +49,16 @@ namespace SkillSimulatorMHW
             this.EnableResultOutput = false;
             this.FileNameResultOutput = @"./SsmResult.list";
         }
+
+        /// <summary>
+        /// 初期読み込みキャラクター名
+        /// </summary>
+        public string DefaultCharactor { get; set; }
+
+        /// <summary>
+        /// Webの有効/無効.
+        /// </summary>
+        public bool EnableWeb { get; set; }
 
         /// <summary>
         /// 結果表示件数上限数.
@@ -67,11 +79,6 @@ namespace SkillSimulatorMHW
         /// 非同期実行の有効/無効.
         /// </summary>
         public bool EnableAsyncExec { get; set; }
-
-        /// <summary>
-        /// WebInfoを利用する.
-        /// </summary>
-        public bool EnableWebInfo { get; set; }
 
         /// <summary>
         /// 解析実行タイプ.

@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnOK = new System.Windows.Forms.Button();
+            this.btnShow = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblNeedBlankSlotLv1 = new System.Windows.Forms.Label();
-            this.btnFilterClear = new System.Windows.Forms.Button();
             this.lblNeedBlankSlotLv2 = new System.Windows.Forms.Label();
             this.lblNeedBlankSlotLv3 = new System.Windows.Forms.Label();
             this.lblFilterdCount = new System.Windows.Forms.Label();
@@ -40,27 +39,29 @@
             this.lblAllCount = new System.Windows.Forms.Label();
             this.txtbFilterdCount = new System.Windows.Forms.TextBox();
             this.txtbAllCount = new System.Windows.Forms.TextBox();
-            this.txtbValBlankSlotLv1 = new System.Windows.Forms.TextBox();
-            this.btnPlusBlankSlotLv1 = new System.Windows.Forms.Button();
-            this.btnMinusBlankSlotLv1 = new System.Windows.Forms.Button();
-            this.btnMinusBlankSlotLv2 = new System.Windows.Forms.Button();
-            this.btnPlusBlankSlotLv2 = new System.Windows.Forms.Button();
-            this.txtbValBlankSlotLv2 = new System.Windows.Forms.TextBox();
-            this.btnMinusBlankSlotLv3 = new System.Windows.Forms.Button();
-            this.btnPlusBlankSlotLv3 = new System.Windows.Forms.Button();
-            this.txtbValBlankSlotLv3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblAddSkill = new System.Windows.Forms.Label();
+            this.cmbAddSkill1 = new System.Windows.Forms.ComboBox();
+            this.cmbAddSkill2 = new System.Windows.Forms.ComboBox();
+            this.cmbAddSkill3 = new System.Windows.Forms.ComboBox();
+            this.numAddSkill3 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.numAddSkill2 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.numAddSkill1 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.numBlankSlotLv3 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.numBlankSlotLv2 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.numBlankSlotLv1 = new SkillSimulatorMHW.Controls.NumericControl();
             this.SuspendLayout();
             // 
-            // btnOK
+            // btnShow
             // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Bold);
-            this.btnOK.Location = new System.Drawing.Point(150, 367);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(110, 25);
-            this.btnOK.TabIndex = 5;
-            this.btnOK.Text = "O K";
-            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnShow.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Bold);
+            this.btnShow.Location = new System.Drawing.Point(14, 367);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(245, 25);
+            this.btnShow.TabIndex = 5;
+            this.btnShow.Text = "絞り込んだ結果を表示する";
+            this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.CallBackBtnShowClick);
             // 
             // btnCancel
             // 
@@ -70,33 +71,22 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 25);
             this.btnCancel.TabIndex = 6;
-            this.btnCancel.Text = "キャンセル";
+            this.btnCancel.Text = "閉じる";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // lblNeedBlankSlotLv1
             // 
             this.lblNeedBlankSlotLv1.AutoSize = true;
-            this.lblNeedBlankSlotLv1.Location = new System.Drawing.Point(12, 42);
+            this.lblNeedBlankSlotLv1.Location = new System.Drawing.Point(12, 47);
             this.lblNeedBlankSlotLv1.Name = "lblNeedBlankSlotLv1";
             this.lblNeedBlankSlotLv1.Size = new System.Drawing.Size(128, 12);
             this.lblNeedBlankSlotLv1.TabIndex = 7;
             this.lblNeedBlankSlotLv1.Text = "Lv1スロットの空いている数";
             // 
-            // btnFilterClear
-            // 
-            this.btnFilterClear.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Bold);
-            this.btnFilterClear.Location = new System.Drawing.Point(14, 367);
-            this.btnFilterClear.Name = "btnFilterClear";
-            this.btnFilterClear.Size = new System.Drawing.Size(132, 25);
-            this.btnFilterClear.TabIndex = 9;
-            this.btnFilterClear.Text = "フィルタをクリアする";
-            this.btnFilterClear.UseVisualStyleBackColor = true;
-            this.btnFilterClear.Click += new System.EventHandler(this.CallBackBtnFilterClearClick);
-            // 
             // lblNeedBlankSlotLv2
             // 
             this.lblNeedBlankSlotLv2.AutoSize = true;
-            this.lblNeedBlankSlotLv2.Location = new System.Drawing.Point(12, 67);
+            this.lblNeedBlankSlotLv2.Location = new System.Drawing.Point(12, 74);
             this.lblNeedBlankSlotLv2.Name = "lblNeedBlankSlotLv2";
             this.lblNeedBlankSlotLv2.Size = new System.Drawing.Size(128, 12);
             this.lblNeedBlankSlotLv2.TabIndex = 7;
@@ -105,7 +95,7 @@
             // lblNeedBlankSlotLv3
             // 
             this.lblNeedBlankSlotLv3.AutoSize = true;
-            this.lblNeedBlankSlotLv3.Location = new System.Drawing.Point(12, 92);
+            this.lblNeedBlankSlotLv3.Location = new System.Drawing.Point(12, 101);
             this.lblNeedBlankSlotLv3.Name = "lblNeedBlankSlotLv3";
             this.lblNeedBlankSlotLv3.Size = new System.Drawing.Size(128, 12);
             this.lblNeedBlankSlotLv3.TabIndex = 10;
@@ -170,129 +160,143 @@
             this.txtbAllCount.Text = "9999件";
             this.txtbAllCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtbValBlankSlotLv1
+            // label1
             // 
-            this.txtbValBlankSlotLv1.BackColor = System.Drawing.Color.White;
-            this.txtbValBlankSlotLv1.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.txtbValBlankSlotLv1.Location = new System.Drawing.Point(196, 38);
-            this.txtbValBlankSlotLv1.Name = "txtbValBlankSlotLv1";
-            this.txtbValBlankSlotLv1.ReadOnly = true;
-            this.txtbValBlankSlotLv1.Size = new System.Drawing.Size(30, 21);
-            this.txtbValBlankSlotLv1.TabIndex = 17;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(1, 129);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(387, 2);
+            this.label1.TabIndex = 12;
             // 
-            // btnPlusBlankSlotLv1
+            // lblAddSkill
             // 
-            this.btnPlusBlankSlotLv1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnPlusBlankSlotLv1.Location = new System.Drawing.Point(166, 36);
-            this.btnPlusBlankSlotLv1.Name = "btnPlusBlankSlotLv1";
-            this.btnPlusBlankSlotLv1.Size = new System.Drawing.Size(25, 25);
-            this.btnPlusBlankSlotLv1.TabIndex = 15;
-            this.btnPlusBlankSlotLv1.Text = "＋";
-            this.btnPlusBlankSlotLv1.UseVisualStyleBackColor = true;
-            this.btnPlusBlankSlotLv1.Click += new System.EventHandler(this.CallBackBtnPlusBlankSlotClick);
+            this.lblAddSkill.AutoSize = true;
+            this.lblAddSkill.Location = new System.Drawing.Point(12, 145);
+            this.lblAddSkill.Name = "lblAddSkill";
+            this.lblAddSkill.Size = new System.Drawing.Size(184, 12);
+            this.lblAddSkill.TabIndex = 18;
+            this.lblAddSkill.Text = "絞り込み条件に追加したいスキルのLv";
             // 
-            // btnMinusBlankSlotLv1
+            // cmbAddSkill1
             // 
-            this.btnMinusBlankSlotLv1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnMinusBlankSlotLv1.Location = new System.Drawing.Point(231, 36);
-            this.btnMinusBlankSlotLv1.Name = "btnMinusBlankSlotLv1";
-            this.btnMinusBlankSlotLv1.Size = new System.Drawing.Size(25, 25);
-            this.btnMinusBlankSlotLv1.TabIndex = 16;
-            this.btnMinusBlankSlotLv1.Text = "－";
-            this.btnMinusBlankSlotLv1.UseVisualStyleBackColor = true;
-            this.btnMinusBlankSlotLv1.Click += new System.EventHandler(this.CallBackBtnMinusBlankSlotClick);
+            this.cmbAddSkill1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAddSkill1.Font = new System.Drawing.Font("MS UI Gothic", 10F);
+            this.cmbAddSkill1.FormattingEnabled = true;
+            this.cmbAddSkill1.Location = new System.Drawing.Point(14, 164);
+            this.cmbAddSkill1.Name = "cmbAddSkill1";
+            this.cmbAddSkill1.Size = new System.Drawing.Size(222, 21);
+            this.cmbAddSkill1.TabIndex = 19;
+            this.cmbAddSkill1.SelectedIndexChanged += new System.EventHandler(this.CallBackCmbAddSkillSelectedIndexChanged);
             // 
-            // btnMinusBlankSlotLv2
+            // cmbAddSkill2
             // 
-            this.btnMinusBlankSlotLv2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnMinusBlankSlotLv2.Location = new System.Drawing.Point(231, 61);
-            this.btnMinusBlankSlotLv2.Name = "btnMinusBlankSlotLv2";
-            this.btnMinusBlankSlotLv2.Size = new System.Drawing.Size(25, 25);
-            this.btnMinusBlankSlotLv2.TabIndex = 16;
-            this.btnMinusBlankSlotLv2.Text = "－";
-            this.btnMinusBlankSlotLv2.UseVisualStyleBackColor = true;
-            this.btnMinusBlankSlotLv2.Click += new System.EventHandler(this.CallBackBtnMinusBlankSlotClick);
+            this.cmbAddSkill2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAddSkill2.Font = new System.Drawing.Font("MS UI Gothic", 10F);
+            this.cmbAddSkill2.FormattingEnabled = true;
+            this.cmbAddSkill2.Location = new System.Drawing.Point(14, 191);
+            this.cmbAddSkill2.Name = "cmbAddSkill2";
+            this.cmbAddSkill2.Size = new System.Drawing.Size(222, 21);
+            this.cmbAddSkill2.TabIndex = 19;
+            this.cmbAddSkill2.SelectedIndexChanged += new System.EventHandler(this.CallBackCmbAddSkillSelectedIndexChanged);
             // 
-            // btnPlusBlankSlotLv2
+            // cmbAddSkill3
             // 
-            this.btnPlusBlankSlotLv2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnPlusBlankSlotLv2.Location = new System.Drawing.Point(166, 61);
-            this.btnPlusBlankSlotLv2.Name = "btnPlusBlankSlotLv2";
-            this.btnPlusBlankSlotLv2.Size = new System.Drawing.Size(25, 25);
-            this.btnPlusBlankSlotLv2.TabIndex = 15;
-            this.btnPlusBlankSlotLv2.Text = "＋";
-            this.btnPlusBlankSlotLv2.UseVisualStyleBackColor = true;
-            this.btnPlusBlankSlotLv2.Click += new System.EventHandler(this.CallBackBtnPlusBlankSlotClick);
+            this.cmbAddSkill3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAddSkill3.Font = new System.Drawing.Font("MS UI Gothic", 10F);
+            this.cmbAddSkill3.FormattingEnabled = true;
+            this.cmbAddSkill3.Location = new System.Drawing.Point(14, 218);
+            this.cmbAddSkill3.Name = "cmbAddSkill3";
+            this.cmbAddSkill3.Size = new System.Drawing.Size(222, 21);
+            this.cmbAddSkill3.TabIndex = 19;
+            this.cmbAddSkill3.SelectedIndexChanged += new System.EventHandler(this.CallBackCmbAddSkillSelectedIndexChanged);
             // 
-            // txtbValBlankSlotLv2
+            // numAddSkill3
             // 
-            this.txtbValBlankSlotLv2.BackColor = System.Drawing.Color.White;
-            this.txtbValBlankSlotLv2.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.txtbValBlankSlotLv2.Location = new System.Drawing.Point(196, 63);
-            this.txtbValBlankSlotLv2.Name = "txtbValBlankSlotLv2";
-            this.txtbValBlankSlotLv2.ReadOnly = true;
-            this.txtbValBlankSlotLv2.Size = new System.Drawing.Size(30, 21);
-            this.txtbValBlankSlotLv2.TabIndex = 17;
+            this.numAddSkill3.Location = new System.Drawing.Point(253, 216);
+            this.numAddSkill3.Max = 10;
+            this.numAddSkill3.Min = 0;
+            this.numAddSkill3.Name = "numAddSkill3";
+            this.numAddSkill3.Size = new System.Drawing.Size(90, 26);
+            this.numAddSkill3.TabIndex = 26;
+            this.numAddSkill3.Value = 0;
             // 
-            // btnMinusBlankSlotLv3
+            // numAddSkill2
             // 
-            this.btnMinusBlankSlotLv3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnMinusBlankSlotLv3.Location = new System.Drawing.Point(231, 86);
-            this.btnMinusBlankSlotLv3.Name = "btnMinusBlankSlotLv3";
-            this.btnMinusBlankSlotLv3.Size = new System.Drawing.Size(25, 25);
-            this.btnMinusBlankSlotLv3.TabIndex = 16;
-            this.btnMinusBlankSlotLv3.Text = "－";
-            this.btnMinusBlankSlotLv3.UseVisualStyleBackColor = true;
-            this.btnMinusBlankSlotLv3.Click += new System.EventHandler(this.CallBackBtnMinusBlankSlotClick);
+            this.numAddSkill2.Location = new System.Drawing.Point(253, 189);
+            this.numAddSkill2.Max = 10;
+            this.numAddSkill2.Min = 0;
+            this.numAddSkill2.Name = "numAddSkill2";
+            this.numAddSkill2.Size = new System.Drawing.Size(90, 26);
+            this.numAddSkill2.TabIndex = 26;
+            this.numAddSkill2.Value = 0;
             // 
-            // btnPlusBlankSlotLv3
+            // numAddSkill1
             // 
-            this.btnPlusBlankSlotLv3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnPlusBlankSlotLv3.Location = new System.Drawing.Point(166, 86);
-            this.btnPlusBlankSlotLv3.Name = "btnPlusBlankSlotLv3";
-            this.btnPlusBlankSlotLv3.Size = new System.Drawing.Size(25, 25);
-            this.btnPlusBlankSlotLv3.TabIndex = 15;
-            this.btnPlusBlankSlotLv3.Text = "＋";
-            this.btnPlusBlankSlotLv3.UseVisualStyleBackColor = true;
-            this.btnPlusBlankSlotLv3.Click += new System.EventHandler(this.CallBackBtnPlusBlankSlotClick);
+            this.numAddSkill1.Location = new System.Drawing.Point(253, 162);
+            this.numAddSkill1.Max = 10;
+            this.numAddSkill1.Min = 0;
+            this.numAddSkill1.Name = "numAddSkill1";
+            this.numAddSkill1.Size = new System.Drawing.Size(90, 26);
+            this.numAddSkill1.TabIndex = 26;
+            this.numAddSkill1.Value = 0;
             // 
-            // txtbValBlankSlotLv3
+            // numBlankSlotLv3
             // 
-            this.txtbValBlankSlotLv3.BackColor = System.Drawing.Color.White;
-            this.txtbValBlankSlotLv3.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.txtbValBlankSlotLv3.Location = new System.Drawing.Point(196, 88);
-            this.txtbValBlankSlotLv3.Name = "txtbValBlankSlotLv3";
-            this.txtbValBlankSlotLv3.ReadOnly = true;
-            this.txtbValBlankSlotLv3.Size = new System.Drawing.Size(30, 21);
-            this.txtbValBlankSlotLv3.TabIndex = 17;
+            this.numBlankSlotLv3.Location = new System.Drawing.Point(166, 95);
+            this.numBlankSlotLv3.Max = 20;
+            this.numBlankSlotLv3.Min = 0;
+            this.numBlankSlotLv3.Name = "numBlankSlotLv3";
+            this.numBlankSlotLv3.Size = new System.Drawing.Size(90, 26);
+            this.numBlankSlotLv3.TabIndex = 25;
+            this.numBlankSlotLv3.Value = 0;
+            // 
+            // numBlankSlotLv2
+            // 
+            this.numBlankSlotLv2.Location = new System.Drawing.Point(166, 68);
+            this.numBlankSlotLv2.Max = 20;
+            this.numBlankSlotLv2.Min = 0;
+            this.numBlankSlotLv2.Name = "numBlankSlotLv2";
+            this.numBlankSlotLv2.Size = new System.Drawing.Size(90, 26);
+            this.numBlankSlotLv2.TabIndex = 24;
+            this.numBlankSlotLv2.Value = 0;
+            // 
+            // numBlankSlotLv1
+            // 
+            this.numBlankSlotLv1.Location = new System.Drawing.Point(166, 41);
+            this.numBlankSlotLv1.Max = 20;
+            this.numBlankSlotLv1.Min = 0;
+            this.numBlankSlotLv1.Name = "numBlankSlotLv1";
+            this.numBlankSlotLv1.Size = new System.Drawing.Size(90, 26);
+            this.numBlankSlotLv1.TabIndex = 23;
+            this.numBlankSlotLv1.Value = 0;
             // 
             // DlgResultFilter
             // 
-            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(388, 404);
-            this.Controls.Add(this.txtbValBlankSlotLv3);
-            this.Controls.Add(this.txtbValBlankSlotLv2);
-            this.Controls.Add(this.txtbValBlankSlotLv1);
-            this.Controls.Add(this.btnPlusBlankSlotLv3);
-            this.Controls.Add(this.btnMinusBlankSlotLv3);
-            this.Controls.Add(this.btnPlusBlankSlotLv2);
-            this.Controls.Add(this.btnMinusBlankSlotLv2);
-            this.Controls.Add(this.btnPlusBlankSlotLv1);
-            this.Controls.Add(this.btnMinusBlankSlotLv1);
+            this.Controls.Add(this.numAddSkill3);
+            this.Controls.Add(this.numAddSkill2);
+            this.Controls.Add(this.numAddSkill1);
+            this.Controls.Add(this.numBlankSlotLv3);
+            this.Controls.Add(this.numBlankSlotLv2);
+            this.Controls.Add(this.numBlankSlotLv1);
+            this.Controls.Add(this.cmbAddSkill3);
+            this.Controls.Add(this.cmbAddSkill2);
+            this.Controls.Add(this.cmbAddSkill1);
+            this.Controls.Add(this.lblAddSkill);
             this.Controls.Add(this.txtbAllCount);
             this.Controls.Add(this.txtbFilterdCount);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblNeedBlankSlotLv3);
-            this.Controls.Add(this.btnFilterClear);
             this.Controls.Add(this.lblNeedBlankSlotLv2);
             this.Controls.Add(this.lblPer);
             this.Controls.Add(this.lblAllCount);
             this.Controls.Add(this.lblFilterdCount);
             this.Controls.Add(this.lblNeedBlankSlotLv1);
-            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.btnShow);
             this.Controls.Add(this.btnCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DlgResultFilter";
@@ -305,10 +309,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblNeedBlankSlotLv1;
-        private System.Windows.Forms.Button btnFilterClear;
         private System.Windows.Forms.Label lblNeedBlankSlotLv2;
         private System.Windows.Forms.Label lblNeedBlankSlotLv3;
         private System.Windows.Forms.Label lblFilterdCount;
@@ -317,14 +320,16 @@
         private System.Windows.Forms.Label lblAllCount;
         private System.Windows.Forms.TextBox txtbFilterdCount;
         private System.Windows.Forms.TextBox txtbAllCount;
-        private System.Windows.Forms.TextBox txtbValBlankSlotLv1;
-        private System.Windows.Forms.Button btnPlusBlankSlotLv1;
-        private System.Windows.Forms.Button btnMinusBlankSlotLv1;
-        private System.Windows.Forms.Button btnMinusBlankSlotLv2;
-        private System.Windows.Forms.Button btnPlusBlankSlotLv2;
-        private System.Windows.Forms.TextBox txtbValBlankSlotLv2;
-        private System.Windows.Forms.Button btnMinusBlankSlotLv3;
-        private System.Windows.Forms.Button btnPlusBlankSlotLv3;
-        private System.Windows.Forms.TextBox txtbValBlankSlotLv3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAddSkill;
+        private System.Windows.Forms.ComboBox cmbAddSkill1;
+        private Controls.NumericControl numBlankSlotLv1;
+        private Controls.NumericControl numBlankSlotLv2;
+        private Controls.NumericControl numBlankSlotLv3;
+        private Controls.NumericControl numAddSkill1;
+        private System.Windows.Forms.ComboBox cmbAddSkill2;
+        private Controls.NumericControl numAddSkill2;
+        private System.Windows.Forms.ComboBox cmbAddSkill3;
+        private Controls.NumericControl numAddSkill3;
     }
 }

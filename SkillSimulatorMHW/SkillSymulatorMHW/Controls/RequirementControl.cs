@@ -39,68 +39,13 @@ namespace SkillSimulatorMHW.Controls
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public RequirementControl(RequirementData requirementData, List<MasterDataBase> masterList)
+        /// <param name="masterList"></param>
+        public RequirementControl(List<MasterDataBase> masterList)
         {
             InitializeComponent();
 
-            if (null == requirementData)
-            {
-                Log.Write("検索条件コントロールの初期化に失敗しました(引数なし)");
-                return;
-            }
-
-            var part = requirementData.Part;
-            this.Def = RequirementDataDic.ContainsKey(part)
-                ? RequirementDataDic[part]
-                : new ReqCtrlDef();
-            this.RequirementData = requirementData;
+            // マスタリストを更新.
             this.MasterList = masterList;
-
-            // 部位毎の初期化を実施.
-            if (!RequirementDataDic.ContainsKey(part))
-            {
-                Log.Write("検索条件コントロール[{0}]の初期化に失敗しました(条件なし)".Fmt(part));
-                return;
-            }
-
-            // 検索条件コンボボックス更新.
-            var def = RequirementDataDic[part];
-            this.chkPart.Text = def.Title;
-
-            // コンボボックスの初期化を実施すると値が更新されてしまうので、
-            // この時点で初期化値を確保しておく.
-            var termType = this.RequirementData.TermsType;
-            this.FixedIndex = this.RequirementData.FixedIndex;
-
-            // 初期化.
-            this.cmbRequirement.Init(def.CmbItemList);
-
-            // 要素選択.
-            foreach (var item in this.cmbRequirement.Items)
-            {
-                var val = item as TermsTypeData;
-                if (null != val && val.TermsType == termType)
-                {
-                    this.cmbRequirement.SelectValue(item);
-                    break;
-                }
-            }
-
-            // 固定装備コンボボックス更新.
-            this.UpdateCmbFixedEquip();
-
-            // 固定装備コンボ再選択.
-            foreach (var item in this.cmbFixedEquip.Items)
-            {
-                var val = item as MasterDataBase;
-                if (null != val && val.GetIndex() == this.FixedIndex)
-                {
-                    this.cmbFixedEquip.SelectValue(item);
-                    break;
-                }
-            }
-
-            this.chkPart.Checked = termType != TermsType.Unused;
         }
 
         /// <summary>
@@ -189,7 +134,7 @@ namespace SkillSimulatorMHW.Controls
         /// <param name="e"></param>
         private void CallBackBtnSelectClick(object sender, EventArgs e)
         {
-
+            // TODO:nakamura 未実装.
         }
 
         /// <summary>
@@ -225,6 +170,68 @@ namespace SkillSimulatorMHW.Controls
                     Log.Write("[{0}]の所持リスト機能は未実装です。".Fmt(part));
                     break;
             }
+        }
+
+        /// <summary>
+        /// 検索条件をセット.
+        /// </summary>
+        /// <param name="requirementData"></param>
+        public void SetRequirementData(RequirementData requirementData)
+        {
+            if (null == requirementData)
+            {
+                Log.Write("検索条件コントロールの初期化に失敗しました(引数なし)");
+                return;
+            }
+
+            var part = requirementData.Part;
+            if (!RequirementDataDic.ContainsKey(part))
+            {
+                Log.Write("検索条件コントロール[{0}]の初期化に失敗しました(指定部位が不明)".Fmt(part));
+                return;
+            }
+
+            // 部位毎の初期化を実施.
+            this.Def = RequirementDataDic[part];
+            this.RequirementData = requirementData;
+
+            // 検索条件コンボボックス更新.
+            this.chkPart.Text = this.Def.Title;
+
+            // コンボボックスの初期化を実施すると値が更新されてしまうので、
+            // この時点で初期化値を確保しておく.
+            var termType = this.RequirementData.TermsType;
+            this.FixedIndex = this.RequirementData.FixedIndex;
+
+            // 初期化.
+            this.cmbRequirement.Init(this.Def.CmbItemList);
+
+            // 要素選択.
+            foreach (var item in this.cmbRequirement.Items)
+            {
+                var val = item as TermsTypeData;
+                if (null != val && val.TermsType == termType)
+                {
+                    this.cmbRequirement.SelectValue(item);
+                    break;
+                }
+            }
+
+            // 固定装備コンボボックス更新.
+            this.UpdateCmbFixedEquip();
+
+            // 固定装備コンボ再選択.
+            foreach (var item in this.cmbFixedEquip.Items)
+            {
+                var val = item as MasterDataBase;
+                if (null != val && val.GetIndex() == this.FixedIndex)
+                {
+                    this.cmbFixedEquip.SelectValue(item);
+                    break;
+                }
+            }
+
+            this.chkPart.Checked = termType != TermsType.Unused;
         }
 
         /// <summary>

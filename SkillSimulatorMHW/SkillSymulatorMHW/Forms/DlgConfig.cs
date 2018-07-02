@@ -45,6 +45,7 @@ namespace SkillSimulatorMHW.Forms
         /// <param name="config"></param>
         public void SetConfig(Config config)
         {
+            this.chkWeb.Checked = config.EnableWeb;
             this.spinShowResultLimitCount.Value = config.ShowResultLimitCount;
 
             this.spinSerchLimitCount.Value    = config.SerchLimitCount;
@@ -66,6 +67,7 @@ namespace SkillSimulatorMHW.Forms
             var config = Config.Load();
 
             // 画面の内容を反映.
+            config.EnableWeb = this.chkWeb.Checked;
             config.ShowResultLimitCount = decimal.ToInt32(this.spinShowResultLimitCount.Value);
 
             config.SerchLimitCount = decimal.ToInt32(this.spinSerchLimitCount.Value);

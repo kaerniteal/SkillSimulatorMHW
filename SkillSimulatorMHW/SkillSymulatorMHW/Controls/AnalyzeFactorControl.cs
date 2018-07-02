@@ -61,7 +61,7 @@ namespace SkillSimulatorMHW.Controls
         private void CallBackBtnShowClick(object sender, EventArgs e)
         {
             var dlg = new DlgResultList();
-            dlg.SetResult(this.AnalyzeResult);
+            dlg.SetResult(this.AnalyzeResult.GetFactor(), this.AnalyzeResult.ResultSetList);
             dlg.ShowDialog();
         }
     }

@@ -22,7 +22,6 @@ namespace SkillSimulatorMHW.Controls
         {
             this.ResultList = new List<ResultSet>();
             this.ResultCtrlList = new List<ResultControl>();
-            this.ResultFilter = new ResultFilter();
             this.DicSetKey = new Dictionary<string, ResultSet>();
 
             InitializeComponent();
@@ -45,26 +44,9 @@ namespace SkillSimulatorMHW.Controls
         private List<ResultControl> ResultCtrlList { get; set; }
 
         /// <summary>
-        /// 結果フィルタ.
-        /// </summary>
-        private ResultFilter ResultFilter { get; set; }
-
-        /// <summary>
         /// Key辞書
         /// </summary>
         protected Dictionary<string, ResultSet> DicSetKey { get; set; }
-
-        /// <summary>
-        /// 結果フィルタチェックボックス.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CallBackChkResultFilterCheckedChanged(object sender, System.EventArgs e)
-        {
-            this.btnResultFilter.Enabled = this.chkResultFilter.Checked;
-
-            this.UpdateResultList();
-        }
 
         /// <summary>
         /// 結果フィルタ編集ボタン押下.
@@ -73,21 +55,8 @@ namespace SkillSimulatorMHW.Controls
         /// <param name="e"></param>
         private void CallBackBtnResultFilterClick(object sender, System.EventArgs e)
         {
-            var dlg = new DlgResultFilter(this.ResultFilter, this.ResultList);
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                this.ResultFilter = dlg.GetResultFilter();
-                this.UpdateResultList();
-            }
-        }
-
-        /// <summary>
-        /// 初期化.
-        /// </summary>
-        public void Init()
-        {
-            // 結果フィルタ.
-            this.chkResultFilter.Init(false);
+            var dlgFilter = new DlgResultFilter(this.ResultList);
+            dlgFilter.ShowDialog();
         }
 
         /// <summary>
@@ -100,17 +69,7 @@ namespace SkillSimulatorMHW.Controls
             this.ResultList = this.SortList(resultList);
 
             // パネルに反映.
-            // 現在のフィルタの状態によって更新の仕方が変わる.
-            if (this.chkResultFilter.Checked)
-            {
-                // フィルタが有効な場合は、フィルタを外す事で更新もかかる.
-                this.chkResultFilter.Checked = false;
-            }
-            else
-            {
-                // フィルタが無効な場合は直接更新処理をよぶ
-                this.UpdateResultList();
-            }
+            this.UpdateResultList();
 
             // 出力結果保存.
             if (Ssm.Config.EnableResultOutput)
@@ -146,16 +105,9 @@ namespace SkillSimulatorMHW.Controls
                 // パネルをクリア.
                 this.pnlResultList.Controls.Clear();
 
-                // 結果のフィルタ.
-                var filteredList = !this.chkResultFilter.Checked
-                    ? this.ResultList
-                    : this.ResultList
-                        .Where(this.ResultFilter.Filter)
-                        .ToList();
-
                 // 表示最大件数を求める.
                 var limit = Ssm.Config.ShowResultLimitCount;
-                var max = filteredList.Count;
+                var max = this.ResultList.Count;
 
                 // リミットが有効(0以外)な場合、
                 // リミットか結果数のどちらか小さいほうを最大とする.
@@ -164,12 +116,15 @@ namespace SkillSimulatorMHW.Controls
                     max = limit;
                 }
 
+                // フィルタボタンの有効化.
+                this.btnResultFilter.Enabled = 0 < max;
+
                 // 件数を表示.
-                this.txtbResultCount.Text = "{0}件".Fmt(max);
+                this.txtbResultCount.Text = "{0} / {1}".Fmt(max, this.ResultList.Count);
 
                 for (var i = 0; i < max; i++)
                 {
-                    var result = filteredList[i];
+                    var result = this.ResultList[i];
                     ResultControl ctrl = null;
                     if (i < this.ResultCtrlList.Count)
                     {
@@ -200,28 +155,26 @@ namespace SkillSimulatorMHW.Controls
         /// <returns></returns>
         private List<ResultSet> SortList(List<ResultSet> resultList)
         {
-            // 辞書に登録.
+            // 重複を検出するため、かつKEYでソートする都合で辞書を利用.
             this.DicSetKey.Clear();
             foreach (var set in resultList)
             {
                 // このセットをユニークに表すKEY文字列を取得.
                 var key = set.GetKey();
-                if (this.DicSetKey.ContainsKey(key))
+                if (!this.DicSetKey.ContainsKey(key))
                 {
-                    if (Ssm.Config.EnableDuplicateCheck && Ssm.Config.ShowDebugLog)
-                    {
-                        Log.Write("【DEBUG】重複したセット:{0})".Fmt(set.GetAllText()));
-                    }
-                }
-                else
-                {
-                    // まだ検索していないパターンは辞書登録.
+                    // 未登録のセットは辞書登録.
                     this.DicSetKey.Add(key, set);
+                }
+                else if (Ssm.Config.EnableDuplicateCheck && Ssm.Config.ShowDebugLog)
+                {
+                    Log.Write("【DEBUG】重複したセット:{0})".Fmt(set.GetAllText()));
                 }
             }
 
+            // 並び替えつつ、値のリストを返す.
             return this.DicSetKey
-                .OrderBy(elm => elm.Key)
+                .OrderByDescending(elm => elm.Key)
                 .Select(elm => elm.Value)
                 .ToList();
         }

@@ -1,4 +1,6 @@
-﻿namespace SkillSimulatorMHW
+﻿using SkillSimulatorMHW.Web;
+
+namespace SkillSimulatorMHW
 {
     /// <summary>
     /// スキルシミュレータアクセサ.

@@ -31,6 +31,10 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.tabCtrlConfigView = new System.Windows.Forms.TabControl();
+            this.tabPageConfigDebug = new System.Windows.Forms.TabPage();
+            this.cmbSearchEngine = new System.Windows.Forms.ComboBox();
+            this.lblSearchEngine = new System.Windows.Forms.Label();
+            this.chkShowDebugLog = new System.Windows.Forms.CheckBox();
             this.tabPageConfigViewer = new System.Windows.Forms.TabPage();
             this.spinShowResultLimitCount = new System.Windows.Forms.NumericUpDown();
             this.lblShowResultLimitCount = new System.Windows.Forms.Label();
@@ -41,17 +45,14 @@
             this.spinSerchLimitCount = new System.Windows.Forms.NumericUpDown();
             this.lblAnalyzeType = new System.Windows.Forms.Label();
             this.lblSerchLimitCount = new System.Windows.Forms.Label();
-            this.tabPageConfigDebug = new System.Windows.Forms.TabPage();
-            this.cmbSearchEngine = new System.Windows.Forms.ComboBox();
-            this.lblSearchEngine = new System.Windows.Forms.Label();
-            this.chkShowDebugLog = new System.Windows.Forms.CheckBox();
             this.btnDefault = new System.Windows.Forms.Button();
+            this.chkWeb = new System.Windows.Forms.CheckBox();
             this.tabCtrlConfigView.SuspendLayout();
+            this.tabPageConfigDebug.SuspendLayout();
             this.tabPageConfigViewer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinShowResultLimitCount)).BeginInit();
             this.tabPageConfigSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinSerchLimitCount)).BeginInit();
-            this.tabPageConfigDebug.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOK
@@ -78,17 +79,59 @@
             // 
             // tabCtrlConfigView
             // 
+            this.tabCtrlConfigView.Controls.Add(this.tabPageConfigDebug);
             this.tabCtrlConfigView.Controls.Add(this.tabPageConfigViewer);
             this.tabCtrlConfigView.Controls.Add(this.tabPageConfigSearch);
-            this.tabCtrlConfigView.Controls.Add(this.tabPageConfigDebug);
             this.tabCtrlConfigView.Location = new System.Drawing.Point(12, 12);
             this.tabCtrlConfigView.Name = "tabCtrlConfigView";
             this.tabCtrlConfigView.SelectedIndex = 0;
             this.tabCtrlConfigView.Size = new System.Drawing.Size(364, 349);
             this.tabCtrlConfigView.TabIndex = 5;
             // 
+            // tabPageConfigDebug
+            // 
+            this.tabPageConfigDebug.Controls.Add(this.cmbSearchEngine);
+            this.tabPageConfigDebug.Controls.Add(this.lblSearchEngine);
+            this.tabPageConfigDebug.Controls.Add(this.chkShowDebugLog);
+            this.tabPageConfigDebug.Location = new System.Drawing.Point(4, 22);
+            this.tabPageConfigDebug.Name = "tabPageConfigDebug";
+            this.tabPageConfigDebug.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageConfigDebug.Size = new System.Drawing.Size(356, 323);
+            this.tabPageConfigDebug.TabIndex = 2;
+            this.tabPageConfigDebug.Text = "Debug";
+            this.tabPageConfigDebug.UseVisualStyleBackColor = true;
+            // 
+            // cmbSearchEngine
+            // 
+            this.cmbSearchEngine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSearchEngine.FormattingEnabled = true;
+            this.cmbSearchEngine.Location = new System.Drawing.Point(89, 42);
+            this.cmbSearchEngine.Name = "cmbSearchEngine";
+            this.cmbSearchEngine.Size = new System.Drawing.Size(261, 20);
+            this.cmbSearchEngine.TabIndex = 6;
+            // 
+            // lblSearchEngine
+            // 
+            this.lblSearchEngine.AutoSize = true;
+            this.lblSearchEngine.Location = new System.Drawing.Point(6, 45);
+            this.lblSearchEngine.Name = "lblSearchEngine";
+            this.lblSearchEngine.Size = new System.Drawing.Size(66, 12);
+            this.lblSearchEngine.TabIndex = 5;
+            this.lblSearchEngine.Text = "検索エンジン";
+            // 
+            // chkShowDebugLog
+            // 
+            this.chkShowDebugLog.AutoSize = true;
+            this.chkShowDebugLog.Location = new System.Drawing.Point(6, 20);
+            this.chkShowDebugLog.Name = "chkShowDebugLog";
+            this.chkShowDebugLog.Size = new System.Drawing.Size(130, 16);
+            this.chkShowDebugLog.TabIndex = 4;
+            this.chkShowDebugLog.Text = "デバッグログを出力する";
+            this.chkShowDebugLog.UseVisualStyleBackColor = true;
+            // 
             // tabPageConfigViewer
             // 
+            this.tabPageConfigViewer.Controls.Add(this.chkWeb);
             this.tabPageConfigViewer.Controls.Add(this.spinShowResultLimitCount);
             this.tabPageConfigViewer.Controls.Add(this.lblShowResultLimitCount);
             this.tabPageConfigViewer.Location = new System.Drawing.Point(4, 22);
@@ -96,12 +139,12 @@
             this.tabPageConfigViewer.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageConfigViewer.Size = new System.Drawing.Size(356, 323);
             this.tabPageConfigViewer.TabIndex = 0;
-            this.tabPageConfigViewer.Text = "表示設定";
+            this.tabPageConfigViewer.Text = "動作設定";
             this.tabPageConfigViewer.UseVisualStyleBackColor = true;
             // 
             // spinShowResultLimitCount
             // 
-            this.spinShowResultLimitCount.Location = new System.Drawing.Point(270, 16);
+            this.spinShowResultLimitCount.Location = new System.Drawing.Point(270, 42);
             this.spinShowResultLimitCount.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -114,7 +157,7 @@
             // lblShowResultLimitCount
             // 
             this.lblShowResultLimitCount.AutoSize = true;
-            this.lblShowResultLimitCount.Location = new System.Drawing.Point(3, 18);
+            this.lblShowResultLimitCount.Location = new System.Drawing.Point(4, 44);
             this.lblShowResultLimitCount.Name = "lblShowResultLimitCount";
             this.lblShowResultLimitCount.Size = new System.Drawing.Size(227, 12);
             this.lblShowResultLimitCount.TabIndex = 0;
@@ -138,6 +181,7 @@
             // 
             // cmbAnalyzeType
             // 
+            this.cmbAnalyzeType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAnalyzeType.FormattingEnabled = true;
             this.cmbAnalyzeType.Location = new System.Drawing.Point(89, 86);
             this.cmbAnalyzeType.Name = "cmbAnalyzeType";
@@ -194,46 +238,6 @@
             this.lblSerchLimitCount.TabIndex = 1;
             this.lblSerchLimitCount.Text = "検索の検出上限 (０を設定すると無制限)";
             // 
-            // tabPageConfigDebug
-            // 
-            this.tabPageConfigDebug.Controls.Add(this.cmbSearchEngine);
-            this.tabPageConfigDebug.Controls.Add(this.lblSearchEngine);
-            this.tabPageConfigDebug.Controls.Add(this.chkShowDebugLog);
-            this.tabPageConfigDebug.Location = new System.Drawing.Point(4, 22);
-            this.tabPageConfigDebug.Name = "tabPageConfigDebug";
-            this.tabPageConfigDebug.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConfigDebug.Size = new System.Drawing.Size(356, 323);
-            this.tabPageConfigDebug.TabIndex = 2;
-            this.tabPageConfigDebug.Text = "Debug";
-            this.tabPageConfigDebug.UseVisualStyleBackColor = true;
-            // 
-            // cmbSearchEngine
-            // 
-            this.cmbSearchEngine.FormattingEnabled = true;
-            this.cmbSearchEngine.Location = new System.Drawing.Point(89, 42);
-            this.cmbSearchEngine.Name = "cmbSearchEngine";
-            this.cmbSearchEngine.Size = new System.Drawing.Size(261, 20);
-            this.cmbSearchEngine.TabIndex = 6;
-            // 
-            // lblSearchEngine
-            // 
-            this.lblSearchEngine.AutoSize = true;
-            this.lblSearchEngine.Location = new System.Drawing.Point(6, 45);
-            this.lblSearchEngine.Name = "lblSearchEngine";
-            this.lblSearchEngine.Size = new System.Drawing.Size(66, 12);
-            this.lblSearchEngine.TabIndex = 5;
-            this.lblSearchEngine.Text = "検索エンジン";
-            // 
-            // chkShowDebugLog
-            // 
-            this.chkShowDebugLog.AutoSize = true;
-            this.chkShowDebugLog.Location = new System.Drawing.Point(6, 20);
-            this.chkShowDebugLog.Name = "chkShowDebugLog";
-            this.chkShowDebugLog.Size = new System.Drawing.Size(130, 16);
-            this.chkShowDebugLog.TabIndex = 4;
-            this.chkShowDebugLog.Text = "デバッグログを出力する";
-            this.chkShowDebugLog.UseVisualStyleBackColor = true;
-            // 
             // btnDefault
             // 
             this.btnDefault.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Bold);
@@ -244,6 +248,18 @@
             this.btnDefault.Text = "デフォルトに戻す";
             this.btnDefault.UseVisualStyleBackColor = true;
             this.btnDefault.Click += new System.EventHandler(this.CallBackBtnDefaultClick);
+            // 
+            // chkWeb
+            // 
+            this.chkWeb.AutoSize = true;
+            this.chkWeb.Checked = true;
+            this.chkWeb.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWeb.Location = new System.Drawing.Point(6, 18);
+            this.chkWeb.Name = "chkWeb";
+            this.chkWeb.Size = new System.Drawing.Size(190, 16);
+            this.chkWeb.TabIndex = 4;
+            this.chkWeb.Text = "インターネットへの接続を有効にする";
+            this.chkWeb.UseVisualStyleBackColor = true;
             // 
             // DlgConfig
             // 
@@ -262,14 +278,14 @@
             this.Text = "動作設定";
             this.Load += new System.EventHandler(this.CallBackDlgConfigLoad);
             this.tabCtrlConfigView.ResumeLayout(false);
+            this.tabPageConfigDebug.ResumeLayout(false);
+            this.tabPageConfigDebug.PerformLayout();
             this.tabPageConfigViewer.ResumeLayout(false);
             this.tabPageConfigViewer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinShowResultLimitCount)).EndInit();
             this.tabPageConfigSearch.ResumeLayout(false);
             this.tabPageConfigSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinSerchLimitCount)).EndInit();
-            this.tabPageConfigDebug.ResumeLayout(false);
-            this.tabPageConfigDebug.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -294,5 +310,6 @@
         private System.Windows.Forms.Label lblAnalyzeType;
         private System.Windows.Forms.ComboBox cmbSearchEngine;
         private System.Windows.Forms.Label lblSearchEngine;
+        private System.Windows.Forms.CheckBox chkWeb;
     }
 }

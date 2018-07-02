@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SkillSimulatorMHW.Data
+﻿namespace SkillSimulatorMHW.Data
 {
     /// <summary>
     /// コンボボックスアイテムデータ.

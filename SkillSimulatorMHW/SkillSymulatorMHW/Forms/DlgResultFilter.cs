@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using SkillSimulatorMHW.Controls;
+using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Extensions;
+using SkillSimulatorMHW.Masters;
 using SkillSimulatorMHW.Result;
 
 namespace SkillSimulatorMHW.Forms
@@ -15,22 +18,41 @@ namespace SkillSimulatorMHW.Forms
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        /// <param name="defaultFilter"></param>
         /// <param name="resultList"></param>
-        public DlgResultFilter(ResultFilter defaultFilter, List<ResultSet> resultList)
+        public DlgResultFilter(List<ResultSet> resultList)
         {
             this.ResultList = resultList;
+            this.FilterdList = new List<ResultSet>();
 
             InitializeComponent();
 
-            this.btnPlusBlankSlotLv1.Tag = this.txtbValBlankSlotLv1;
-            this.btnPlusBlankSlotLv2.Tag = this.txtbValBlankSlotLv2;
-            this.btnPlusBlankSlotLv3.Tag = this.txtbValBlankSlotLv3;
-            this.btnMinusBlankSlotLv1.Tag = this.txtbValBlankSlotLv1;
-            this.btnMinusBlankSlotLv2.Tag = this.txtbValBlankSlotLv2;
-            this.btnMinusBlankSlotLv3.Tag = this.txtbValBlankSlotLv3;
+            // 値変更のイベントのハンドラを追加.
+            this.numBlankSlotLv1.ValueChange += this.CallBackNumValueChange;
+            this.numBlankSlotLv2.ValueChange += this.CallBackNumValueChange;
+            this.numBlankSlotLv3.ValueChange += this.CallBackNumValueChange;
+            this.numAddSkill1.ValueChange += this.CallBackNumValueChange;
+            this.numAddSkill2.ValueChange += this.CallBackNumValueChange;
+            this.numAddSkill3.ValueChange += this.CallBackNumValueChange;
 
-            this.SetResultFilter(defaultFilter);
+            // コンボボックスに対応した数値入力を紐付ける.
+            this.cmbAddSkill1.Tag = this.numAddSkill1;
+            this.cmbAddSkill2.Tag = this.numAddSkill2;
+            this.cmbAddSkill3.Tag = this.numAddSkill3;
+
+            // 追加スキルコンボボックスを初期化.
+            var skillList = resultList
+                .SelectMany(result => result.GetAllSkillList())
+                .Select(skillData => skillData.Skill)
+                .Distinct()
+                .Where(skill => !skill.IsSeries())
+                .OrderBy(skill => skill.Index)
+                .ToList();
+            skillList.Insert(0, new MasterSkillData());
+            this.cmbAddSkill1.Init(skillList.ToList());
+            this.cmbAddSkill2.Init(skillList.ToList());
+            this.cmbAddSkill3.Init(skillList.ToList());
+
+            this.SetDefaultFilter();
         }
 
         /// <summary>
@@ -39,111 +61,102 @@ namespace SkillSimulatorMHW.Forms
         private List<ResultSet> ResultList { get; set; }
 
         /// <summary>
-        /// フィルタを取得.
+        /// フィルタ後のリスト.
         /// </summary>
-        /// <returns></returns>
-        public ResultFilter GetResultFilter()
+        private List<ResultSet> FilterdList { get; set; }
+
+        /// <summary>
+        /// ブランクスロットの値変更イベントハンドラ.
+        /// </summary>
+        /// <param name="val"></param>
+        private void CallBackNumValueChange(int val)
         {
-            // 画面の内容を反映.
-            return new ResultFilter
+            this.CreateFilterdList();
+        }
+ 
+        /// <summary>
+        /// 追加スキルコンボボックスを変更する.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CallBackCmbAddSkillSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var cmb = sender as ComboBox;
+            if (null == cmb)
             {
-                NeedBlankSlotLv1 = Int32.Parse(this.txtbValBlankSlotLv1.Text),
-                NeedBlankSlotLv2 = Int32.Parse(this.txtbValBlankSlotLv2.Text),
-                NeedBlankSlotLv3 = Int32.Parse(this.txtbValBlankSlotLv3.Text),
+                return;
+            }
+
+            var num = cmb.Tag as NumericControl;
+            if (null == num)
+            {
+                return;
+            }
+
+            var masterSkill = cmb.SelectedObj<MasterSkillData>();
+            num.Max = masterSkill.MaxLv;
+
+            this.CreateFilterdList();
+        }
+
+        /// <summary>
+        /// 絞り込んだ結果を表示するボタン押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CallBackBtnShowClick(object sender, EventArgs e)
+        {
+            var dlg = new DlgResultList();
+            dlg.SetResult(@"絞り込み結果", this.FilterdList);
+            dlg.ShowDialog();
+        }
+
+        /// <summary>
+        /// デフォルトの条件にセット.
+        /// </summary>
+        private void SetDefaultFilter()
+        {
+            this.numBlankSlotLv1.Value = 0;
+            this.numBlankSlotLv2.Value = 0;
+            this.numBlankSlotLv3.Value = 0;
+
+            this.cmbAddSkill1.SelectedIndex = 0;
+            this.cmbAddSkill2.SelectedIndex = 0;
+            this.cmbAddSkill3.SelectedIndex = 0;
+
+            this.CreateFilterdList();
+        }
+
+        /// <summary>
+        /// フィルタしたリストを生成する.
+        /// </summary>
+        private void CreateFilterdList()
+        {
+            var addSkill1 = this.cmbAddSkill1.SelectedObj<MasterSkillData>();
+            var addSkill2 = this.cmbAddSkill2.SelectedObj<MasterSkillData>();
+            var addSkill3 = this.cmbAddSkill3.SelectedObj<MasterSkillData>();
+            var skill1Idx = null == addSkill1 ? 0 : addSkill1.Index;
+            var skill2Idx = null == addSkill2 ? 0 : addSkill2.Index;
+            var skill3Idx = null == addSkill3 ? 0 : addSkill3.Index;
+
+            // 画面の内容からフィルタを生成.
+            var filter = new ResultFilter
+            {
+                NeedBlankSlotLv1 = this.numBlankSlotLv1.Value,
+                NeedBlankSlotLv2 = this.numBlankSlotLv2.Value,
+                NeedBlankSlotLv3 = this.numBlankSlotLv3.Value,
+                NeedSkill1 = new SkillBase(skill1Idx, this.numAddSkill1.Value),
+                NeedSkill2 = new SkillBase(skill2Idx, this.numAddSkill2.Value),
+                NeedSkill3 = new SkillBase(skill3Idx, this.numAddSkill3.Value),
             };
-        }
 
-        /// <summary>
-        /// 空きスロット条件をインクリメントする.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CallBackBtnPlusBlankSlotClick(object sender, EventArgs e)
-        {
-            var btn = sender as Button;
-            if (null == btn)
-            {
-                return;
-            }
+            // フィルタした結果を生成.
+            this.FilterdList = this.ResultList
+                .Where(filter.Filter)
+                .ToList();
 
-            var txtb = btn.Tag as TextBox;
-            if (null == txtb)
-            {
-                return;
-            }
-
-            var val = Int32.Parse(txtb.Text) + 1;
-            txtb.Text = val.ToString();
-
-            this.UpdateFilterdCount();
-        }
-
-        /// <summary>
-        /// 空きスロット条件をデクリメントする.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CallBackBtnMinusBlankSlotClick(object sender, EventArgs e)
-        {
-            var btn = sender as Button;
-            if (null == btn)
-            {
-                return;
-            }
-
-            var txtb = btn.Tag as TextBox;
-            if (null == txtb)
-            {
-                return;
-            }
-
-            var val = Int32.Parse(txtb.Text) - 1;
-            if (val < 0)
-            {
-                val = 0;
-            }
-
-            txtb.Text = val.ToString();
-
-            this.UpdateFilterdCount();
-        }
-
-        /// <summary>
-        /// フィルタをクリアする.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CallBackBtnFilterClearClick(object sender, EventArgs e)
-        {
-            // デフォルトの設定を画面に反映.
-            this.SetResultFilter(new ResultFilter());
-        }
-
-        /// <summary>
-        /// フィルタを反映.
-        /// </summary>
-        /// <param name="defaultFilter"></param>
-        private void SetResultFilter(ResultFilter defaultFilter)
-        {
-            this.txtbValBlankSlotLv1.Text = defaultFilter.NeedBlankSlotLv1.ToString();
-            this.txtbValBlankSlotLv2.Text = defaultFilter.NeedBlankSlotLv2.ToString();
-            this.txtbValBlankSlotLv3.Text = defaultFilter.NeedBlankSlotLv3.ToString();
-
-            this.UpdateFilterdCount();
-        }
-
-        /// <summary>
-        /// フィルタ後のカウントを更新する.
-        /// </summary>
-        private void UpdateFilterdCount()
-        {
-            var resultFilter = this.GetResultFilter();
-
-            var filterdCount = this.ResultList
-                .Where(resultFilter.Filter)
-                .Count();
-
-            this.txtbFilterdCount.Text = "{0}件".Fmt(filterdCount);
+            // 画面に反映.
+            this.txtbFilterdCount.Text = "{0}件".Fmt(this.FilterdList.Count);
             this.txtbAllCount.Text = "{0}件".Fmt(this.ResultList.Count);
         }
     }

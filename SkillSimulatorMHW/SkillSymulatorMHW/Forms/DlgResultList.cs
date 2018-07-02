@@ -1,7 +1,8 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using SkillSimulatorMHW.Controls;
-using SkillSimulatorMHW.Data;
+using SkillSimulatorMHW.Result;
 
 namespace SkillSimulatorMHW.Forms
 {
@@ -20,7 +21,6 @@ namespace SkillSimulatorMHW.Forms
             InitializeComponent();
 
             // 結果コントロールを生成.
-            this.ResultListControl.Init();
             this.ResultListControl.Location = new Point(3, 12);
             this.Controls.Add(this.ResultListControl);
         }
@@ -33,13 +33,14 @@ namespace SkillSimulatorMHW.Forms
         /// <summary>
         /// 結果セットリストを登録.
         /// </summary>
-        /// <param name="analyzeResultBase">解析結果.</param>
-        public void SetResult(AnalyzeResultBase analyzeResultBase)
+        /// <param name="title">見出し.</param>
+        /// <param name="resultList">結果リスト.</param>
+        public void SetResult(string title, List<ResultSet> resultList)
         {
-            this.Text = analyzeResultBase.GetFactor();
+            this.Text = title;
 
             // 結果コントロールに反映.
-            this.ResultListControl.SetResult(analyzeResultBase.ResultSetList);
+            this.ResultListControl.SetResult(resultList);
         }
     }
 }

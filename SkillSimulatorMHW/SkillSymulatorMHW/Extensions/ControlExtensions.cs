@@ -75,6 +75,7 @@ namespace SkillSimulatorMHW.Extensions
         public static void Recreate<T>(this ComboBox self, List<T> items)
         {
             self.Items.Clear();
+
             if (null != items)
             {
                 foreach (var item in items)
@@ -85,7 +86,7 @@ namespace SkillSimulatorMHW.Extensions
 
             if (0 == self.Items.Count)
             {
-                self.Items.Add(Define.StrItemNon);
+                self.Clear();
             }
         }
 
@@ -96,7 +97,7 @@ namespace SkillSimulatorMHW.Extensions
         /// <param name="items">コンボボックスアイテム</param>
         public static void Init<T>(this ComboBox self, List<T> items)
         {
-            // 現在選択されているオブジェクトを取得.
+            // 現在選択されているオブジェクトを退避.
             var selected = self.SelectedItem;
 
             // 再生成する.
@@ -194,8 +195,9 @@ namespace SkillSimulatorMHW.Extensions
         public static T SelectedCmbItem<T>(this ComboBox self)
         {
             var cmbItem = self.SelectedObj<CmbItem<T>>();
-
-            return cmbItem.Value;
+            return null == cmbItem
+                ? default(T)
+                : cmbItem.Value;
         }
 
         /// <summary>

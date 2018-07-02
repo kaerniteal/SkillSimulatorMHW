@@ -85,11 +85,11 @@ namespace SkillSimulatorMHW.Controls
             // 護石.
             this.lblAmulet.Text = resultSet.Amulet.GetText();
 
-            // 空きスロット.
-            this.lblSlot.Text = "空： {0}".Fmt(this.GetBlankSlotText());
-
             // 装飾品
             this.txtbAccessory.Text = this.GetAccessoryText();
+
+            // 空きスロット.
+            this.lblSlot.Text = this.GetBlankSlotText();
 
             // スキル.
             this.txtbSkill.Text = this.GetSkillText();
@@ -131,7 +131,7 @@ namespace SkillSimulatorMHW.Controls
         /// <param name="e"></param>
         private void CallBackBtnTextCopyClick(object sender, System.EventArgs e)
         {
-            Clipboard.SetText("【発動スキル】\n{0}\n\n防御力：{1}\n武器：{2}\n頭：{3}\n胴：{4}\n腕：{5}\n腰：{6}\n脚：{7}\n護石：{8}\n空きスロット：{9}\n{10}\n\n".Fmt(
+            Clipboard.SetText("【発動スキル】\n{0}\n\n防御力：{1}\n武器：{2}\n頭：{3}\n胴：{4}\n腕：{5}\n腰：{6}\n脚：{7}\n護石：{8}\n{9}\n\n空きスロット：{10}\n\n".Fmt(
                 this.GetSkillText(),
                 this.GetStatusText(),
                 this.ResultSet.Wepon.GetText(),
@@ -141,8 +141,8 @@ namespace SkillSimulatorMHW.Controls
                 this.ResultSet.Waist.GetText(),
                 this.ResultSet.Leg.GetText(),
                 this.ResultSet.Amulet.GetText(),
-                this.GetBlankSlotText(),
-                this.GetAccessoryText()
+                this.GetAccessoryText(),
+                this.GetBlankSlotText()
             ));
         }
 

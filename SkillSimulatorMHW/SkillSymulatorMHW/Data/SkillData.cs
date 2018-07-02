@@ -12,7 +12,7 @@ namespace SkillSimulatorMHW.Data
         /// コンストラクタ
         /// </summary>
         public SkillData()
-            : base(0, 1)
+            : base(0)
         {
             this.Skill = new MasterSkillData();
         }

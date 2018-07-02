@@ -45,6 +45,7 @@
             this.btnExec = new System.Windows.Forms.Button();
             this.grpbSearchResult = new System.Windows.Forms.GroupBox();
             this.btnShowAnalyze = new System.Windows.Forms.Button();
+            this.btnSelectCharacter = new System.Windows.Forms.Button();
             this.grpbSkill.SuspendLayout();
             this.grpbSerchRequirements.SuspendLayout();
             this.grpbRequirementArmor.SuspendLayout();
@@ -249,12 +250,24 @@
             this.btnShowAnalyze.UseVisualStyleBackColor = true;
             this.btnShowAnalyze.Click += new System.EventHandler(this.CallBackBtnShowAnalyzeClick);
             // 
+            // btnSelectCharacter
+            // 
+            this.btnSelectCharacter.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnSelectCharacter.Location = new System.Drawing.Point(854, 645);
+            this.btnSelectCharacter.Name = "btnSelectCharacter";
+            this.btnSelectCharacter.Size = new System.Drawing.Size(186, 25);
+            this.btnSelectCharacter.TabIndex = 1;
+            this.btnSelectCharacter.Text = "キャラクタ選択";
+            this.btnSelectCharacter.UseVisualStyleBackColor = true;
+            this.btnSelectCharacter.Click += new System.EventHandler(this.CallBackBtnSelectCharacterClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 682);
             this.Controls.Add(this.grpbSearchResult);
+            this.Controls.Add(this.btnSelectCharacter);
             this.Controls.Add(this.btnAppSetting);
             this.Controls.Add(this.btnExec);
             this.Controls.Add(this.btnAppExit);
@@ -265,7 +278,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MHW スキルシミュレータ";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CallBackMainFormFormClosing);
             this.Load += new System.EventHandler(this.CallBackMainFormLoad);
             this.grpbSkill.ResumeLayout(false);
             this.grpbSkill.PerformLayout();
@@ -297,5 +310,6 @@
         private System.Windows.Forms.RadioButton radioRareHigh;
         private System.Windows.Forms.Button btnSkillSelectFilterClear;
         private System.Windows.Forms.Button btnShowAnalyze;
+        private System.Windows.Forms.Button btnSelectCharacter;
     }
 }

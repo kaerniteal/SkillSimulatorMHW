@@ -47,98 +47,99 @@
             this.txtbSkill = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.lblSlot = new System.Windows.Forms.Label();
+            this.lblSlotTitle = new System.Windows.Forms.Label();
             this.toolTipArmor = new System.Windows.Forms.ToolTip(this.components);
             this.btnTextCopy = new System.Windows.Forms.Button();
+            this.lblSlot = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblWeponTitle
             // 
             this.lblWeponTitle.AutoSize = true;
-            this.lblWeponTitle.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblWeponTitle.Location = new System.Drawing.Point(3, 18);
+            this.lblWeponTitle.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblWeponTitle.Location = new System.Drawing.Point(3, 22);
             this.lblWeponTitle.Name = "lblWeponTitle";
-            this.lblWeponTitle.Size = new System.Drawing.Size(25, 12);
+            this.lblWeponTitle.Size = new System.Drawing.Size(30, 14);
             this.lblWeponTitle.TabIndex = 4;
             this.lblWeponTitle.Text = "武：";
             // 
             // lblHeadTitle
             // 
             this.lblHeadTitle.AutoSize = true;
-            this.lblHeadTitle.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblHeadTitle.Location = new System.Drawing.Point(3, 32);
+            this.lblHeadTitle.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblHeadTitle.Location = new System.Drawing.Point(3, 38);
             this.lblHeadTitle.Name = "lblHeadTitle";
-            this.lblHeadTitle.Size = new System.Drawing.Size(25, 12);
+            this.lblHeadTitle.Size = new System.Drawing.Size(30, 14);
             this.lblHeadTitle.TabIndex = 4;
             this.lblHeadTitle.Text = "頭：";
             // 
             // lblBodyTitle
             // 
             this.lblBodyTitle.AutoSize = true;
-            this.lblBodyTitle.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblBodyTitle.Location = new System.Drawing.Point(3, 46);
+            this.lblBodyTitle.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblBodyTitle.Location = new System.Drawing.Point(3, 54);
             this.lblBodyTitle.Name = "lblBodyTitle";
-            this.lblBodyTitle.Size = new System.Drawing.Size(25, 12);
+            this.lblBodyTitle.Size = new System.Drawing.Size(30, 14);
             this.lblBodyTitle.TabIndex = 4;
             this.lblBodyTitle.Text = "胴：";
             // 
             // lblArmTitle
             // 
             this.lblArmTitle.AutoSize = true;
-            this.lblArmTitle.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblArmTitle.Location = new System.Drawing.Point(3, 60);
+            this.lblArmTitle.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblArmTitle.Location = new System.Drawing.Point(3, 70);
             this.lblArmTitle.Name = "lblArmTitle";
-            this.lblArmTitle.Size = new System.Drawing.Size(25, 12);
+            this.lblArmTitle.Size = new System.Drawing.Size(30, 14);
             this.lblArmTitle.TabIndex = 4;
             this.lblArmTitle.Text = "腕：";
             // 
             // lblWaistTitle
             // 
             this.lblWaistTitle.AutoSize = true;
-            this.lblWaistTitle.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblWaistTitle.Location = new System.Drawing.Point(3, 74);
+            this.lblWaistTitle.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblWaistTitle.Location = new System.Drawing.Point(3, 86);
             this.lblWaistTitle.Name = "lblWaistTitle";
-            this.lblWaistTitle.Size = new System.Drawing.Size(25, 12);
+            this.lblWaistTitle.Size = new System.Drawing.Size(30, 14);
             this.lblWaistTitle.TabIndex = 4;
             this.lblWaistTitle.Text = "腰：";
             // 
             // lblLegTitle
             // 
             this.lblLegTitle.AutoSize = true;
-            this.lblLegTitle.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblLegTitle.Location = new System.Drawing.Point(3, 88);
+            this.lblLegTitle.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblLegTitle.Location = new System.Drawing.Point(3, 102);
             this.lblLegTitle.Name = "lblLegTitle";
-            this.lblLegTitle.Size = new System.Drawing.Size(25, 12);
+            this.lblLegTitle.Size = new System.Drawing.Size(30, 14);
             this.lblLegTitle.TabIndex = 4;
             this.lblLegTitle.Text = "脚：";
             // 
             // lblAmuletTitle
             // 
             this.lblAmuletTitle.AutoSize = true;
-            this.lblAmuletTitle.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblAmuletTitle.Location = new System.Drawing.Point(3, 102);
+            this.lblAmuletTitle.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblAmuletTitle.Location = new System.Drawing.Point(3, 118);
             this.lblAmuletTitle.Name = "lblAmuletTitle";
-            this.lblAmuletTitle.Size = new System.Drawing.Size(25, 12);
+            this.lblAmuletTitle.Size = new System.Drawing.Size(30, 14);
             this.lblAmuletTitle.TabIndex = 4;
             this.lblAmuletTitle.Text = "護：";
             // 
             // lblWepon
             // 
             this.lblWepon.AutoSize = true;
-            this.lblWepon.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblWepon.Location = new System.Drawing.Point(25, 18);
+            this.lblWepon.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblWepon.Location = new System.Drawing.Point(25, 22);
             this.lblWepon.Name = "lblWepon";
-            this.lblWepon.Size = new System.Drawing.Size(17, 12);
+            this.lblWepon.Size = new System.Drawing.Size(21, 14);
             this.lblWepon.TabIndex = 4;
             this.lblWepon.Text = "－";
             // 
             // lblHead
             // 
             this.lblHead.AutoSize = true;
-            this.lblHead.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblHead.Location = new System.Drawing.Point(25, 32);
+            this.lblHead.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblHead.Location = new System.Drawing.Point(25, 38);
             this.lblHead.Name = "lblHead";
-            this.lblHead.Size = new System.Drawing.Size(17, 12);
+            this.lblHead.Size = new System.Drawing.Size(21, 14);
             this.lblHead.TabIndex = 4;
             this.lblHead.Text = "－";
             this.toolTipArmor.SetToolTip(this.lblHead, "頭装備");
@@ -147,10 +148,10 @@
             // lblBody
             // 
             this.lblBody.AutoSize = true;
-            this.lblBody.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblBody.Location = new System.Drawing.Point(25, 46);
+            this.lblBody.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblBody.Location = new System.Drawing.Point(25, 54);
             this.lblBody.Name = "lblBody";
-            this.lblBody.Size = new System.Drawing.Size(17, 12);
+            this.lblBody.Size = new System.Drawing.Size(21, 14);
             this.lblBody.TabIndex = 4;
             this.lblBody.Text = "－";
             this.toolTipArmor.SetToolTip(this.lblBody, "胴装備");
@@ -159,10 +160,10 @@
             // lblArm
             // 
             this.lblArm.AutoSize = true;
-            this.lblArm.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblArm.Location = new System.Drawing.Point(25, 60);
+            this.lblArm.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblArm.Location = new System.Drawing.Point(25, 70);
             this.lblArm.Name = "lblArm";
-            this.lblArm.Size = new System.Drawing.Size(17, 12);
+            this.lblArm.Size = new System.Drawing.Size(21, 14);
             this.lblArm.TabIndex = 4;
             this.lblArm.Text = "－";
             this.toolTipArmor.SetToolTip(this.lblArm, "腕装備");
@@ -171,10 +172,10 @@
             // lblWaist
             // 
             this.lblWaist.AutoSize = true;
-            this.lblWaist.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblWaist.Location = new System.Drawing.Point(25, 74);
+            this.lblWaist.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblWaist.Location = new System.Drawing.Point(25, 86);
             this.lblWaist.Name = "lblWaist";
-            this.lblWaist.Size = new System.Drawing.Size(17, 12);
+            this.lblWaist.Size = new System.Drawing.Size(21, 14);
             this.lblWaist.TabIndex = 4;
             this.lblWaist.Text = "－";
             this.toolTipArmor.SetToolTip(this.lblWaist, "腰装備");
@@ -183,10 +184,10 @@
             // lblLeg
             // 
             this.lblLeg.AutoSize = true;
-            this.lblLeg.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblLeg.Location = new System.Drawing.Point(25, 88);
+            this.lblLeg.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblLeg.Location = new System.Drawing.Point(25, 102);
             this.lblLeg.Name = "lblLeg";
-            this.lblLeg.Size = new System.Drawing.Size(17, 12);
+            this.lblLeg.Size = new System.Drawing.Size(21, 14);
             this.lblLeg.TabIndex = 4;
             this.lblLeg.Text = "－";
             this.toolTipArmor.SetToolTip(this.lblLeg, "脚装備");
@@ -195,10 +196,10 @@
             // lblAmulet
             // 
             this.lblAmulet.AutoSize = true;
-            this.lblAmulet.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblAmulet.Location = new System.Drawing.Point(25, 102);
+            this.lblAmulet.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblAmulet.Location = new System.Drawing.Point(25, 118);
             this.lblAmulet.Name = "lblAmulet";
-            this.lblAmulet.Size = new System.Drawing.Size(17, 12);
+            this.lblAmulet.Size = new System.Drawing.Size(21, 14);
             this.lblAmulet.TabIndex = 4;
             this.lblAmulet.Text = "－";
             // 
@@ -206,11 +207,11 @@
             // 
             this.txtbAccessory.BackColor = System.Drawing.Color.White;
             this.txtbAccessory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtbAccessory.Font = new System.Drawing.Font("MS UI Gothic", 9F);
-            this.txtbAccessory.Location = new System.Drawing.Point(134, 3);
+            this.txtbAccessory.Font = new System.Drawing.Font("MS UI Gothic", 10F);
+            this.txtbAccessory.Location = new System.Drawing.Point(4, 152);
             this.txtbAccessory.Name = "txtbAccessory";
             this.txtbAccessory.ReadOnly = true;
-            this.txtbAccessory.Size = new System.Drawing.Size(93, 106);
+            this.txtbAccessory.Size = new System.Drawing.Size(175, 110);
             this.txtbAccessory.TabIndex = 7;
             this.txtbAccessory.Text = "";
             // 
@@ -218,18 +219,18 @@
             // 
             this.txtbSkill.BackColor = System.Drawing.Color.White;
             this.txtbSkill.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtbSkill.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtbSkill.Location = new System.Drawing.Point(233, 4);
+            this.txtbSkill.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtbSkill.Location = new System.Drawing.Point(184, 28);
             this.txtbSkill.Name = "txtbSkill";
             this.txtbSkill.ReadOnly = true;
-            this.txtbSkill.Size = new System.Drawing.Size(134, 125);
+            this.txtbSkill.Size = new System.Drawing.Size(183, 234);
             this.txtbSkill.TabIndex = 7;
             this.txtbSkill.Text = "";
             // 
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(4, 132);
+            this.label1.Location = new System.Drawing.Point(4, 265);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(365, 2);
             this.label1.TabIndex = 5;
@@ -237,22 +238,22 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblStatus.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblStatus.Location = new System.Drawing.Point(3, 4);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(23, 12);
+            this.lblStatus.Size = new System.Drawing.Size(28, 14);
             this.lblStatus.TabIndex = 8;
             this.lblStatus.Text = "防：";
             // 
-            // lblSlot
+            // lblSlotTitle
             // 
-            this.lblSlot.AutoSize = true;
-            this.lblSlot.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblSlot.Location = new System.Drawing.Point(3, 118);
-            this.lblSlot.Name = "lblSlot";
-            this.lblSlot.Size = new System.Drawing.Size(41, 12);
-            this.lblSlot.TabIndex = 8;
-            this.lblSlot.Text = "空スロ：";
+            this.lblSlotTitle.AutoSize = true;
+            this.lblSlotTitle.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblSlotTitle.Location = new System.Drawing.Point(3, 135);
+            this.lblSlotTitle.Name = "lblSlotTitle";
+            this.lblSlotTitle.Size = new System.Drawing.Size(49, 14);
+            this.lblSlotTitle.TabIndex = 8;
+            this.lblSlotTitle.Text = "空スロ：";
             // 
             // toolTipArmor
             // 
@@ -264,21 +265,32 @@
             // btnTextCopy
             // 
             this.btnTextCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTextCopy.Font = new System.Drawing.Font("MS UI Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnTextCopy.Location = new System.Drawing.Point(134, 111);
+            this.btnTextCopy.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnTextCopy.Location = new System.Drawing.Point(184, 2);
             this.btnTextCopy.Name = "btnTextCopy";
-            this.btnTextCopy.Size = new System.Drawing.Size(93, 19);
+            this.btnTextCopy.Size = new System.Drawing.Size(183, 24);
             this.btnTextCopy.TabIndex = 9;
-            this.btnTextCopy.Text = "テキストコピー";
+            this.btnTextCopy.Text = "クリップボードへコピー";
             this.btnTextCopy.UseVisualStyleBackColor = true;
             this.btnTextCopy.Click += new System.EventHandler(this.CallBackBtnTextCopyClick);
+            // 
+            // lblSlot
+            // 
+            this.lblSlot.AutoSize = true;
+            this.lblSlot.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblSlot.Location = new System.Drawing.Point(45, 135);
+            this.lblSlot.Name = "lblSlot";
+            this.lblSlot.Size = new System.Drawing.Size(21, 14);
+            this.lblSlot.TabIndex = 10;
+            this.lblSlot.Text = "－";
             // 
             // ResultControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnTextCopy);
             this.Controls.Add(this.lblSlot);
+            this.Controls.Add(this.btnTextCopy);
+            this.Controls.Add(this.lblSlotTitle);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.txtbSkill);
             this.Controls.Add(this.txtbAccessory);
@@ -299,7 +311,7 @@
             this.Controls.Add(this.lblWeponTitle);
             this.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Name = "ResultControl";
-            this.Size = new System.Drawing.Size(370, 134);
+            this.Size = new System.Drawing.Size(370, 268);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,9 +337,10 @@
         private System.Windows.Forms.RichTextBox txtbSkill;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label lblSlot;
+        private System.Windows.Forms.Label lblSlotTitle;
         private System.Windows.Forms.ToolTip toolTipArmor;
         private System.Windows.Forms.Button btnTextCopy;
+        private System.Windows.Forms.Label lblSlot;
 
     }
 }

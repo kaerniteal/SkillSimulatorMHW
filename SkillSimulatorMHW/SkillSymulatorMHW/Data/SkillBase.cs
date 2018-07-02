@@ -16,7 +16,7 @@ namespace SkillSimulatorMHW.Data
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public SkillBase(int index, int lv = 1)
+        public SkillBase(int index = 0, int lv = 1)
         {
             this.Index = index;
             this.Lv = lv;

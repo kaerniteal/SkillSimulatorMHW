@@ -27,9 +27,9 @@ namespace SkillSimulatorMHW.Result
             this.NeedBlankSlotLv1 = 0;
             this.NeedBlankSlotLv2 = 0;
             this.NeedBlankSlotLv3 = 0;
-            this.NeedSkill1 = null;
-            this.NeedSkill2 = null;
-            this.NeedSkill3 = null;
+            this.NeedSkill1 = new SkillBase();
+            this.NeedSkill2 = new SkillBase();
+            this.NeedSkill3 = new SkillBase();
         }
 
         /// <summary>
@@ -50,17 +50,17 @@ namespace SkillSimulatorMHW.Result
         /// <summary>
         /// 必要スキル1
         /// </summary>
-        public SkillData NeedSkill1 { get; set; }
+        public SkillBase NeedSkill1 { get; set; }
 
         /// <summary>
         /// 必要スキル2
         /// </summary>
-        public SkillData NeedSkill2 { get; set; }
+        public SkillBase NeedSkill2 { get; set; }
 
         /// <summary>
         /// 必要スキル3
         /// </summary>
-        public SkillData NeedSkill3 { get; set; }
+        public SkillBase NeedSkill3 { get; set; }
 
         /// <summary>
         /// フィルタ処理.
@@ -68,6 +68,29 @@ namespace SkillSimulatorMHW.Result
         /// <param name="resultSet"></param>
         /// <returns></returns>
         public bool Filter(ResultSet resultSet)
+        {
+            // 空きスロット条件をチェック.
+            if (!this.FilterBlankSlot(resultSet))
+            {
+                return false;
+            }
+
+            // 追加スキル条件をチェック.
+            if (!this.FilterAddSkill(resultSet))
+            {
+                return false;
+            }
+
+            // すべて満たしている場合
+            return true;
+        }
+
+        /// <summary>
+        /// フィルタ処理(空きスロット).
+        /// </summary>
+        /// <param name="resultSet"></param>
+        /// <returns></returns>
+        public bool FilterBlankSlot(ResultSet resultSet)
         {
             // 空きスロットを取得.
             var blankSlotList = new List<int>();
@@ -78,8 +101,16 @@ namespace SkillSimulatorMHW.Result
                 .GroupBy(slot => slot)
                 .ToList();
 
+            // スロットLv毎の必要数をリスト化.
+            var needBlankSlotList = new List<Tuple<int, int>>
+            {
+                Tuple.Create(1, this.NeedBlankSlotLv1),
+                Tuple.Create(2, this.NeedBlankSlotLv2),
+                Tuple.Create(3, this.NeedBlankSlotLv3),
+            };
+
             // 必要スロットの条件を満たしているかどうか,
-            foreach (var needSlot in this.NeedBlankSlot())
+            foreach (var needSlot in needBlankSlotList)
             {
                 // 空きスロットフィルタが設定されていない場合.
                 if (0 == needSlot.Item2)
@@ -91,35 +122,57 @@ namespace SkillSimulatorMHW.Result
                 var blank = groupedSlotList
                     .FirstOrDefault(grp => grp.Key == needSlot.Item1);
 
-                // 1個も無い場合.
-                if (null == blank)
-                {
-                    return false;
-                }
-
-                // 必要数に足りない場合.
-                if (blank.Count() < needSlot.Item2)
+                // 1個も無い、もしくは必要数に足りない場合.
+                if (null == blank || blank.Count() < needSlot.Item2)
                 {
                     return false;
                 }
             }
 
-            // すべて満たしている場合
+            // 空きスロット条件を満たしている場合.
             return true;
         }
 
         /// <summary>
-        /// スロットLv毎の必要数を取得.
+        /// フィルタ処理(追加スキル).
         /// </summary>
+        /// <param name="resultSet"></param>
         /// <returns></returns>
-        private List<Tuple<int, int>> NeedBlankSlot()
+        public bool FilterAddSkill(ResultSet resultSet)
         {
-            return new List<Tuple<int, int>>
+            // 所持スキルリストを取得.
+            var skillList = resultSet.GetAllSkillList();
+
+            // 追加スキルをリスト化.
+            var needAddSkill = new List<SkillBase>
             {
-                Tuple.Create(1, this.NeedBlankSlotLv1),
-                Tuple.Create(2, this.NeedBlankSlotLv2),
-                Tuple.Create(3, this.NeedBlankSlotLv3),
+                this.NeedSkill1,
+                this.NeedSkill2,
+                this.NeedSkill3,
             };
+
+            // 追加スキルの条件を満たしているかどうか,
+            foreach (var needSkill in needAddSkill)
+            {
+                // 追加スキルフィルタが設定されていない場合.
+                if (0 == needSkill.Index || needSkill.Lv <= 0)
+                {
+                    continue;
+                }
+
+                // 追加スキルのLvを取得.
+                var target = skillList
+                    .FirstOrDefault(skill => skill.Skill.Index == needSkill.Index);
+                
+                // スキルを所持していない、もしくは必要Lvに足りない場合.
+                if (null == target || target.Lv < needSkill.Lv)
+                {
+                    return false;
+                }
+            }
+
+            // 追加スキル条件を満たしている場合.
+            return true;
         }
     }
 }

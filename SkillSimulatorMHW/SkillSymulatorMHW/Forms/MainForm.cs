@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SkillSimulatorMHW.Controls;
@@ -15,6 +13,7 @@ using SkillSimulatorMHW.Masters;
 using SkillSimulatorMHW.Requirements;
 using SkillSimulatorMHW.Extensions;
 using SkillSimulatorMHW.Result;
+using SkillSimulatorMHW.Web;
 
 namespace SkillSimulatorMHW.Forms
 {
@@ -28,7 +27,8 @@ namespace SkillSimulatorMHW.Forms
         /// </summary>
         public MainForm()
         {
-            this.Requirements = Requirement.Load();
+            this.Requirements = new Requirement();
+            this.RequirementControlDic = new Dictionary<Part, RequirementControl>();
             this.ResultData = new ResultData();
             this.ResultListControl = new ResultListControl();
 
@@ -44,6 +44,11 @@ namespace SkillSimulatorMHW.Forms
         /// 検索条件.
         /// </summary>
         private Requirement Requirements { get; set; }
+
+        /// <summary>
+        /// 検索条件コントロール辞書.
+        /// </summary>
+        private Dictionary<Part, RequirementControl> RequirementControlDic { get; set; }
 
         /// <summary>
         /// 結果データ.
@@ -69,32 +74,16 @@ namespace SkillSimulatorMHW.Forms
             this.UpdateSkillSelectComb();
 
             // 検索条件(武器)の初期化.
-            var wepon = this.Requirements.RequirementDataList.Get(Part.Wepon);
             var masterWepon = Ssm.Master.MasterWepon.GetRecordList()
                 .OrderByDescending(awp => awp.GetIndex())
                 .Select(awp => (MasterDataBase)awp)
                 .ToList();
-            var ctrlWepon = new RequirementControl(wepon, masterWepon)
+            var ctrlWepon = new RequirementControl(masterWepon)
             {
                 Location = new Point(6, 16)
             };
             this.grpbSerchRequirements.Controls.Add(ctrlWepon);
-
-            // 検索条件レア度の初期化.
-            switch (this.Requirements.RequirementRareData.Rank)
-            {
-                case Rank.Non:
-                    this.radioRareAll.Checked = true;
-                    break;
-
-                case Rank.Low:
-                    this.radioRareLow.Checked = true;
-                    break;
-
-                case Rank.High:
-                    this.radioRareHigh.Checked = true;
-                    break;
-            }
+            this.RequirementControlDic.Add(Part.Wepon, ctrlWepon);
 
             // 検索条件(防具)の初期化.
             var baseY = 66;
@@ -103,50 +92,52 @@ namespace SkillSimulatorMHW.Forms
                 var part = Define.ArmorList[i];
                 var y = baseY + (i * 66);
 
-                var armor = this.Requirements.RequirementDataList.Get(part);
                 var masterArmor= Ssm.Master.MasterArmor.GetMasterDataList(part);
-                var ctrlArmor = new RequirementControl(armor, masterArmor)
+                var ctrlArmor = new RequirementControl(masterArmor)
                 {
                     Location = new Point(6, y)
                 };
                 this.grpbRequirementArmor.Controls.Add(ctrlArmor);
+                this.RequirementControlDic.Add(part, ctrlArmor);
             }
 
             // 検索条件(護符)の初期化.
-            var amulet = this.Requirements.RequirementDataList.Get(Part.Amulet);
             var masterAmulet = Ssm.Master.MasterAmulet.GetMasterDataList();
-            var ctrlAmulet = new RequirementControl(amulet, masterAmulet)
+            var ctrlAmulet = new RequirementControl(masterAmulet)
             {
                 Location = new Point(6, 510)
             };
             this.grpbSerchRequirements.Controls.Add(ctrlAmulet);
+            this.RequirementControlDic.Add(Part.Amulet, ctrlAmulet);
 
             // 検索条件(装飾品)の初期化.
-            var accessory = this.Requirements.RequirementDataList.Get(Part.Accessory);
             var masterAccessory = Ssm.Master.MasterAccessory.GetMasterDataList();
-            var ctrlAccessory = new RequirementControl(accessory, masterAccessory)
+            var ctrlAccessory = new RequirementControl(masterAccessory)
             {
                 Location = new Point(6, 580)
             };
             this.grpbSerchRequirements.Controls.Add(ctrlAccessory);
-
-            // 設定内容を反映.
-            this.UpdateMainForm();
+            this.RequirementControlDic.Add(Part.Accessory, ctrlAccessory);
 
             // 結果コントロールを生成.
-            this.ResultListControl.Init();
             this.ResultListControl.Location = new Point(3, 12);
             this.grpbSearchResult.Controls.Add(this.ResultListControl);
 
+            // 初期検索条件のロードと反映
+            var requirement = Requirement.LoadCharactor(Ssm.Config.DefaultCharactor);
+            this.SetRequirements(requirement);
+
             Log.Write("メインフォームの初期化完了");
 
-            // 最新バージョンのチェック
-            var result = await Task.Run(() => Ssm.WebInfo.IsLatestVersion());
-            if (!result.Item1)
+            // 最新バージョンのチェック(非同期)
+            var verInfo = await Task.Run(() => Ssm.WebInfo.IsLatestVersion());
+
+            // 上記の非同期処理完了後の処理.
+            if (!verInfo.IsLatest)
             {
                 // 最新ではない場合メッセージを表示.
                 var dialogResult = MessageBox.Show(
-                    "新しいバージョン[{0}]がリリースされています。\nホームページを開きますか？".Fmt(result.Item2),
+                    "新しいバージョン[{0}]がリリースされています。\nホームページを開きますか？\n\n--- 新しいバージョンのトピック ---\n{1}".Fmt(verInfo.Version, verInfo.Remark),
                     Ssm.Title,
                     MessageBoxButtons.YesNo);
                 if (DialogResult.Yes == dialogResult)
@@ -256,6 +247,39 @@ namespace SkillSimulatorMHW.Forms
         }
 
         /// <summary>
+        /// キャラクタ選択ボタン押下.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CallBackBtnSelectCharacterClick(object sender, EventArgs e)
+        {
+            var dlg = new DlgSelectCharacter(this.Requirements);
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                // 選択されたキャラクタを取得.
+                var name = dlg.GetSelectedCharactor();
+                
+                // 設定を変更する.
+                Ssm.Config.DefaultCharactor = name;
+                Ssm.Config.Save();
+
+                if (name.IsEmpty())
+                {
+                    var requirements = Requirement.Load();
+                    this.SetRequirements(requirements);
+                    Log.Write("デフォルト設定をロードしました。".Fmt(name));
+                }
+                else
+                {
+                    // 検索条件を取得して反映する.
+                    var requirements = Requirement.LoadCharactor(name);
+                    this.SetRequirements(requirements);
+                    Log.Write("キャラクタ[{0}]をロードしました。".Fmt(name));
+                }
+            }
+        }
+
+        /// <summary>
         /// 動作設定ボタン押下.
         /// </summary>
         /// <param name="sender"></param>
@@ -290,24 +314,68 @@ namespace SkillSimulatorMHW.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void CallBackMainFormFormClosing(object sender, FormClosingEventArgs e)
         {
         }
 
         /// <summary>
-        /// メインフォームを更新.
+        /// 検索条件をセットする.
         /// </summary>
-        private void UpdateMainForm()
+        /// <param name="requirement"></param>
+        private void SetRequirements(Requirement requirement)
         {
-            // 別スレッドから呼び出された場合
-            if (this.InvokeRequired)
+            // 検索条件を格納.
+            this.Requirements = requirement;
+
+            // 検索条件(武器)の初期化.
+            var wepon = this.Requirements.RequirementDataList.Get(Part.Wepon);
+            this.RequirementControlDic[Part.Wepon].SetRequirementData(wepon);
+
+            // 検索条件レア度の初期化.
+            switch (this.Requirements.RequirementRareData.Rank)
             {
-                this.BeginInvoke(this.UpdateMainForm);
-                return;
+                case Rank.Non:
+                    this.radioRareAll.Checked = true;
+                    break;
+
+                case Rank.Low:
+                    this.radioRareLow.Checked = true;
+                    break;
+
+                case Rank.High:
+                    this.radioRareHigh.Checked = true;
+                    break;
             }
+
+            // 検索条件(防具)の初期化.
+            for (var i = 0; i < Define.ArmorList.Count; i++)
+            {
+                var part = Define.ArmorList[i];
+                var armor = this.Requirements.RequirementDataList.Get(part);
+                this.RequirementControlDic[part].SetRequirementData(armor);
+            }
+
+            // 検索条件(護符)の初期化.
+            var amulet = this.Requirements.RequirementDataList.Get(Part.Amulet);
+            this.RequirementControlDic[Part.Amulet].SetRequirementData(amulet);
+
+            // 検索条件(装飾品)の初期化.
+            var accessory = this.Requirements.RequirementDataList.Get(Part.Accessory);
+            this.RequirementControlDic[Part.Accessory].SetRequirementData(accessory);
 
             // スキルリストを更新.
             this.UpdateSkillList();
+
+            // キャラクタ名を取得.
+            var name = this.Requirements.Name;
+            if (name.IsEmpty())
+            {
+                this.btnSelectCharacter.Text = @"キャラクタ選択";
+            }
+            else
+            {
+                this.btnSelectCharacter.Text = "選択中[{0}]".Fmt(name);
+            }
         }
 
         /// <summary>

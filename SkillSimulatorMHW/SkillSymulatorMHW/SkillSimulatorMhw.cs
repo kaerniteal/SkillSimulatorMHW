@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using SkillSimulatorMHW.Extensions;
+using SkillSimulatorMHW.Web;
 
 namespace SkillSimulatorMHW
 {
@@ -12,7 +13,7 @@ namespace SkillSimulatorMHW
         /// アプリケーションバージョン.
         /// </summary>
         public const int VerMajor = 0;
-        public const int VerMinor = 6;
+        public const int VerMinor = 8;
         public const int VerBuild = 0;
 
         public string Version = "{0}.{1}.{2}".Fmt(VerMajor, VerMinor, VerBuild);
@@ -26,6 +27,11 @@ namespace SkillSimulatorMHW
         /// 実装者.
         /// </summary>
         public const string Implementator = "Implementator [Kaerniteal]";
+
+        /// <summary>
+        /// ホームページURL
+        /// </summary>
+        public const string UrlHome = "https://kaerniteal.web.fc2.com/SkillSimulatorMHW/";
 
         /// <summary>
         /// シングルトンインスタンス.
