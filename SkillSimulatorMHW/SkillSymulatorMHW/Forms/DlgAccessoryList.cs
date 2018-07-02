@@ -86,7 +86,7 @@ namespace SkillSimulatorMHW.Forms
                 .Select(master =>
                 {
                     // 所持リストに登録がない場合.
-                    var first = groupedList.FirstOrDefault(group => group.Key == master.Index);
+                    var first = groupedList.FirstOrDefault(group => group.Key == master.GetIndex());
                     if (null == first)
                     {
                         return new AccessoryData(master, 0);

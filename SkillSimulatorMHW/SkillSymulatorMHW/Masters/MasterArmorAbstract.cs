@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
 using SkillSimulatorMHW.Extensions;
@@ -22,9 +23,10 @@ namespace SkillSimulatorMHW.Masters
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public MasterArmorAbstract(Part part, SlotData slotData)
+        public MasterArmorAbstract(Part part, SlotData slotData, int rare)
         {
             this.Part = part;
+            this.Rare = rare;
             this.Slot1 = slotData.GetSlotLv(0);
             this.Slot2 = slotData.GetSlotLv(1);
             this.Slot3 = slotData.GetSlotLv(2);
@@ -48,17 +50,31 @@ namespace SkillSimulatorMHW.Masters
                 // マスタを取得.
                 var masterList = Ssm.Master.MasterArmor.GetPartList(part);
 
-                // スロットデータのリストに変換し、ユニークな種類のみにする.
-                var slotDataList = masterList
-                    .Select(master => master.GetSlotData())
-                    .Distinct()
-                    .Where(slot => 0 != slot.GetIndex())
-                    .OrderBy(slot => slot.GetIndex())
-                    .ToList();
+                // スロットをKEYに辞書に登録.
+                var dic = new Dictionary<SlotData, List<MasterArmorData>>();
+                foreach (var master in masterList)
+                {
+                    var slot = master.GetSlotData();
+                    if (dic.ContainsKey(slot))
+                    {
+                        dic[slot].Add(master);
+                    }
+                    else
+                    {
+                        dic.Add(slot, new List<MasterArmorData>{ master });
+                    }
+                }
 
-                // 抽象化防具リストに変換して登録する.
-                var abstractList = slotDataList
-                    .Select(slot => (MasterArmorData)new MasterArmorAbstract(part, slot))
+                // スロットKEYを並べ替えつつ、仮想防具マスタ情報へ変換.
+                var abstractList = dic
+                    .Where(ele => 0 != ele.Key.GetIndex())
+                    .OrderBy(ele => ele.Key.GetIndex())
+                    .Select(ele =>
+                    {
+                        var rare = ele.Value.Min(master => master.Rare);
+                        var armor = (MasterArmorData)new MasterArmorAbstract(part, ele.Key, rare);
+                        return armor;
+                    })
                     .ToList();
 
                 // 辞書に登録.

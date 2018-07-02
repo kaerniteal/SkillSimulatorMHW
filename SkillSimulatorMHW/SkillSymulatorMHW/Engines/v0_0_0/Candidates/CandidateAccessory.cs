@@ -28,7 +28,7 @@ namespace SkillSimulatorMHW.Engines.v0_0_0.Candidates
         /// コンストラクタ(ファクトリ用インスタンス生成)
         /// </summary>
         public CandidateAccessory()
-            : base(Defines.Part.Accessory, new List<CandidateData>())
+            : base(Part.Accessory, new List<CandidateData>())
         {
         }
 
@@ -37,7 +37,7 @@ namespace SkillSimulatorMHW.Engines.v0_0_0.Candidates
         /// </summary>
         /// <param name="candidateList">候補リスト</param>
         protected CandidateAccessory(List<CandidateData> candidateList)
-            : base(Defines.Part.Accessory, candidateList)
+            : base(Part.Accessory, candidateList)
         {
         }
 
@@ -53,7 +53,7 @@ namespace SkillSimulatorMHW.Engines.v0_0_0.Candidates
         /// <remarks>検索処理実施前のオリジナル候補装備リスト</remarks>
         public override List<PartDataBase> CreateOrgList(Requirement requirements)
         {
-            var requirementData = requirements.RequirementDataList.Get(Defines.Part.Accessory);
+            var requirementData = requirements.RequirementDataList.Get(Part.Accessory);
 
             // 装飾品リストだけは再起呼び出しの外側で処理されるため、
             // 装飾品ゼロ個の組み合わせが常に必要になる.

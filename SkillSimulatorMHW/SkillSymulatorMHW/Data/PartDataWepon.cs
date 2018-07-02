@@ -52,7 +52,7 @@ namespace SkillSimulatorMHW.Data
             // 確定している場合は装備のIndexを返す.
             if (PartState.Determined == this.State && null != this.Master)
             {
-                return new List<int> { this.Master.Index };
+                return new List<int> { this.Master.GetIndex() };
             }
 
             // 未確定の場合.

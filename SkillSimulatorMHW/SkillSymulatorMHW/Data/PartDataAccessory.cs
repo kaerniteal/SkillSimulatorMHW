@@ -15,7 +15,7 @@ namespace SkillSimulatorMHW.Data
         /// コンストラクタ(未確定)
         /// </summary>
         public PartDataAccessory()
-            : base(Defines.Part.Accessory)
+            : base(Part.Accessory)
         {
             this.State = PartState.Unsettled;
             this.MasterList = null;
@@ -27,7 +27,7 @@ namespace SkillSimulatorMHW.Data
         /// コンストラクタ(確定済み)
         /// </summary>
         public PartDataAccessory(List<MasterAccessoryData> masterList)
-            : base(Defines.Part.Accessory)
+            : base(Part.Accessory)
         {
             this.State = PartState.Determined;
             this.MasterList = masterList;
@@ -71,7 +71,7 @@ namespace SkillSimulatorMHW.Data
             {
                 // 装飾品のIDリストを返す.
                 return this.MasterList
-                    .Select(master => master.Index)
+                    .Select(master => master.GetIndex())
                     .ToList();
             }
 
@@ -91,7 +91,7 @@ namespace SkillSimulatorMHW.Data
                 // 装飾品の個数も含めた名称リストを返す.
                 // Indexでグループ化して、グループ毎に文字列化.
                 return this.MasterList
-                    .GroupBy(master => master.Index)
+                    .GroupBy(master => master.GetIndex())
                     .Select(group => "{0}*{1}".Fmt(group.First().Name, group.Count()))
                     .ToList();
             }

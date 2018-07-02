@@ -23,7 +23,7 @@ namespace SkillSimulatorMHW.Masters
         /// <summary>
         /// Index
         /// </summary>
-        public int Index { get; set; }
+        protected int Index { get; set; }
 
         /// <summary>
         /// 護石ID
