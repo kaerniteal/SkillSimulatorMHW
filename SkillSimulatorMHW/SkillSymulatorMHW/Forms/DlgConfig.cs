@@ -6,6 +6,7 @@ using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
 using SkillSimulatorMHW.Engines;
 using SkillSimulatorMHW.Extensions;
+using SkillSimulatorMHW.Web;
 
 namespace SkillSimulatorMHW.Forms
 {
@@ -21,6 +22,10 @@ namespace SkillSimulatorMHW.Forms
         {
             InitializeComponent();
 
+            this.lblAppVersion.Text = Ssm.Title;
+            this.llblHomePage.Text = SkillSimulatorMhw.UrlHome;
+
+            
             // コンボボックス生成.
             this.cmbAnalyzeType.Init(new List<CmbItem<AnalyzeType>>
             {
@@ -91,6 +96,26 @@ namespace SkillSimulatorMHW.Forms
         {
             // 現在の設定を画面に反映.
             this.SetConfig(Ssm.Config);
+        }
+
+        /// <summary>
+        /// HomePageのLinkクリック.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void llblHomePage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            WebInfo.OpenHomePage();
+        }
+
+        /// <summary>
+        /// メール送信クリック.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void llblMail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            WebInfo.SendMail();
         }
 
         /// <summary>

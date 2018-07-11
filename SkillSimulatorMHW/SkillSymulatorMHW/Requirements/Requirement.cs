@@ -40,6 +40,9 @@ namespace SkillSimulatorMHW.Requirements
 
             // 検索条件防具
             this.RequirementDataList = new RequirementDataList();
+
+            // 空きスロット.
+            this.RequirementBlankSlot = new RequirementBlankSlot();
         }
 
         /// <summary>
@@ -61,6 +64,11 @@ namespace SkillSimulatorMHW.Requirements
         /// 検索条件リスト.
         /// </summary>
         public RequirementDataList RequirementDataList { get; set; }
+
+        /// <summary>
+        /// 空きスロット.
+        /// </summary>
+        public RequirementBlankSlot RequirementBlankSlot {get; set; }
 
         /// <summary>
         /// キャラクタ名称.

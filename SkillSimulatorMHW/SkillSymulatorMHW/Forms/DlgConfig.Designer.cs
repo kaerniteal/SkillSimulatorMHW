@@ -36,6 +36,7 @@
             this.lblSearchEngine = new System.Windows.Forms.Label();
             this.chkShowDebugLog = new System.Windows.Forms.CheckBox();
             this.tabPageConfigViewer = new System.Windows.Forms.TabPage();
+            this.chkWeb = new System.Windows.Forms.CheckBox();
             this.spinShowResultLimitCount = new System.Windows.Forms.NumericUpDown();
             this.lblShowResultLimitCount = new System.Windows.Forms.Label();
             this.tabPageConfigSearch = new System.Windows.Forms.TabPage();
@@ -46,13 +47,20 @@
             this.lblAnalyzeType = new System.Windows.Forms.Label();
             this.lblSerchLimitCount = new System.Windows.Forms.Label();
             this.btnDefault = new System.Windows.Forms.Button();
-            this.chkWeb = new System.Windows.Forms.CheckBox();
+            this.tabPageVersion = new System.Windows.Forms.TabPage();
+            this.lblAppVersion = new System.Windows.Forms.Label();
+            this.llblHomePage = new System.Windows.Forms.LinkLabel();
+            this.lblHomePage = new System.Windows.Forms.Label();
+            this.lblAppVerTitle = new System.Windows.Forms.Label();
+            this.lblMailTitle = new System.Windows.Forms.Label();
+            this.llblMail = new System.Windows.Forms.LinkLabel();
             this.tabCtrlConfigView.SuspendLayout();
             this.tabPageConfigDebug.SuspendLayout();
             this.tabPageConfigViewer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinShowResultLimitCount)).BeginInit();
             this.tabPageConfigSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinSerchLimitCount)).BeginInit();
+            this.tabPageVersion.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOK
@@ -80,6 +88,7 @@
             // tabCtrlConfigView
             // 
             this.tabCtrlConfigView.Controls.Add(this.tabPageConfigDebug);
+            this.tabCtrlConfigView.Controls.Add(this.tabPageVersion);
             this.tabCtrlConfigView.Controls.Add(this.tabPageConfigViewer);
             this.tabCtrlConfigView.Controls.Add(this.tabPageConfigSearch);
             this.tabCtrlConfigView.Location = new System.Drawing.Point(12, 12);
@@ -141,6 +150,18 @@
             this.tabPageConfigViewer.TabIndex = 0;
             this.tabPageConfigViewer.Text = "動作設定";
             this.tabPageConfigViewer.UseVisualStyleBackColor = true;
+            // 
+            // chkWeb
+            // 
+            this.chkWeb.AutoSize = true;
+            this.chkWeb.Checked = true;
+            this.chkWeb.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWeb.Location = new System.Drawing.Point(6, 18);
+            this.chkWeb.Name = "chkWeb";
+            this.chkWeb.Size = new System.Drawing.Size(190, 16);
+            this.chkWeb.TabIndex = 4;
+            this.chkWeb.Text = "インターネットへの接続を有効にする";
+            this.chkWeb.UseVisualStyleBackColor = true;
             // 
             // spinShowResultLimitCount
             // 
@@ -249,17 +270,79 @@
             this.btnDefault.UseVisualStyleBackColor = true;
             this.btnDefault.Click += new System.EventHandler(this.CallBackBtnDefaultClick);
             // 
-            // chkWeb
+            // tabPageVersion
             // 
-            this.chkWeb.AutoSize = true;
-            this.chkWeb.Checked = true;
-            this.chkWeb.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkWeb.Location = new System.Drawing.Point(6, 18);
-            this.chkWeb.Name = "chkWeb";
-            this.chkWeb.Size = new System.Drawing.Size(190, 16);
-            this.chkWeb.TabIndex = 4;
-            this.chkWeb.Text = "インターネットへの接続を有効にする";
-            this.chkWeb.UseVisualStyleBackColor = true;
+            this.tabPageVersion.Controls.Add(this.llblMail);
+            this.tabPageVersion.Controls.Add(this.llblHomePage);
+            this.tabPageVersion.Controls.Add(this.lblAppVerTitle);
+            this.tabPageVersion.Controls.Add(this.lblMailTitle);
+            this.tabPageVersion.Controls.Add(this.lblHomePage);
+            this.tabPageVersion.Controls.Add(this.lblAppVersion);
+            this.tabPageVersion.Location = new System.Drawing.Point(4, 22);
+            this.tabPageVersion.Name = "tabPageVersion";
+            this.tabPageVersion.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageVersion.Size = new System.Drawing.Size(356, 323);
+            this.tabPageVersion.TabIndex = 3;
+            this.tabPageVersion.Text = "このアプリケーションについて";
+            this.tabPageVersion.UseVisualStyleBackColor = true;
+            // 
+            // lblAppVersion
+            // 
+            this.lblAppVersion.AutoSize = true;
+            this.lblAppVersion.Location = new System.Drawing.Point(18, 35);
+            this.lblAppVersion.Name = "lblAppVersion";
+            this.lblAppVersion.Size = new System.Drawing.Size(147, 12);
+            this.lblAppVersion.TabIndex = 0;
+            this.lblAppVersion.Text = "SkillSimulatorMhw Ver X.x.x";
+            // 
+            // llblHomePage
+            // 
+            this.llblHomePage.AutoSize = true;
+            this.llblHomePage.Location = new System.Drawing.Point(18, 88);
+            this.llblHomePage.Name = "llblHomePage";
+            this.llblHomePage.Size = new System.Drawing.Size(266, 12);
+            this.llblHomePage.TabIndex = 1;
+            this.llblHomePage.TabStop = true;
+            this.llblHomePage.Text = "https://kaerniteal.web.fc2.com/SkillSimulatorMHW/";
+            this.llblHomePage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblHomePage_LinkClicked);
+            // 
+            // lblHomePage
+            // 
+            this.lblHomePage.AutoSize = true;
+            this.lblHomePage.Location = new System.Drawing.Point(18, 65);
+            this.lblHomePage.Name = "lblHomePage";
+            this.lblHomePage.Size = new System.Drawing.Size(77, 12);
+            this.lblHomePage.TabIndex = 0;
+            this.lblHomePage.Text = "【ホームページ】";
+            // 
+            // lblAppVerTitle
+            // 
+            this.lblAppVerTitle.AutoSize = true;
+            this.lblAppVerTitle.Location = new System.Drawing.Point(18, 14);
+            this.lblAppVerTitle.Name = "lblAppVerTitle";
+            this.lblAppVerTitle.Size = new System.Drawing.Size(62, 12);
+            this.lblAppVerTitle.TabIndex = 0;
+            this.lblAppVerTitle.Text = "【バージョン】";
+            // 
+            // lblMailTitle
+            // 
+            this.lblMailTitle.AutoSize = true;
+            this.lblMailTitle.Location = new System.Drawing.Point(18, 215);
+            this.lblMailTitle.Name = "lblMailTitle";
+            this.lblMailTitle.Size = new System.Drawing.Size(108, 12);
+            this.lblMailTitle.TabIndex = 0;
+            this.lblMailTitle.Text = "【作者にメールを送る】";
+            // 
+            // llblMail
+            // 
+            this.llblMail.AutoSize = true;
+            this.llblMail.Location = new System.Drawing.Point(18, 237);
+            this.llblMail.Name = "llblMail";
+            this.llblMail.Size = new System.Drawing.Size(159, 12);
+            this.llblMail.TabIndex = 2;
+            this.llblMail.TabStop = true;
+            this.llblMail.Text = "SkillSimulatorMHW@gmail.com";
+            this.llblMail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblMail_LinkClicked);
             // 
             // DlgConfig
             // 
@@ -286,6 +369,8 @@
             this.tabPageConfigSearch.ResumeLayout(false);
             this.tabPageConfigSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinSerchLimitCount)).EndInit();
+            this.tabPageVersion.ResumeLayout(false);
+            this.tabPageVersion.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -311,5 +396,12 @@
         private System.Windows.Forms.ComboBox cmbSearchEngine;
         private System.Windows.Forms.Label lblSearchEngine;
         private System.Windows.Forms.CheckBox chkWeb;
+        private System.Windows.Forms.TabPage tabPageVersion;
+        private System.Windows.Forms.LinkLabel llblHomePage;
+        private System.Windows.Forms.Label lblAppVersion;
+        private System.Windows.Forms.Label lblHomePage;
+        private System.Windows.Forms.Label lblAppVerTitle;
+        private System.Windows.Forms.Label lblMailTitle;
+        private System.Windows.Forms.LinkLabel llblMail;
     }
 }

@@ -46,10 +46,18 @@
             this.grpbSearchResult = new System.Windows.Forms.GroupBox();
             this.btnShowAnalyze = new System.Windows.Forms.Button();
             this.btnSelectCharacter = new System.Windows.Forms.Button();
+            this.grpBlankSlot = new System.Windows.Forms.GroupBox();
+            this.numBlankSlotLv3 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.numBlankSlotLv2 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.numBlankSlotLv1 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.lblBlankSlotLv3 = new System.Windows.Forms.Label();
+            this.lblBlankSlotLv2 = new System.Windows.Forms.Label();
+            this.lblBlankSlotLv1 = new System.Windows.Forms.Label();
             this.grpbSkill.SuspendLayout();
             this.grpbSerchRequirements.SuspendLayout();
             this.grpbRequirementArmor.SuspendLayout();
             this.grpbSearchResult.SuspendLayout();
+            this.grpBlankSlot.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtbLog
@@ -137,6 +145,7 @@
             // 
             // grpbSerchRequirements
             // 
+            this.grpbSerchRequirements.Controls.Add(this.grpBlankSlot);
             this.grpbSerchRequirements.Controls.Add(this.grpbRequirementArmor);
             this.grpbSerchRequirements.Location = new System.Drawing.Point(428, 10);
             this.grpbSerchRequirements.Name = "grpbSerchRequirements";
@@ -150,9 +159,9 @@
             this.grpbRequirementArmor.Controls.Add(this.radioRareAll);
             this.grpbRequirementArmor.Controls.Add(this.radioRareLow);
             this.grpbRequirementArmor.Controls.Add(this.radioRareHigh);
-            this.grpbRequirementArmor.Location = new System.Drawing.Point(6, 88);
+            this.grpbRequirementArmor.Location = new System.Drawing.Point(6, 84);
             this.grpbRequirementArmor.Name = "grpbRequirementArmor";
-            this.grpbRequirementArmor.Size = new System.Drawing.Size(408, 415);
+            this.grpbRequirementArmor.Size = new System.Drawing.Size(408, 376);
             this.grpbRequirementArmor.TabIndex = 7;
             this.grpbRequirementArmor.TabStop = false;
             this.grpbRequirementArmor.Text = "防具";
@@ -261,6 +270,78 @@
             this.btnSelectCharacter.UseVisualStyleBackColor = true;
             this.btnSelectCharacter.Click += new System.EventHandler(this.CallBackBtnSelectCharacterClick);
             // 
+            // grpBlankSlot
+            // 
+            this.grpBlankSlot.Controls.Add(this.lblBlankSlotLv1);
+            this.grpBlankSlot.Controls.Add(this.lblBlankSlotLv2);
+            this.grpBlankSlot.Controls.Add(this.lblBlankSlotLv3);
+            this.grpBlankSlot.Controls.Add(this.numBlankSlotLv1);
+            this.grpBlankSlot.Controls.Add(this.numBlankSlotLv2);
+            this.grpBlankSlot.Controls.Add(this.numBlankSlotLv3);
+            this.grpBlankSlot.Location = new System.Drawing.Point(6, 595);
+            this.grpBlankSlot.Name = "grpBlankSlot";
+            this.grpBlankSlot.Size = new System.Drawing.Size(408, 65);
+            this.grpBlankSlot.TabIndex = 8;
+            this.grpBlankSlot.TabStop = false;
+            this.grpBlankSlot.Text = "必要空きスロット";
+            // 
+            // numBlankSlotLv3
+            // 
+            this.numBlankSlotLv3.Location = new System.Drawing.Point(6, 33);
+            this.numBlankSlotLv3.Max = 99;
+            this.numBlankSlotLv3.Min = 0;
+            this.numBlankSlotLv3.Name = "numBlankSlotLv3";
+            this.numBlankSlotLv3.Size = new System.Drawing.Size(90, 26);
+            this.numBlankSlotLv3.TabIndex = 0;
+            this.numBlankSlotLv3.Value = 0;
+            // 
+            // numBlankSlotLv2
+            // 
+            this.numBlankSlotLv2.Location = new System.Drawing.Point(126, 33);
+            this.numBlankSlotLv2.Max = 99;
+            this.numBlankSlotLv2.Min = 0;
+            this.numBlankSlotLv2.Name = "numBlankSlotLv2";
+            this.numBlankSlotLv2.Size = new System.Drawing.Size(90, 26);
+            this.numBlankSlotLv2.TabIndex = 1;
+            this.numBlankSlotLv2.Value = 0;
+            // 
+            // numBlankSlotLv1
+            // 
+            this.numBlankSlotLv1.Location = new System.Drawing.Point(246, 33);
+            this.numBlankSlotLv1.Max = 99;
+            this.numBlankSlotLv1.Min = 0;
+            this.numBlankSlotLv1.Name = "numBlankSlotLv1";
+            this.numBlankSlotLv1.Size = new System.Drawing.Size(90, 26);
+            this.numBlankSlotLv1.TabIndex = 1;
+            this.numBlankSlotLv1.Value = 0;
+            // 
+            // lblBlankSlotLv3
+            // 
+            this.lblBlankSlotLv3.AutoSize = true;
+            this.lblBlankSlotLv3.Location = new System.Drawing.Point(6, 17);
+            this.lblBlankSlotLv3.Name = "lblBlankSlotLv3";
+            this.lblBlankSlotLv3.Size = new System.Drawing.Size(56, 12);
+            this.lblBlankSlotLv3.TabIndex = 2;
+            this.lblBlankSlotLv3.Text = "Lv3スロット";
+            // 
+            // lblBlankSlotLv2
+            // 
+            this.lblBlankSlotLv2.AutoSize = true;
+            this.lblBlankSlotLv2.Location = new System.Drawing.Point(124, 17);
+            this.lblBlankSlotLv2.Name = "lblBlankSlotLv2";
+            this.lblBlankSlotLv2.Size = new System.Drawing.Size(56, 12);
+            this.lblBlankSlotLv2.TabIndex = 2;
+            this.lblBlankSlotLv2.Text = "Lv2スロット";
+            // 
+            // lblBlankSlotLv1
+            // 
+            this.lblBlankSlotLv1.AutoSize = true;
+            this.lblBlankSlotLv1.Location = new System.Drawing.Point(244, 17);
+            this.lblBlankSlotLv1.Name = "lblBlankSlotLv1";
+            this.lblBlankSlotLv1.Size = new System.Drawing.Size(56, 12);
+            this.lblBlankSlotLv1.TabIndex = 2;
+            this.lblBlankSlotLv1.Text = "Lv1スロット";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -286,6 +367,8 @@
             this.grpbRequirementArmor.ResumeLayout(false);
             this.grpbRequirementArmor.PerformLayout();
             this.grpbSearchResult.ResumeLayout(false);
+            this.grpBlankSlot.ResumeLayout(false);
+            this.grpBlankSlot.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,5 +394,12 @@
         private System.Windows.Forms.Button btnSkillSelectFilterClear;
         private System.Windows.Forms.Button btnShowAnalyze;
         private System.Windows.Forms.Button btnSelectCharacter;
+        private System.Windows.Forms.GroupBox grpBlankSlot;
+        private Controls.NumericControl numBlankSlotLv1;
+        private Controls.NumericControl numBlankSlotLv2;
+        private Controls.NumericControl numBlankSlotLv3;
+        private System.Windows.Forms.Label lblBlankSlotLv3;
+        private System.Windows.Forms.Label lblBlankSlotLv1;
+        private System.Windows.Forms.Label lblBlankSlotLv2;
     }
 }

@@ -28,7 +28,7 @@ namespace SkillSimulatorMHW.Controls
         /// </summary>
         public NumericControl()
         {
-            this._max = 0;
+            this._max = 99;
             this._min = 0;
             this.EnableMax = false;
             this.EnableMin = false;
