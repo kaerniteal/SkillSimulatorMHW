@@ -12,7 +12,7 @@ namespace SkillSimulatorMHW.Data
         /// </summary>
         public AccessoryData(MasterAccessoryData master, int possession)
         {
-            this.Index = master.Index;
+            this.Index = master.GetIndex();
             this.Master = master;
             this.Possession = possession;
         }

@@ -49,8 +49,10 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
             // 対象の抽象化防具マスタリストを生成する.
             var masterList = MasterArmorAbstract.GetAbstractArmorList(this.Part);
 
-            // マスタリストから防具データに変換し、リスト化して返す.
+            // マスタリストから条件を満たす防具をリスト化して返す.
+            // ・該当レア度に収まる.
             var candidateList = masterList
+                .Where(armor => requirements.RequirementRareData.Lower <= armor.Rare && armor.Rare <= requirements.RequirementRareData.Upper)
                 .Select(armor => (PartDataBase)new PartDataArmor(armor))
                 .ToList();
 

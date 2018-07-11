@@ -13,7 +13,7 @@ namespace SkillSimulatorMHW.Data
         /// コンストラクタ(未確定)
         /// </summary>
         public PartDataAmulet()
-            : base(Defines.Part.Amulet)
+            : base(Part.Amulet)
         {
             this.State = PartState.Unsettled;
             this.Master = null;
@@ -23,7 +23,7 @@ namespace SkillSimulatorMHW.Data
         /// コンストラクタ(確定済み)
         /// </summary>
         public PartDataAmulet(MasterAmuletData master)
-            : base(Defines.Part.Amulet)
+            : base(Part.Amulet)
         {
             this.State = PartState.Determined;
             this.Master = master;
@@ -53,7 +53,7 @@ namespace SkillSimulatorMHW.Data
             // 確定している場合は装備のIndexを返す.
             if (PartState.Determined == this.State && null != this.Master)
             {
-                return new List<int> { this.Master.Index };
+                return new List<int> { this.Master.GetIndex() };
             }
 
             // 未確定の場合.

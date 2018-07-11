@@ -31,7 +31,7 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
         /// コンストラクタ(ファクトリ用インスタンス生成)
         /// </summary>
         public CandidateAmulet()
-            : base(Defines.Part.Amulet, new List<CandidateData>())
+            : base(Part.Amulet, new List<CandidateData>())
         {
         }
 
@@ -40,7 +40,7 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
         /// </summary>
         /// <param name="candidateList">候補リスト</param>
         protected CandidateAmulet(List<CandidateData> candidateList)
-            : base(Defines.Part.Amulet, candidateList)
+            : base(Part.Amulet, candidateList)
         {
         }
 
@@ -56,7 +56,7 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
         /// <remarks>検索処理実施前のオリジナル候補装備リスト</remarks>
         public override List<PartDataBase> CreateOrgList(Requirement requirements)
         {
-            var requirementData = requirements.RequirementDataList.Get(Defines.Part.Amulet);
+            var requirementData = requirements.RequirementDataList.Get(Part.Amulet);
 
             // 使用しない場合は空リストを返す.
             if (TermsType.Unused == requirementData.TermsType)
@@ -117,7 +117,7 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
                     }
 
                     // マスタを取得できない護石は除外.
-                    var master = Ssm.Master.MasterAmulet.GetRecord(amulet.Index);
+                    var master = Ssm.Master.MasterAmulet.GetRecord(amulet.GetIndex());
                     if (null == master)
                     {
                         return false;
