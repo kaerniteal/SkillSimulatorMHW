@@ -141,6 +141,16 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
                 })
                 .ToList();
 
+            // 必要空きスロットを仮想装飾品リストに置き換えて処理に渡す.
+            var blankSlotList = new List<MasterAccessoryData>();
+            foreach (var Lv in requirements.RequirementBlankSlot.GetBlankSlotList())
+            {
+                for(var i = 0; i < Lv.Item2; i++)
+                {
+                    blankSlotList.Add(new MasterAccessoryAbstract(Lv.Item1));
+                }
+            }
+
             // 対象スキルを持つ全ての装飾品の組み合わせリストを生成し、
             // 検索データ装飾品に変換してリスト化する.
             // 装飾品リストだけは再起呼び出しの外側で処理されるため、
@@ -153,6 +163,12 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
                     var openedList = combList
                         .SelectMany(list => list)
                         .ToList();
+                    
+                    // 全ての組み合わせに、仮想防具リストを加える.
+                    if (blankSlotList.Any())
+                    {
+                        openedList.AddRange(blankSlotList);
+                    }
 
                     return (PartDataBase)new PartDataAccessory(openedList);
                 })

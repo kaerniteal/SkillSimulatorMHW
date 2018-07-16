@@ -7,7 +7,7 @@ using SkillSimulatorMHW.Extensions;
 namespace SkillSimulatorMHW.Masters
 {
     /// <summary>
-    /// 装飾品マスタデータ.
+    /// 抽象化装飾品マスタデータ.
     /// </summary>
     public class MasterAccessoryData : MasterDataBase
     {

@@ -22,6 +22,15 @@ namespace SkillSimulatorMHW.Masters
         }
 
         /// <summary>
+        /// 抽象化防具かどうか.
+        /// </summary>
+        /// <returns></returns>
+        public override bool IsAbstract()
+        {
+            return true;
+        }
+
+        /// <summary>
         /// ユニークなIndexを取得する.
         /// </summary>
         /// <returns>Index</returns>

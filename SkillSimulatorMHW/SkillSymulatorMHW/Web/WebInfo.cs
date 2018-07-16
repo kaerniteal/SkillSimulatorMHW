@@ -120,5 +120,13 @@ namespace SkillSimulatorMHW.Web
         {
             Process.Start(SkillSimulatorMhw.UrlHome);
         }
+
+        /// <summary>
+        /// メーラーを開く.
+        /// </summary>
+        public static void SendMail()
+        {
+            Process.Start(SkillSimulatorMhw.MailAddress);
+        }
     }
 }

@@ -86,7 +86,7 @@ namespace SkillSimulatorMHW.Forms
             this.RequirementControlDic.Add(Part.Wepon, ctrlWepon);
 
             // 検索条件(防具)の初期化.
-            var baseY = 66;
+            var baseY = 40;
             for (var i = 0; i < Define.ArmorList.Count; i++)
             {
                 var part = Define.ArmorList[i];
@@ -105,7 +105,7 @@ namespace SkillSimulatorMHW.Forms
             var masterAmulet = Ssm.Master.MasterAmulet.GetMasterDataList();
             var ctrlAmulet = new RequirementControl(masterAmulet)
             {
-                Location = new Point(6, 510)
+                Location = new Point(6, 466)
             };
             this.grpbSerchRequirements.Controls.Add(ctrlAmulet);
             this.RequirementControlDic.Add(Part.Amulet, ctrlAmulet);
@@ -114,10 +114,15 @@ namespace SkillSimulatorMHW.Forms
             var masterAccessory = Ssm.Master.MasterAccessory.GetMasterDataList();
             var ctrlAccessory = new RequirementControl(masterAccessory)
             {
-                Location = new Point(6, 580)
+                Location = new Point(6, 532)
             };
             this.grpbSerchRequirements.Controls.Add(ctrlAccessory);
             this.RequirementControlDic.Add(Part.Accessory, ctrlAccessory);
+
+            // 空きスロット必要数変更イベントハンドラをセット.
+            this.numBlankSlotLv3.ValueChange += this.CallBackNumBlankSlotChangeed;
+            this.numBlankSlotLv2.ValueChange += this.CallBackNumBlankSlotChangeed;
+            this.numBlankSlotLv1.ValueChange += this.CallBackNumBlankSlotChangeed;
 
             // 結果コントロールを生成.
             this.ResultListControl.Location = new Point(3, 12);
@@ -233,6 +238,17 @@ namespace SkillSimulatorMHW.Forms
                     this.Requirements.RequirementRareData.SetRare(Rank.Non);
                 }
             }
+        }
+
+        /// <summary>
+        /// 空きスロット必要数変更.
+        /// </summary>
+        /// <param name="lv"></param>
+        private void CallBackNumBlankSlotChangeed(int lv)
+        {
+            this.Requirements.RequirementBlankSlot.Lv3 = this.numBlankSlotLv3.Value;
+            this.Requirements.RequirementBlankSlot.Lv2 = this.numBlankSlotLv2.Value;
+            this.Requirements.RequirementBlankSlot.Lv1 = this.numBlankSlotLv1.Value;
         }
 
         /// <summary>
@@ -362,6 +378,11 @@ namespace SkillSimulatorMHW.Forms
             // 検索条件(装飾品)の初期化.
             var accessory = this.Requirements.RequirementDataList.Get(Part.Accessory);
             this.RequirementControlDic[Part.Accessory].SetRequirementData(accessory);
+
+            // 検索条件(空きスロット)の初期化.
+            this.numBlankSlotLv3.Value = this.Requirements.RequirementBlankSlot.Lv3;
+            this.numBlankSlotLv2.Value = this.Requirements.RequirementBlankSlot.Lv2;
+            this.numBlankSlotLv1.Value = this.Requirements.RequirementBlankSlot.Lv1;
 
             // スキルリストを更新.
             this.UpdateSkillList();

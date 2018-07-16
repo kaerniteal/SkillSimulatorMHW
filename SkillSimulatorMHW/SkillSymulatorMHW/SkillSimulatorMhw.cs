@@ -34,6 +34,11 @@ namespace SkillSimulatorMHW
         public const string UrlHome = "https://kaerniteal.web.fc2.com/SkillSimulatorMHW/";
 
         /// <summary>
+        /// ホームページURL
+        /// </summary>
+        public const string MailAddress = "mailto:SkillSimulatorMHW@gmail.com";
+
+        /// <summary>
         /// シングルトンインスタンス.
         /// </summary>
         public static readonly SkillSimulatorMhw Instance = new SkillSimulatorMhw();
