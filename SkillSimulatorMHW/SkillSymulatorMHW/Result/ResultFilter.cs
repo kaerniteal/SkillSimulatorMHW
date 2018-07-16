@@ -92,12 +92,8 @@ namespace SkillSimulatorMHW.Result
         /// <returns></returns>
         public bool FilterBlankSlot(ResultSet resultSet)
         {
-            // 空きスロットを取得.
-            var blankSlotList = new List<int>();
-            resultSet.GetBlankSlot(blankSlotList);
-
             // 空きスロットをLv毎にグループ化.
-            var groupedSlotList = blankSlotList
+            var groupedSlotList = resultSet.GetBlankSlot()
                 .GroupBy(slot => slot)
                 .ToList();
 

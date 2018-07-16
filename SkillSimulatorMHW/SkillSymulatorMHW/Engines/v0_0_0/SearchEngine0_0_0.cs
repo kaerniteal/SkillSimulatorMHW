@@ -536,54 +536,85 @@ namespace SkillSimulatorMHW.Engines.v0_0_0
         {
             var searchReport = new SearchReport();
 
-            // 要求されているシリーズスキルリスト.
-            var needSeriesList = this.Requirements.RequirementSkillList.SeriesList;
-
-            // 必要シリーズスキルを一つずつチェックする.
-            foreach (var needSeries in needSeriesList)
+            // スキルの評価.
             {
-                // 発動しているかどうかをチェック.
-                var count = searchSet.GetSeriesCount(needSeries.Index);
-                if (needSeries.Skill.Need <= count)
+                // 要求されているシリーズスキルリスト.
+                var needSeriesList = this.Requirements.RequirementSkillList.SeriesList;
+
+                // 必要シリーズスキルを一つずつチェックする.
+                foreach (var needSeries in needSeriesList)
                 {
-                    // 満たしているスキルに登録.
-                    searchReport.SatisfyList.Add(needSeries.Index);
+                    // 発動しているかどうかをチェック.
+                    var count = searchSet.GetSeriesCount(needSeries.Index);
+                    if (needSeries.Skill.Need <= count)
+                    {
+                        // 満たしているスキルに登録.
+                        searchReport.SatisfyList.Add(needSeries.Index);
+                    }
+                    else
+                    {
+                        // 満たしていないスキルに登録.
+                        searchReport.UnsatisfyList.Add(needSeries.Index);
+                        searchReport.UnsatisfyBaseList.Add(new SkillBase(
+                            needSeries.Index,
+                            needSeries.Skill.Need - count));
+                    }
                 }
-                else
+
+                // 要求されているスキルリスト.
+                var needSkillList = this.Requirements.RequirementSkillList.SkillList;
+
+                // 必要スキルを一つずつチェックする.
+                foreach (var needSkill in needSkillList)
                 {
-                    // 満たしていないスキルに登録.
-                    searchReport.UnsatisfyList.Add(needSeries.Index);
-                    searchReport.UnsatisfyBaseList.Add(new SkillBase(
-                        needSeries.Index,
-                        needSeries.Skill.Need - count));
+                    // 検索セットが必要スキルLvを満たしている場合.
+                    var sumLv = searchSet.GetSkillLvSum(needSkill.Index);
+                    if (needSkill.Lv <= sumLv)
+                    {
+                        // 満たしているスキルに登録.
+                        searchReport.SatisfyList.Add(needSkill.Index);
+                    }
+                    else
+                    {
+                        // 満たしていないスキルに登録.
+                        searchReport.UnsatisfyList.Add(needSkill.Index);
+                        searchReport.UnsatisfyBaseList.Add(new SkillBase(
+                            needSkill.Index,
+                            needSkill.Lv - sumLv));
+                    }
                 }
             }
 
-            // 要求されているスキルリスト.
-            var needSkillList = this.Requirements.RequirementSkillList.SkillList;
-
-            // 必要スキルを一つずつチェックする.
-            foreach (var needSkill in needSkillList)
+            // スロットの評価.
             {
-                // 検索セットが必要スキルLvを満たしている場合.
-                var sumLv = searchSet.GetSkillLvSum(needSkill.Index);
-                if (needSkill.Lv <= sumLv)
+                // 現在のセットが装備している全てのスロットのLvリスト
+                var equippedSlotLvList = searchSet.GetEquippedSlotLvList();
+
+                // 必要スロットリスト
+                var needSlotLvList = searchSet.Accessory.GetNeedSlotLvList();
+
+                // 装備スロットを下位Lvから走査.
+                // 必要スロットLvと装備スロットLvを低いほうから順番に比較して、
+                // 必要スロットLv <= 装備スロットLvであれば格納可能と判定する.
+                var needIndex = 0;
+                foreach (var equippedLv in equippedSlotLvList)
                 {
-                    // 満たしているスキルに登録.
-                    searchReport.SatisfyList.Add(needSkill.Index);
+                    // 必要スロットがまだ残っていてかつ装備Lvが必要Lvを超えていれば装備可能.
+                    if (needIndex < needSlotLvList.Count &&
+                        needSlotLvList[needIndex] <= equippedLv)
+                    {
+                        // 装備可能なので必要Indexを進める.
+                        needIndex++;
+                    }
                 }
-                else
+
+                // 残っている必要スロットがあれば不足リストに追加.
+                // 上のループでインクリメントしたneedIndexをそのまま使用する.
+                for (; needIndex < needSlotLvList.Count; needIndex++)
                 {
-                    // 満たしていないスキルに登録.
-                    searchReport.UnsatisfyList.Add(needSkill.Index);
-                    searchReport.UnsatisfyBaseList.Add(new SkillBase(
-                        needSkill.Index,
-                        needSkill.Lv - sumLv));
+                    searchReport.LackSlotList.Add(needSlotLvList[needIndex]);
                 }
             }
-
-            // 空き、不足スロット状況を格納.
-            searchSet.GetBlankSlot(searchReport.BlankSlotList, searchReport.LackSlotList);
 
             // 生成したリポートを返す.
             return searchReport;

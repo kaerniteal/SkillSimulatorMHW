@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using SkillSimulatorMHW.Defines;
+using SkillSimulatorMHW.Masters;
 
 namespace SkillSimulatorMHW.Requirements
 {
@@ -35,17 +35,28 @@ namespace SkillSimulatorMHW.Requirements
         public int Lv1 { get; set; }
 
         /// <summary>
-        /// 空きスロットデータを辞書型にして返す
+        /// 空きスロットデータを仮想装飾品リストに変換して返す
         /// </summary>
         /// <returns></returns>
-        public List<Tuple<int, int>> GetBlankSlotList()
+        public List<MasterAccessoryData> GetBlankSlotList()
         {
-            return new List<Tuple<int, int>>
+            var blankSlotList = new List<Tuple<int, int>>
             {
                 Tuple.Create(1, this.Lv1),
                 Tuple.Create(2, this.Lv2),
                 Tuple.Create(3, this.Lv3),
             };
+
+            var blankSlotLvList = new List<MasterAccessoryData>();
+            foreach (var lv in blankSlotList)
+            {
+                for (var i = 0; i < lv.Item2; i++)
+                {
+                    blankSlotLvList.Add(new MasterAccessoryAbstract(lv.Item1));
+                }
+            }
+
+            return blankSlotLvList;
         }
     }
 }

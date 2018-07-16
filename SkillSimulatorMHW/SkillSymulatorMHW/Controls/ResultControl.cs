@@ -217,10 +217,7 @@ namespace SkillSimulatorMHW.Controls
         /// <returns></returns>
         private string GetBlankSlotText()
         {
-            var blankSlotList = new List<int>();
-            this.ResultSet.GetBlankSlot(blankSlotList);
-
-            var blankSlotTextList = blankSlotList
+            var blankSlotTextList = this.ResultSet.GetBlankSlot()
                 .GroupBy(lv => lv)
                 .OrderByDescending(lvs => lvs.Key)
                 .Select(lvs => "{0}*{1}".Fmt(SlotData.IntToStr(lvs.Key), lvs.Count()))

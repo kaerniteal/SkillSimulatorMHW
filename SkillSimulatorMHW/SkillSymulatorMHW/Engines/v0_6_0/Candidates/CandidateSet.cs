@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SkillSimulatorMHW.Data;
 using SkillSimulatorMHW.Defines;
+using SkillSimulatorMHW.Masters;
 using SkillSimulatorMHW.Requirements;
 
 namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
@@ -44,6 +45,10 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
                 { Part.Waist,      new CandidateCreator(new CandidateArmorAbstract(Part.Waist), requirements ) },
                 { Part.Leg,        new CandidateCreator(new CandidateArmorAbstract(Part.Leg),   requirements ) },
             };
+
+            // 必要空きスロットLvリストを生成.
+            var blankSlotList = requirements.RequirementBlankSlot.GetBlankSlotList();
+            this.NeedBlankSlotLvList = MasterAccessoryData.GetSlotLvList(blankSlotList);
         }
 
         /// <summary>
@@ -55,6 +60,11 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
         /// 抽象化防具リストデータ辞書
         /// </summary>
         private Dictionary<Part, CandidateCreator> OrgAbstractListDic { get; set; }
+
+        /// <summary>
+        /// 必要空きスロットLvリスト
+        /// </summary>
+        private List<int> NeedBlankSlotLvList { get; set; }
 
         /// <summary>
         /// 検索候補データを取得.
@@ -88,6 +98,15 @@ namespace SkillSimulatorMHW.Engines.v0_6_0.Candidates
 
             // 抽象化防具リストからさらに検索中の状態に合わせて絞り込んだリストを格納して返す.
             return this.OrgAbstractListDic[part].Create(searchReport);
+        }
+
+        /// <summary>
+        /// 必要空きスロットLvリストを取得.
+        /// </summary>
+        /// <returns></returns>
+        public List<int> GetNeedBlankSlotLvList()
+        {
+            return this.NeedBlankSlotLvList;
         }
 
         /// <summary>

@@ -19,7 +19,8 @@ namespace SkillSimulatorMHW.Data
         {
             this.State = PartState.Unsettled;
             this.MasterList = null;
-            this.CacheNeedSlotList = new List<int>();
+            this.CacheNeedSlotLvList = new List<int>();
+            this.CacheNeedSlotLvListWithNeedBlank = new List<int>();
             this.CacheSkillLvDic = new Dictionary<int, int>();
         }
 
@@ -31,7 +32,8 @@ namespace SkillSimulatorMHW.Data
         {
             this.State = PartState.Determined;
             this.MasterList = masterList;
-            this.CacheNeedSlotList = null;
+            this.CacheNeedSlotLvList = null;
+            this.CacheNeedSlotLvListWithNeedBlank = null;
             this.CacheSkillLvDic = new Dictionary<int, int>();
         }
 
@@ -43,7 +45,12 @@ namespace SkillSimulatorMHW.Data
         /// <summary>
         /// 必要スロットリスト(パフォーマンス改善の為、キャッシュする).
         /// </summary>
-        private List<int> CacheNeedSlotList { get; set; }
+        private List<int> CacheNeedSlotLvList { get; set; }
+
+        /// <summary>
+        /// 必要空きスロットも含めた必要スロットリスト(パフォーマンス改善の為、キャッシュする).
+        /// </summary>
+        private List<int> CacheNeedSlotLvListWithNeedBlank { get; set; }
 
         /// <summary>
         /// スキルLv合計(パフォーマンス改善の為、キャッシュする)
@@ -104,17 +111,33 @@ namespace SkillSimulatorMHW.Data
         /// 必要スロットリストを取得.
         /// </summary>
         /// <returns></returns>
-        public List<int> GetNeedSlot()
+        public List<int> GetNeedSlotLvList()
         {
-            if (null == this.CacheNeedSlotList)
+            if (null == this.CacheNeedSlotLvList)
             {
-                this.CacheNeedSlotList = this.MasterList
-                    .Select(master => master.SlotLv)
-                    .OrderBy(lv => lv)
-                    .ToList();
+                this.CacheNeedSlotLvList = MasterAccessoryData.GetSlotLvList(this.MasterList);
             }
 
-            return this.CacheNeedSlotList;
+            return this.CacheNeedSlotLvList;
+        }
+
+        /// <summary>
+        /// 必要空きスロットも含めた必要スロットリストを取得.
+        /// </summary>
+        /// <returns></returns>
+        public List<int> GetNeedSlotLvListWithNeedBlank(List<int> needBlankSlotLvList)
+        {
+            if (null == this.CacheNeedSlotLvListWithNeedBlank)
+            {
+                // 必要空きスロットリストと必要スロットを結合して、ソートして格納.
+                var needSlotLvListWithNeedBlank = new List<int>();
+                needSlotLvListWithNeedBlank.AddRange(this.GetNeedSlotLvList());
+                needSlotLvListWithNeedBlank.AddRange(needBlankSlotLvList);
+                needSlotLvListWithNeedBlank.Sort();
+                this.CacheNeedSlotLvListWithNeedBlank = needSlotLvListWithNeedBlank;
+            }
+
+            return this.CacheNeedSlotLvListWithNeedBlank;
         }
 
         /// <summary>

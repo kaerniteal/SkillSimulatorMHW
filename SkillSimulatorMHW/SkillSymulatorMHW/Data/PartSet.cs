@@ -96,9 +96,9 @@ namespace SkillSimulatorMHW.Data
         }
 
         /// <summary>
-        /// 装備スロットリストを取得する
+        /// 現在のセットが装備している全てのスロットのLvリストを取得する.
         /// </summary>
-        public List<int> GetEquippedSlot()
+        public List<int> GetEquippedSlotLvList()
         {
             var equippedSlot = new List<int>();
 
@@ -137,64 +137,47 @@ namespace SkillSimulatorMHW.Data
             {
                 // 並べ替えは必要.
                 equippedSlot.Sort();
-                return equippedSlot;
             }
 
             return equippedSlot;
         }
 
         /// <summary>
-        /// 空きスロット、不足スロットを取得する.
+        /// 空きスロットを取得する.
         /// </summary>
-        /// <param name="blankSlotList">空きスロットのリスト</param>
-        /// <param name="lackSlotList">不足スロットのリスト</param>
-        public void GetBlankSlot(List<int> blankSlotList, List<int> lackSlotList = null)
+        /// <returns>空きスロットのリスト</returns>
+        public List<int> GetBlankSlot()
         {
-            // 装備スロットリスト
-            var equippedSlot = this.GetEquippedSlot();
+            // 結果を格納.
+            var blankSlotList = new List<int>();
+
+            // 現在のセットが装備している全てのスロットのLvリスト
+            var equippedSlotLvList = this.GetEquippedSlotLvList();
 
             // 必要スロットリスト
-            var needSlot = this.Accessory.GetNeedSlot();
+            var needSlotLvList = this.Accessory.GetNeedSlotLvList();
 
             // 装備スロットを下位Lvから走査.
             // 必要スロットLvと装備スロットLvを低いほうから順番に比較して、
             // 必要スロットLv <= 装備スロットLvであれば格納可能と判定する.
             var needIndex = 0;
-            for (var equippedIndex = 0; equippedIndex < equippedSlot.Count; equippedIndex++)
+            foreach (var equippedLv in equippedSlotLvList)
             {
-                // 装備スロットから一つ取り出す
-                var equippedLv = equippedSlot[equippedIndex];
-
-                // 必要スロットがまだ残っている場合.
-                if (needIndex < needSlot.Count)
+                // 必要スロットがまだ残っていてかつ装備Lvが必要Lvを超えていれば装備可能.
+                if (needIndex < needSlotLvList.Count &&
+                    needSlotLvList[needIndex] <= equippedLv)
                 {
-                    // 必要スロットを一つ取り出す.
-                    var needLv = needSlot[needIndex];
-
-                    // 装備Lvが必要Lvを超えていれば装備可能.
-                    if (needLv <= equippedLv)
-                    {
-                        // 装備可能なので必要Indexを進める.
-                        needIndex++;
-                        continue;
-                    }
-
-                    // 超えていない場合は装備Indexだけ進めて次の評価へ回す(より高いLvのが出てくるまで進める)
+                    // 装備可能なので必要Indexを進める.
+                    needIndex++;
+                    continue;
                 }
 
+                // 超えていない場合は装備Indexだけ進めて次の評価へ回す(より高いLvのが出てくるまで進める)
                 // 空きスロットリストに追加.
                 blankSlotList.Add(equippedLv);
             }
 
-            // 残っている必要スロットがあれば不足リストに追加..
-            if (null != lackSlotList)
-            {
-                // 上のループでインクリメントしたneedIndexをそのまま使用する.
-                for (; needIndex < needSlot.Count; needIndex++)
-                {
-                    lackSlotList.Add(needSlot[needIndex]);
-                }
-            }
+            return blankSlotList;
         }
 
         /// <summary>

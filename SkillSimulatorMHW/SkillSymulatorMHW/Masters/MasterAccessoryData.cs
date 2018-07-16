@@ -248,5 +248,18 @@ namespace SkillSimulatorMHW.Masters
         {
             return this.Name;
         }
+
+        /// <summary>
+        /// 装飾品マスタリストをLvリスト(1,2,2,3,3,3...)に変換する.
+        /// </summary>
+        /// <param name="masterList"></param>
+        /// <returns></returns>
+        public static List<int> GetSlotLvList(List<MasterAccessoryData> masterList)
+        {
+            return masterList
+                .Select(master => master.SlotLv)
+                .OrderBy(lv => lv)
+                .ToList();
+        }
     }
 }

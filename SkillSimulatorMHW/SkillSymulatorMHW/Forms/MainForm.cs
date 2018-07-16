@@ -281,6 +281,7 @@ namespace SkillSimulatorMHW.Forms
 
                 if (name.IsEmpty())
                 {
+                    // デフォルトでロード.
                     var requirements = Requirement.Load();
                     this.SetRequirements(requirements);
                     Log.Write("デフォルト設定をロードしました。".Fmt(name));
@@ -380,9 +381,13 @@ namespace SkillSimulatorMHW.Forms
             this.RequirementControlDic[Part.Accessory].SetRequirementData(accessory);
 
             // 検索条件(空きスロット)の初期化.
-            this.numBlankSlotLv3.Value = this.Requirements.RequirementBlankSlot.Lv3;
-            this.numBlankSlotLv2.Value = this.Requirements.RequirementBlankSlot.Lv2;
-            this.numBlankSlotLv1.Value = this.Requirements.RequirementBlankSlot.Lv1;
+            // 一つセットする都度値の更新が走ってしまうため、先に値を確保.
+            var lv3 = this.Requirements.RequirementBlankSlot.Lv3;
+            var lv2 = this.Requirements.RequirementBlankSlot.Lv2;
+            var lv1 = this.Requirements.RequirementBlankSlot.Lv1;
+            this.numBlankSlotLv3.Value = lv3;
+            this.numBlankSlotLv2.Value = lv2;
+            this.numBlankSlotLv1.Value = lv1;
 
             // スキルリストを更新.
             this.UpdateSkillList();

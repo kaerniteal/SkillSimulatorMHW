@@ -37,7 +37,7 @@ namespace SkillSimulatorMHW.Data
         /// <summary>
         /// 空きスロットリスト.
         /// </summary>
-        public List<int> BlankSlotList { get; set; }
+        private List<int> BlankSlotList { get; set; }
 
         /// <summary>
         /// 不足スロットリスト

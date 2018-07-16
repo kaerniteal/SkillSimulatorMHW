@@ -36,6 +36,13 @@
             this.txtbSkillSelectFilter = new System.Windows.Forms.TextBox();
             this.pnlSkillList = new System.Windows.Forms.Panel();
             this.grpbSerchRequirements = new System.Windows.Forms.GroupBox();
+            this.grpBlankSlot = new System.Windows.Forms.GroupBox();
+            this.lblBlankSlotLv1 = new System.Windows.Forms.Label();
+            this.lblBlankSlotLv2 = new System.Windows.Forms.Label();
+            this.lblBlankSlotLv3 = new System.Windows.Forms.Label();
+            this.numBlankSlotLv1 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.numBlankSlotLv2 = new SkillSimulatorMHW.Controls.NumericControl();
+            this.numBlankSlotLv3 = new SkillSimulatorMHW.Controls.NumericControl();
             this.grpbRequirementArmor = new System.Windows.Forms.GroupBox();
             this.radioRareAll = new System.Windows.Forms.RadioButton();
             this.radioRareLow = new System.Windows.Forms.RadioButton();
@@ -46,18 +53,11 @@
             this.grpbSearchResult = new System.Windows.Forms.GroupBox();
             this.btnShowAnalyze = new System.Windows.Forms.Button();
             this.btnSelectCharacter = new System.Windows.Forms.Button();
-            this.grpBlankSlot = new System.Windows.Forms.GroupBox();
-            this.numBlankSlotLv3 = new SkillSimulatorMHW.Controls.NumericControl();
-            this.numBlankSlotLv2 = new SkillSimulatorMHW.Controls.NumericControl();
-            this.numBlankSlotLv1 = new SkillSimulatorMHW.Controls.NumericControl();
-            this.lblBlankSlotLv3 = new System.Windows.Forms.Label();
-            this.lblBlankSlotLv2 = new System.Windows.Forms.Label();
-            this.lblBlankSlotLv1 = new System.Windows.Forms.Label();
             this.grpbSkill.SuspendLayout();
             this.grpbSerchRequirements.SuspendLayout();
+            this.grpBlankSlot.SuspendLayout();
             this.grpbRequirementArmor.SuspendLayout();
             this.grpbSearchResult.SuspendLayout();
-            this.grpBlankSlot.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtbLog
@@ -153,6 +153,78 @@
             this.grpbSerchRequirements.TabIndex = 6;
             this.grpbSerchRequirements.TabStop = false;
             this.grpbSerchRequirements.Text = "検索条件設定";
+            // 
+            // grpBlankSlot
+            // 
+            this.grpBlankSlot.Controls.Add(this.lblBlankSlotLv1);
+            this.grpBlankSlot.Controls.Add(this.lblBlankSlotLv2);
+            this.grpBlankSlot.Controls.Add(this.lblBlankSlotLv3);
+            this.grpBlankSlot.Controls.Add(this.numBlankSlotLv1);
+            this.grpBlankSlot.Controls.Add(this.numBlankSlotLv2);
+            this.grpBlankSlot.Controls.Add(this.numBlankSlotLv3);
+            this.grpBlankSlot.Location = new System.Drawing.Point(6, 595);
+            this.grpBlankSlot.Name = "grpBlankSlot";
+            this.grpBlankSlot.Size = new System.Drawing.Size(408, 65);
+            this.grpBlankSlot.TabIndex = 8;
+            this.grpBlankSlot.TabStop = false;
+            this.grpBlankSlot.Text = "必要空きスロット";
+            // 
+            // lblBlankSlotLv1
+            // 
+            this.lblBlankSlotLv1.AutoSize = true;
+            this.lblBlankSlotLv1.Location = new System.Drawing.Point(244, 17);
+            this.lblBlankSlotLv1.Name = "lblBlankSlotLv1";
+            this.lblBlankSlotLv1.Size = new System.Drawing.Size(90, 12);
+            this.lblBlankSlotLv1.TabIndex = 2;
+            this.lblBlankSlotLv1.Text = "Lv1以上のスロット";
+            // 
+            // lblBlankSlotLv2
+            // 
+            this.lblBlankSlotLv2.AutoSize = true;
+            this.lblBlankSlotLv2.Location = new System.Drawing.Point(124, 17);
+            this.lblBlankSlotLv2.Name = "lblBlankSlotLv2";
+            this.lblBlankSlotLv2.Size = new System.Drawing.Size(90, 12);
+            this.lblBlankSlotLv2.TabIndex = 2;
+            this.lblBlankSlotLv2.Text = "Lv2以上のスロット";
+            // 
+            // lblBlankSlotLv3
+            // 
+            this.lblBlankSlotLv3.AutoSize = true;
+            this.lblBlankSlotLv3.Location = new System.Drawing.Point(6, 17);
+            this.lblBlankSlotLv3.Name = "lblBlankSlotLv3";
+            this.lblBlankSlotLv3.Size = new System.Drawing.Size(90, 12);
+            this.lblBlankSlotLv3.TabIndex = 2;
+            this.lblBlankSlotLv3.Text = "Lv3以上のスロット";
+            // 
+            // numBlankSlotLv1
+            // 
+            this.numBlankSlotLv1.Location = new System.Drawing.Point(246, 33);
+            this.numBlankSlotLv1.Max = 99;
+            this.numBlankSlotLv1.Min = 0;
+            this.numBlankSlotLv1.Name = "numBlankSlotLv1";
+            this.numBlankSlotLv1.Size = new System.Drawing.Size(90, 26);
+            this.numBlankSlotLv1.TabIndex = 1;
+            this.numBlankSlotLv1.Value = 0;
+            // 
+            // numBlankSlotLv2
+            // 
+            this.numBlankSlotLv2.Location = new System.Drawing.Point(126, 33);
+            this.numBlankSlotLv2.Max = 99;
+            this.numBlankSlotLv2.Min = 0;
+            this.numBlankSlotLv2.Name = "numBlankSlotLv2";
+            this.numBlankSlotLv2.Size = new System.Drawing.Size(90, 26);
+            this.numBlankSlotLv2.TabIndex = 1;
+            this.numBlankSlotLv2.Value = 0;
+            // 
+            // numBlankSlotLv3
+            // 
+            this.numBlankSlotLv3.Location = new System.Drawing.Point(6, 33);
+            this.numBlankSlotLv3.Max = 99;
+            this.numBlankSlotLv3.Min = 0;
+            this.numBlankSlotLv3.Name = "numBlankSlotLv3";
+            this.numBlankSlotLv3.Size = new System.Drawing.Size(90, 26);
+            this.numBlankSlotLv3.TabIndex = 0;
+            this.numBlankSlotLv3.Value = 0;
             // 
             // grpbRequirementArmor
             // 
@@ -270,78 +342,6 @@
             this.btnSelectCharacter.UseVisualStyleBackColor = true;
             this.btnSelectCharacter.Click += new System.EventHandler(this.CallBackBtnSelectCharacterClick);
             // 
-            // grpBlankSlot
-            // 
-            this.grpBlankSlot.Controls.Add(this.lblBlankSlotLv1);
-            this.grpBlankSlot.Controls.Add(this.lblBlankSlotLv2);
-            this.grpBlankSlot.Controls.Add(this.lblBlankSlotLv3);
-            this.grpBlankSlot.Controls.Add(this.numBlankSlotLv1);
-            this.grpBlankSlot.Controls.Add(this.numBlankSlotLv2);
-            this.grpBlankSlot.Controls.Add(this.numBlankSlotLv3);
-            this.grpBlankSlot.Location = new System.Drawing.Point(6, 595);
-            this.grpBlankSlot.Name = "grpBlankSlot";
-            this.grpBlankSlot.Size = new System.Drawing.Size(408, 65);
-            this.grpBlankSlot.TabIndex = 8;
-            this.grpBlankSlot.TabStop = false;
-            this.grpBlankSlot.Text = "必要空きスロット";
-            // 
-            // numBlankSlotLv3
-            // 
-            this.numBlankSlotLv3.Location = new System.Drawing.Point(6, 33);
-            this.numBlankSlotLv3.Max = 99;
-            this.numBlankSlotLv3.Min = 0;
-            this.numBlankSlotLv3.Name = "numBlankSlotLv3";
-            this.numBlankSlotLv3.Size = new System.Drawing.Size(90, 26);
-            this.numBlankSlotLv3.TabIndex = 0;
-            this.numBlankSlotLv3.Value = 0;
-            // 
-            // numBlankSlotLv2
-            // 
-            this.numBlankSlotLv2.Location = new System.Drawing.Point(126, 33);
-            this.numBlankSlotLv2.Max = 99;
-            this.numBlankSlotLv2.Min = 0;
-            this.numBlankSlotLv2.Name = "numBlankSlotLv2";
-            this.numBlankSlotLv2.Size = new System.Drawing.Size(90, 26);
-            this.numBlankSlotLv2.TabIndex = 1;
-            this.numBlankSlotLv2.Value = 0;
-            // 
-            // numBlankSlotLv1
-            // 
-            this.numBlankSlotLv1.Location = new System.Drawing.Point(246, 33);
-            this.numBlankSlotLv1.Max = 99;
-            this.numBlankSlotLv1.Min = 0;
-            this.numBlankSlotLv1.Name = "numBlankSlotLv1";
-            this.numBlankSlotLv1.Size = new System.Drawing.Size(90, 26);
-            this.numBlankSlotLv1.TabIndex = 1;
-            this.numBlankSlotLv1.Value = 0;
-            // 
-            // lblBlankSlotLv3
-            // 
-            this.lblBlankSlotLv3.AutoSize = true;
-            this.lblBlankSlotLv3.Location = new System.Drawing.Point(6, 17);
-            this.lblBlankSlotLv3.Name = "lblBlankSlotLv3";
-            this.lblBlankSlotLv3.Size = new System.Drawing.Size(56, 12);
-            this.lblBlankSlotLv3.TabIndex = 2;
-            this.lblBlankSlotLv3.Text = "Lv3スロット";
-            // 
-            // lblBlankSlotLv2
-            // 
-            this.lblBlankSlotLv2.AutoSize = true;
-            this.lblBlankSlotLv2.Location = new System.Drawing.Point(124, 17);
-            this.lblBlankSlotLv2.Name = "lblBlankSlotLv2";
-            this.lblBlankSlotLv2.Size = new System.Drawing.Size(56, 12);
-            this.lblBlankSlotLv2.TabIndex = 2;
-            this.lblBlankSlotLv2.Text = "Lv2スロット";
-            // 
-            // lblBlankSlotLv1
-            // 
-            this.lblBlankSlotLv1.AutoSize = true;
-            this.lblBlankSlotLv1.Location = new System.Drawing.Point(244, 17);
-            this.lblBlankSlotLv1.Name = "lblBlankSlotLv1";
-            this.lblBlankSlotLv1.Size = new System.Drawing.Size(56, 12);
-            this.lblBlankSlotLv1.TabIndex = 2;
-            this.lblBlankSlotLv1.Text = "Lv1スロット";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -364,11 +364,11 @@
             this.grpbSkill.ResumeLayout(false);
             this.grpbSkill.PerformLayout();
             this.grpbSerchRequirements.ResumeLayout(false);
+            this.grpBlankSlot.ResumeLayout(false);
+            this.grpBlankSlot.PerformLayout();
             this.grpbRequirementArmor.ResumeLayout(false);
             this.grpbRequirementArmor.PerformLayout();
             this.grpbSearchResult.ResumeLayout(false);
-            this.grpBlankSlot.ResumeLayout(false);
-            this.grpBlankSlot.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
