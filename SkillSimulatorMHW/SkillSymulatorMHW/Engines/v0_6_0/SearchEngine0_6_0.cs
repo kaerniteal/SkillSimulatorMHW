@@ -500,9 +500,8 @@ namespace SkillSimulatorMHW.Engines.v0_6_0
                 var equippedSlotLvList = searchSet.GetEquippedSlotLvList();
 
                 // 必要スロットリスト
-                //var needBlankSlotList = this.CandidateSet.GetNeedBlankSlotLvList();
-                //var needSlotLvList = searchSet.Accessory.GetNeedSlotLvListWithNeedBlank(needBlankSlotList);
-                var needSlotLvList = searchSet.Accessory.GetNeedSlotLvList();
+                var needBlankSlotList = this.CandidateSet.GetNeedBlankSlotLvList();
+                var needSlotLvList = searchSet.Accessory.GetNeedSlotLvListWithNeedBlank(needBlankSlotList);
 
                 // 装備スロットを下位Lvから走査.
                 // 必要スロットLvと装備スロットLvを低いほうから順番に比較して、

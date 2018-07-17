@@ -20,7 +20,7 @@ namespace SkillSimulatorMHW.Data
             this.State = PartState.Unsettled;
             this.MasterList = null;
             this.CacheNeedSlotLvList = new List<int>();
-            this.CacheNeedSlotLvListWithNeedBlank = new List<int>();
+            this.CacheNeedSlotLvListWithNeedBlank = null;
             this.CacheSkillLvDic = new Dictionary<int, int>();
         }
 
