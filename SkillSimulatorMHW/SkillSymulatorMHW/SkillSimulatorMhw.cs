@@ -13,8 +13,8 @@ namespace SkillSimulatorMHW
         /// アプリケーションバージョン.
         /// </summary>
         public const int VerMajor = 0;
-        public const int VerMinor = 8;
-        public const int VerBuild = 2;
+        public const int VerMinor = 9;
+        public const int VerBuild = 0;
 
         public string Version = "{0}.{1}.{2}".Fmt(VerMajor, VerMinor, VerBuild);
 

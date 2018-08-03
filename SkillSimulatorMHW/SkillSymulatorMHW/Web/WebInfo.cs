@@ -84,9 +84,19 @@ namespace SkillSimulatorMHW.Web
                 var build = Int32.Parse(ver["VerBuild"].ToString());
                 var topic = ver["Topic"].ToObject<List<string>>();
 
-                if (major <= SkillSimulatorMhw.VerMajor)
+                if (major < SkillSimulatorMhw.VerMajor)
                 {
-                    if (minor <= SkillSimulatorMhw.VerMinor)
+                    // 最新バージョン.
+                    return verInfo;
+                }
+                else if (major == SkillSimulatorMhw.VerMajor)
+                {
+                    if (minor < SkillSimulatorMhw.VerMinor)
+                    {
+                        // 最新バージョン.
+                        return verInfo;
+                    }
+                    else if (minor == SkillSimulatorMhw.VerMinor)
                     {
                         if (build <= SkillSimulatorMhw.VerBuild)
                         {
